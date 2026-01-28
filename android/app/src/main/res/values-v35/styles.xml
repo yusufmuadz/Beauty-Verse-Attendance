@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- android/app/src/main/res/values-v35/styles.xml -->
+<resources>
+    <style name="UCropTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 👇 Ini solusi resmi untuk Android 15 edge-to-edge crash -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+    </style>
+</resources>
