@@ -17,6 +17,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:lancar_cat/app/shared/error_message.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:lancar_cat/app/shared/dialog.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -90,20 +91,39 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
     return RefreshIndicator(
       backgroundColor: Colors.grey.shade100,
       onRefresh: () async => await initHistory(),
-      child: Obx(
-        () => (m.monthAttendance.value.detail == null)
-            ? LoadingScreen()
-            : ListView(
-                children: [
-                  const Gap(10),
-                  datePicker(context),
-                  const Gap(10),
-                  attendanceReport(),
-                  const Gap(10),
-                  listTileDate(),
-                ],
+      child: Obx(() {
+        if (m.loading.value) {
+          return LoadingScreen();
+        }
+
+        if (m.monthAttendance.value.detail == null) {
+          return ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            children: [
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight:
+                      MediaQuery.of(context).size.height -
+                      kToolbarHeight -
+                      kBottomNavigationBarHeight,
+                ),
+                child: Center(child: Text('Tidak ada data')),
               ),
-      ),
+            ],
+          );
+        }
+
+        return ListView(
+          children: [
+            const Gap(10),
+            datePicker(context),
+            const Gap(10),
+            attendanceReport(),
+            const Gap(10),
+            listTileDate(),
+          ],
+        );
+      }),
     );
   }
 
@@ -288,6 +308,7 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
   final h = Get.put(HomeController());
 
   Future getSchedule(int? month, int? year) async {
+    m.loading.value = true;
     Uri url = Uri.parse(
       '${Variables.baseUrl}/testing/details?year=${year ?? DateTime.now().year}&month=${month ?? DateTime.now().month}',
     );
@@ -298,19 +319,25 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
         headers: {'Authorization': 'Bearer ${m.token.value}'},
       );
 
+      debugPrint('URL: $url');
+      debugPrint('Response status: ${response.statusCode}');
+      // debugPrint('Response body: ${response.body}');
+
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
         final result = MonthAttendanceResponseModel.fromMap(data);
         m.monthAttendance(result);
       } else {
-        log(response.reasonPhrase!);
-        Get.snackbar('gagal', 'gagal');
+        final statusCode = response.statusCode;
+
+        Get.snackbar('Gagal!', ErrorMessage().message(statusCode));
       }
     } on HttpException catch (e) {
       log(e.message);
     } catch (e) {
       log(e.toString());
     }
+    m.loading.value = false;
   }
 
   _customTileDate({
@@ -1096,6 +1123,7 @@ class LoadingScreen extends StatelessWidget {
     return Center(
       child: Container(
         padding: const EdgeInsets.all(15),
+        margin: EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           color: Colors.black.withValues(alpha: .3), // <<--- Lebih transparan

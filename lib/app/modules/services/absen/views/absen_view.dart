@@ -232,7 +232,7 @@ class _AbsenViewState extends State<AbsenView> {
                   ),
                   const Gap(8),
                   if (m.ci.value.type == null && m.co.value.type == null)
-                    CustomEmptySubmission(title: "Belum ada presensi"),
+                    CustomEmptySubmission(title: "Belum ada presensi", subtitle: 'Belum ada presensi di hari ini, silakan lakukan presensi anda terlebih dahulu',),
                   if (m.ci.value.type != null)
                     cTilePresensi(
                       context: context,

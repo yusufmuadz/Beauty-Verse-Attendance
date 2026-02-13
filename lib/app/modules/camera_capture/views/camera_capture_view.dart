@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, deprecated_member_use
 
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
@@ -42,8 +43,11 @@ class _CameraCaptureViewState extends State<CameraCaptureView> {
   RxDouble minExposureOffset = 0.0.obs;
   RxDouble maxExposureOffset = 0.0.obs;
 
+  Timer? _exposureDebounce;
+
   @override
   void dispose() {
+    _exposureDebounce?.cancel();
     controller.isLoading(false);
     controller.camController.dispose();
     super.dispose();
@@ -176,6 +180,10 @@ class _CameraCaptureViewState extends State<CameraCaptureView> {
                         child: Slider(
                           value: currentExposureOffset.value,
                           onChanged: (value) async {
+                            // debugPrint('Value Exposure: $value');
+                            // debugPrint('Value Exposure Min: ${await controller.camController.getMinExposureOffset()}');
+                            // debugPrint('Value Exposure Max: ${await controller.camController.getMaxExposureOffset()}');
+                            // setExposureSafe(value);
                             currentExposureOffset(value);
                             controller.camController.setExposureOffset(value);
                           },
@@ -288,6 +296,20 @@ class _CameraCaptureViewState extends State<CameraCaptureView> {
       ),
     );
   }
+
+Future<void> setExposureSafe(double value) async {
+  if (!controller.camController.value.isInitialized) return;
+
+  _exposureDebounce?.cancel();
+  _exposureDebounce = Timer(const Duration(milliseconds: 120), () async {
+    try {
+      await controller.camController.setExposureOffset(value);
+    } catch (e) {
+      debugPrint('⚠️ Exposure skipped: $e');
+    }
+  });
+}
+
 
   saveImageIntoHive() async {
     try {

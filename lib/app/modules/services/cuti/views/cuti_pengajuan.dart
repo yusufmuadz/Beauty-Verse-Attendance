@@ -41,7 +41,7 @@ class _CutiPengajuanState extends State<CutiPengajuan> {
           );
         } else if (snapshot.hasData) {
           if (snapshot.data.isEmpty) {
-            return CustomEmptySubmission(title: 'Belum ada pengajuan');
+            return CustomEmptySubmission(title: 'Belum ada pengajuan', subtitle: 'Belum ada pengajuan cuti, silahkan ajukan pengajuan cuti anda',);
           }
 
           List<Approval> approv = snapshot.data;
@@ -77,7 +77,7 @@ class _CutiPengajuanState extends State<CutiPengajuan> {
             },
           );
         }
-        return CustomEmptySubmission(title: 'Belum ada pengajuan');
+        return CustomEmptySubmission(title: 'Belum ada pengajuan', subtitle: 'Belum ada pengajuan cuti, silahkan ajukan pengajuan cuti anda',);
       },
     );
   }

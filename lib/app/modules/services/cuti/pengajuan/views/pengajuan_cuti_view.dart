@@ -518,7 +518,9 @@ class _PengajuanCutiViewState extends State<PengajuanCutiView> {
             ),
             Obx(
               () => Expanded(
-                child: ListView.builder(
+                child: sortingTimeOff.isEmpty ?
+                Center(child: Text('Opsi cuti Anda belum di setting oleh HR')) :
+                ListView.builder(
                   physics: BouncingScrollPhysics(),
                   itemCount: sortingTimeOff.length,
                   itemBuilder: (context, index) {

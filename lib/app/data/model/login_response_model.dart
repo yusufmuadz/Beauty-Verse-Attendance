@@ -239,7 +239,7 @@ class Job {
   String toJson() => json.encode(toMap());
 
   factory Job.fromMap(Map<String, dynamic> json) => Job(
-    idKaryawan: json["id_karyawan"],
+    idKaryawan: json["id_karyawan"] ?? '',
     levelPekerjaanId: json["level_pekerjaan_id"],
     statusPekerjaan: json["status_pekerjaan"],
     tglBergabung: json["tgl_bergabung"] == null

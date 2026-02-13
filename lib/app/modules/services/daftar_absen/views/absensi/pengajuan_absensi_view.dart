@@ -237,17 +237,28 @@ class _PengajuanAbsensiViewState extends State<PengajuanAbsensiView> {
                         return;
                       }
 
-                      if (Get.isSnackbarOpen) {
+                      if (Get.isSnackbarOpen ||
+                          Get.isBottomSheetOpen! ||
+                          Get.isDialogOpen!) {
                         Get.back();
                       }
 
                       if (!clockinController.text.contains(':') &&
-                          clockoutControllerInput.text.isNotEmpty) {
+                          clockinControllerInput.text.isEmpty) {
                         /**
                            * jika clockin kosong dan juga belum melakukan clockin sebelumnya maka tidak bisa mengajukan clock-out
                            */
+                        Snackbar().snackbar1(
+                          'Informasi',
+                          'Anda harus mengajukan Clock-In terlebih dahulu',
+                          null,
+                          Colors.white,
+                          Colors.orange,
+                        );
+                        
                         clockoutControllerInput.text = '';
                         clock_out_check_box.value = false;
+                        return;
                       }
 
                       if (value == false) {

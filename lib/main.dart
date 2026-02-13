@@ -131,7 +131,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       ),
       theme: _customTheme(),
       debugShowCheckedModeBanner: false,
-      title: "Andi SIAP",
+      title: "Lancar SIAP",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       unknownRoute: GetPage(

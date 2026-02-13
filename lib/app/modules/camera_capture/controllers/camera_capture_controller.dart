@@ -49,6 +49,9 @@ class CameraCaptureController extends GetxController {
   DateTime? temporary;
 
   XFile? picture;
+
+  final brightness = 1.0.obs; // 1.0 = normal
+  
   @override
   void onInit() async {
     super.onInit();

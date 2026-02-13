@@ -99,7 +99,8 @@ class _IstirahatTelatViewState extends State<IstirahatTelatView> {
                   if (data.data!.isEmpty) {
                     return const Expanded(
                       child: CustomEmptySubmission(
-                        title: 'Tidak ada pengajuan pada bulan ini',
+                        title: 'Belum ada pengajuan pada bulan ini',
+                        subtitle: 'Belum ada pengajuan Istirahat Telat pada bulan ini, silakan ajukan pengajuan Istirahat Telat anda',
                       ),
                     );
                   }

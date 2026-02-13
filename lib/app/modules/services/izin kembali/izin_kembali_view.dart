@@ -121,8 +121,8 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
                     onTap: () async {
                       final result = await showDatePicker(
                         context: context,
-                        firstDate: DateTime(2024),
-                        lastDate: DateTime(2025),
+                        firstDate: DateTime.now().subtract(const Duration(days: 365)),
+                        lastDate: DateTime.now(),
                         initialDate: selectedDate,
                         locale: Locale('id', 'ID'),
                       );
@@ -138,6 +138,13 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
                     },
                   ),
                 ),
+                data.logs == null || data.logs!.isEmpty ?
+                Expanded(
+                  child: Center(
+                    child: CustomEmptySubmission(title: 'Izin Kembali Kosong', subtitle: 'Belum ada pengajuan izin kembali, silahkan ajukan izin kembali anda',),
+                  ),
+                )
+                :
                 Expanded(
                   child: ListView.builder(
                     itemCount: data.logs?.length ?? 0,

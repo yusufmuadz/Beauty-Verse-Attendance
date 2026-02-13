@@ -92,7 +92,6 @@ class _AgreementShiftViewState extends State<AgreementShiftView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pengajuan Ganti Shift'),
-        centerTitle: true,
         actions: [
           PopupMenuButton<dynamic>(
             // Eksplisitkan tipe generic di sini
@@ -162,6 +161,7 @@ class _AgreementShiftViewState extends State<AgreementShiftView> {
             ? const Center(
                 child: CustomEmptySubmission(
                   title: 'Tidak ada pengajuan shift',
+                  subtitle: 'Belum ada yang mengajukan pergantian shift, tunggu hingga ada yang mengajukan pergantian shift',
                 ),
               )
             : isLoading

@@ -62,12 +62,17 @@ class _DetailPengajuanAbsensiViewState
     );
 
     request.headers.addAll(headers);
-
+    
     try {
       http.StreamedResponse response = await request.send();
+      
+      debugPrint('URL: ${Variables.baseUrl}/find/approval/attendance/$idAttendance');
+      debugPrint('Response Status Code: ${response.statusCode}');
+      debugPrint('Response Body: ${await response.stream.bytesToString()}');
 
       if (response.statusCode == 200) {
         final str = await response.stream.bytesToString();
+
         final data = RespModelAttendance.fromJson(str);
         isShowing.value = true;
         return data;
@@ -107,7 +112,11 @@ class _DetailPengajuanAbsensiViewState
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CupertinoActivityIndicator());
-              } else if (snapshot.connectionState == ConnectionState.done) {
+              } else if (snapshot.data == null) {
+                return Center(child: Text('Tidak ada data'));
+              }
+              else if (snapshot.connectionState == ConnectionState.done) {
+                
                 RespModelAttendance detail =
                     snapshot.data as RespModelAttendance;
                 Content content = detail.content!;

@@ -109,8 +109,9 @@ class SettingView extends GetView {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await controller.a.fetchCurrentUser();
-          await controller.a.todayAttendance();
+          // debugPrint('Controller Mana: ${a.runtimeType}');
+          await a.fetchCurrentUser();
+          await a.todayAttendance();
         },
         child: ListView(
           children: [

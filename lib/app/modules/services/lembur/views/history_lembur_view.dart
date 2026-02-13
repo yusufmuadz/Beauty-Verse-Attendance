@@ -113,7 +113,8 @@ class _LemburViewState extends State<LemburView> {
 
                       if (overtimeList.isEmpty) {
                         return CustomEmptySubmission(
-                          title: 'Tidak ada pengajuan lembur',
+                          title: 'Belum ada pengajuan lembur',
+                          subtitle: 'Belum ada pengajuan lembur, silahkan ajukan pengajuan lembur anda',
                         );
                       }
 

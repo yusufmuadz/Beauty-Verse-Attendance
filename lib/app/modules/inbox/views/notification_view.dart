@@ -53,31 +53,33 @@ class NotificationView extends GetView {
                     showDragHandle: true,
                     context: context,
                     builder: (context) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TileInformation(
-                            title: 'Status Pengajuan',
-                            subTitle: '${data.statusSuperadmin}',
-                          ),
-                          TileInformation(
-                            title: 'Pengajuan untuk',
-                            subTitle: '${data.status}',
-                          ),
-                          TileInformation(
-                            title: 'Tanggal keputusan',
-                            subTitle:
-                                '${DateFormat('dd MMMM yyyy', 'id_ID').format(data.dateApprovalSuperadmin ?? DateTime.now())}',
-                          ),
-                          TileInformation(
-                            title: 'Alasan Line',
-                            subTitle: '${data.reason ?? '-'}',
-                          ),
-                          TileInformation(
-                            title: 'Alasan Super Admin',
-                            subTitle: '${data.reasonSuperadmin ?? '-'}',
-                          ),
-                        ],
+                      return SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            TileInformation(
+                              title: 'Status Pengajuan',
+                              subTitle: '${data.statusSuperadmin}',
+                            ),
+                            TileInformation(
+                              title: 'Pengajuan untuk',
+                              subTitle: '${data.status}',
+                            ),
+                            TileInformation(
+                              title: 'Tanggal keputusan',
+                              subTitle:
+                                  '${DateFormat('dd MMMM yyyy', 'id_ID').format(data.dateApprovalSuperadmin ?? DateTime.now())}',
+                            ),
+                            TileInformation(
+                              title: 'Alasan Line',
+                              subTitle: '${data.reason ?? '-'}',
+                            ),
+                            TileInformation(
+                              title: 'Alasan Super Admin',
+                              subTitle: '${data.reasonSuperadmin ?? '-'}',
+                            ),
+                          ],
+                        ),
                       );
                     },
                   );

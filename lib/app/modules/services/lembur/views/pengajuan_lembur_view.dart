@@ -20,6 +20,7 @@ import 'package:lancar_cat/app/data/model/agreement_overtime_response_model.dart
 import 'package:lancar_cat/app/data/model/submission_attendance_response_model.dart';
 import 'package:lancar_cat/app/modules/services/lembur/views/detail_pengajuan_lembur_user_view.dart';
 import 'package:lancar_cat/app/shared/button/button_1.dart';
+import 'package:lancar_cat/app/shared/dialog.dart';
 import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
 import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
 
@@ -675,23 +676,38 @@ class _PengajuanLemburViewState extends State<PengajuanLemburView> {
   }
 
   Future selectedDate(String date) async {
-    var headers = {'Authorization': 'Bearer ${m.token.value}'};
-    var request = http.Request(
-      'GET',
-      Uri.parse('${Variables.baseUrl}/v1/user/check/shift?date=$date'),
-    );
+    try {
+      var headers = {'Authorization': 'Bearer ${m.token.value}'};
+      var request = http.Request(
+        'GET',
+        Uri.parse('${Variables.baseUrl}/v1/user/check/shift?date=$date'),
+      );
 
-    request.headers.addAll(headers);
+      request.headers.addAll(headers);
 
-    http.StreamedResponse response = await request.send();
+      http.StreamedResponse response = await request.send();
 
-    if (response.statusCode == 200) {
-      final str = await response.stream.bytesToString();
-      final jsonR = json.decode(str);
-      selectedShift = Shift.fromMap(jsonR['data']);
-      return selectedShift;
-    } else {
-      print(response.reasonPhrase);
+      // debugPrint('URL: ${request.url}');
+      // debugPrint('Response Status Code: ${response.statusCode}');
+
+      if (response.statusCode == 200) {
+        final str = await response.stream.bytesToString();
+        final jsonR = json.decode(str);
+        // debugPrint('Response Body Attendance: ${jsonR}');
+        if (jsonR['data'] == null) {
+          if (Get.isDialogOpen!) Get.back();
+          DialogCustom().dialog(title: 'Gagal!', subtitle: jsonR['message'], onTap: () => Get.back());
+          return;
+        }
+        selectedShift = Shift.fromMap(jsonR['data']);
+        return selectedShift;
+      } else {
+        print(response.reasonPhrase);
+      }
+    } catch (e) {
+      if (Get.isDialogOpen!) Get.back();
+
+      debugPrint('Error Pengajuan Lembur: $e');
     }
   }
 

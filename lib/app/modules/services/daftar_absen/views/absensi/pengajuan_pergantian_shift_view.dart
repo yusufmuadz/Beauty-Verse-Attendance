@@ -20,6 +20,8 @@ import 'package:lancar_cat/app/shared/button/button_1.dart';
 import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
 import 'package:lancar_cat/app/shared/textfieldform.dart';
 
+import '../../../../../shared/dialog.dart';
+
 class PengajuanPergantianShiftView extends StatefulWidget {
   const PengajuanPergantianShiftView({super.key});
 
@@ -527,7 +529,8 @@ class _PengajuanPergantianShiftViewState
   }
 
   Future selectedDate(String date) async {
-    var headers = {'Authorization': 'Bearer ${m.token.value}'};
+    try {
+      var headers = {'Authorization': 'Bearer ${m.token.value}'};
     var request = http.Request(
       'GET',
       Uri.parse('${Variables.baseUrl}/v1/user/check/shift?date=$date'),
@@ -540,10 +543,24 @@ class _PengajuanPergantianShiftViewState
     if (response.statusCode == 200) {
       final str = await response.stream.bytesToString();
       final jsonR = json.decode(str);
+
+      // debugPrint('URL: ${request.url}');
+      // debugPrint('Response Status Code: ${response.statusCode}');
+      // debugPrint('Response Body Attendance: ${jsonR}');
+
+      if (jsonR['data'] == null) {
+        if (Get.isDialogOpen!) Get.back();
+        DialogCustom().dialog(title: 'Gagal!', subtitle: jsonR['message'], onTap: () => Get.back());
+        return;
+      }
       selectedShift = Shift.fromMap(jsonR['data']);
       return selectedShift;
     } else {
       print(response.reasonPhrase);
+    }
+    } catch (e) {
+      if (Get.isDialogOpen!) Get.back();
+      DialogCustom().dialog(title: "Gagal", subtitle: e.toString(), onTap: () => Get.back());
     }
   }
 

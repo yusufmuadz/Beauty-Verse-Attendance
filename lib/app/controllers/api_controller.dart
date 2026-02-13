@@ -549,9 +549,28 @@ class ApiController extends GetxController {
         headers: {"Authorization": "Bearer ${m.token.value}"},
       );
 
-      if (response.statusCode == 200) {
+      // debugPrint('URL: ${Variables.baseUrl}/v3/user');
+      // debugPrint('Response Status Code: ${response.statusCode}');
+      // debugPrint('Response Body: ${response.body}');
+
+      log('Response User');
+      log(response.body);
+
+      if (response.statusCode == 200 && response.body.isNotEmpty) {
         m.u(User.fromJson(response.body));
       } else {
+        final body = json.decode(response.body);
+        if (Get.isSnackbarOpen) Get.back();
+        Get.showSnackbar(
+          GetSnackBar(
+            message: body['message'],
+            duration: Duration(seconds: 3),
+            backgroundColor: Colors.red,
+            snackPosition: SnackPosition.TOP,
+            icon: Icon(Iconsax.close_circle, color: Colors.white),
+            dismissDirection: DismissDirection.horizontal,
+          ),
+        );
         Get.offAll(() => SignInView());
       }
     } on SocketException catch (_) {
@@ -612,11 +631,21 @@ class ApiController extends GetxController {
         body: {'date': DateTime.now().toIso8601String()},
       );
 
+      // debugPrint('URL: $url');
+      // debugPrint('Response Status Code: ${response.statusCode}');
+      // debugPrint('Response Body Attendance: ${response.body}');
+
+      // debugPrint('Response Today Attendance');
+      // debugPrint('Shift: ${a.Shift().dayoff}');
+
       // // Memeriksa status kode respons
       if (response.statusCode == 200) {
         m.ci(Attendance());
         m.co(Attendance());
         m.todayShift(a.Shift());
+        final body = json.decode(response.body);
+
+        if (body['timeoff'] == null && body['shift'] == null) return;
         final data = TodayAttendanceResponseModel.fromJson(response.body);
         // log(data.toJson());
         m.todayShift(data.shift);
@@ -632,16 +661,19 @@ class ApiController extends GetxController {
         );
         m.timeOffMaster(data.timeoff);
       } else if (response.statusCode == 404) {
+        debugPrint("== masuk sini ==");
         // Menangani kasus data tidak ditemukan
         m.ci(Attendance());
         m.co(Attendance());
-        log("== masuk sini ==");
+        debugPrint("== masuk sini ==");
       } else {
+        debugPrint("== masuk sini Else ==");
         // Menangani respons selain 200 dan 404
         m.ci(Attendance());
         m.co(Attendance());
       }
     } catch (e) {
+      debugPrint('Error: $e');
       // Menangani pengecualian atau error
       m.ci(Attendance());
       m.co(Attendance());
@@ -866,12 +898,17 @@ class ApiController extends GetxController {
         headers: {"Authorization": "Bearer ${m.token.value}"},
       );
 
+      // debugPrint('URL: $url');
+      // debugPrint('Response Status Code: ${res.statusCode}');
+
       if (res.statusCode == 200) {
         List data = json.decode(res.body)["data"];
+      // debugPrint('Response Body: $data');
         List<TimeOff> result = data.map((e) => TimeOff.fromJson(e)).toList();
         m.timeOff(result);
         return result;
       } else {
+      // debugPrint('Response Body: ${res.body}');
         log(json.decode(res.body));
       }
     } catch (e) {

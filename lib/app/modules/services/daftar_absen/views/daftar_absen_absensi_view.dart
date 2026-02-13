@@ -95,7 +95,7 @@ class _DaftarAbsenAbsensiViewState extends State<DaftarAbsenAbsensiView> {
 
               if (request.submission!.isEmpty) {
                 return Expanded(
-                  child: CustomEmptySubmission(title: 'Belum ada pengajuan'),
+                  child: CustomEmptySubmission(title: 'Belum ada pengajuan', subtitle: 'Belum ada pengajuan presensi yang anda ajukan, silakan ajukan pengajuan presensi anda',),
                 );
               }
 

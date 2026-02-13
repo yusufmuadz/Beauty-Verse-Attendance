@@ -74,6 +74,7 @@ class ModelController extends GetxController {
 
   DateTime? effectiveDate;
   Schedule? schedule;
+  final loading = false.obs;
 
   clearModel() {
     leaveSize(0);

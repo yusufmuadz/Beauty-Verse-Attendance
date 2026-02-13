@@ -47,16 +47,23 @@ class _SignInViewState extends State<SignInView> {
           child: Column(
             children: [
               Container(
+                width: Get.width,
                 decoration: BoxDecoration(color: Colors.amber.shade900),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    // SafeArea(
+                    //   child: Row(
+                    //     crossAxisAlignment: CrossAxisAlignment.center,
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [Image.asset(Variables.logoPath, height: 120)],
+                    //   ),
+                    // ),
                     SafeArea(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [Image.asset(Variables.logoPath, height: 120)],
+                      child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Image.asset(Variables.logoPath, width: 90, height: 120),
                       ),
                     ),
                     Padding(

@@ -13,9 +13,9 @@ import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 
 class Variables {
-  static const String appName = "IsBun Presensi";
+  static const String appName = "Lancar Presensi";
   // static const String baseUrl = "https://192.168.5.3:8000/api";
-  static const String baseUrl = "https://apisbu.aisystem.id/api";
+  static const String baseUrl = "https://apilancar.aisystem.id/api";
   static const String logoPath = "assets/logo/logo.png";
 
   static String FCMToken = '';

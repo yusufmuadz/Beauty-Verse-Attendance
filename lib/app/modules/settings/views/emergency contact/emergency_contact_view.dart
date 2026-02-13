@@ -6,8 +6,11 @@ import 'package:lancar_cat/app/shared/button/button_1.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:lancar_cat/app/shared/loading/loading1.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+
+import '../../../../core/components/custom_empty_submission.dart';
 
 class EmergencyContactView extends StatefulWidget {
   EmergencyContactView({super.key});
@@ -38,8 +41,14 @@ class _EmergencyContactViewState extends State<EmergencyContactView> {
         future: controller.fetchEmergencyContact(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasData) {
+            return LoadingScreen();
+          } else if (snapshot.data!.data!.isEmpty) {
+            return CustomEmptySubmission(
+              title: 'Tidak Ada Info Kontak Darurat',
+              subtitle: 'Belum ada kontak darurat, silakan tambahkan kontak darurat anda',
+            );
+          }
+          else if (snapshot.hasData) {
             EmergencyContactResponseModel listContact = snapshot.data;
 
             return ListView.builder(

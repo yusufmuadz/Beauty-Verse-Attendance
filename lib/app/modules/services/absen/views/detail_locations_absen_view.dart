@@ -19,6 +19,7 @@ class DetailLocationsAbsenView extends StatefulWidget {
 
 class _DetailLocationsAbsenViewState extends State<DetailLocationsAbsenView> {
   late Location location;
+  bool mapError = false;
 
   @override
   void initState() {
@@ -39,8 +40,8 @@ class _DetailLocationsAbsenViewState extends State<DetailLocationsAbsenView> {
           minZoom: 17,
           keepAlive: false,
           initialCenter: LatLng(
-            double.parse(location.lat!),
-            double.parse(location.lng!),
+            double.parse(location.lat ?? '-7.7756106'),
+            double.parse(location.lng ?? '110.3888375'),
           ),
           initialZoom: 17,
           interactionOptions: InteractionOptions(flags: ~InteractiveFlag.all),
@@ -49,6 +50,13 @@ class _DetailLocationsAbsenViewState extends State<DetailLocationsAbsenView> {
           TileLayer(
             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
             maxZoom: 19,
+            userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+            errorImage: AssetImage('assets/images/ic_empty_box.png'),
+            errorTileCallback: (tile, error, stackTrace) {
+              debugPrint('Error Map: $error');
+              mapError = true;
+              debugPrint('Error Map: $mapError');
+            },
           ),
           MarkerLayer(
             markers: [
