@@ -237,28 +237,17 @@ class _PengajuanAbsensiViewState extends State<PengajuanAbsensiView> {
                         return;
                       }
 
-                      if (Get.isSnackbarOpen ||
-                          Get.isBottomSheetOpen! ||
-                          Get.isDialogOpen!) {
+                      if (Get.isSnackbarOpen) {
                         Get.back();
                       }
 
                       if (!clockinController.text.contains(':') &&
-                          clockinControllerInput.text.isEmpty) {
+                          clockoutControllerInput.text.isNotEmpty) {
                         /**
                            * jika clockin kosong dan juga belum melakukan clockin sebelumnya maka tidak bisa mengajukan clock-out
                            */
-                        Snackbar().snackbar1(
-                          'Informasi',
-                          'Anda harus mengajukan Clock-In terlebih dahulu',
-                          null,
-                          Colors.white,
-                          Colors.orange,
-                        );
-                        
                         clockoutControllerInput.text = '';
                         clock_out_check_box.value = false;
-                        return;
                       }
 
                       if (value == false) {
@@ -266,6 +255,11 @@ class _PengajuanAbsensiViewState extends State<PengajuanAbsensiView> {
                         hiddenClockIn = '';
                         clock_in_check_box.value = value!;
                       } else {
+                        // final TimeOfDay? picked = await showTimePicker(
+                        //   context: context,
+                        //   initialEntryMode: TimePickerEntryMode.inputOnly,
+                        //   initialTime: TimeOfDay.now(),
+                        // );
                         await showTimePicker(
                           context: context,
                           initialEntryMode: TimePickerEntryMode.inputOnly,
@@ -279,11 +273,21 @@ class _PengajuanAbsensiViewState extends State<PengajuanAbsensiView> {
                                     '${m.todayShift.value.scheduleIn![3]}${m.todayShift.value.scheduleIn![4]}',
                                   ),
                                 ),
+                          builder: (context, child) => MediaQuery(
+                            data: MediaQuery.of(context).copyWith(
+                              // alwaysUse24HourFormat: true,
+                              viewInsets: EdgeInsets.zero,
+                              textScaler: const TextScaler.linear(1.0),
+                            ),
+                            child: child ?? const SizedBox.shrink(),
+                          ),
                         ).then((value) {
+                          // if (value == null) return;
                           String formattedTime =
                               '${value!.hour.toString().padLeft(2, '0')}:${value.minute.toString().padLeft(2, '0')}';
                           clockinControllerInput.text = formattedTime;
                         });
+
                         clock_in_check_box.value = value!;
                       }
                     },
@@ -353,6 +357,14 @@ class _PengajuanAbsensiViewState extends State<PengajuanAbsensiView> {
                                     '${m.todayShift.value.scheduleOut![3]}${m.todayShift.value.scheduleOut![4]}',
                                   ),
                                 ),
+                          builder: (context, child) => MediaQuery(
+                            data: MediaQuery.of(context).copyWith(
+                              // alwaysUse24HourFormat: true,
+                              viewInsets: EdgeInsets.zero,
+                              textScaler: const TextScaler.linear(1.0),
+                            ),
+                            child: child ?? const SizedBox.shrink(),
+                          ),
                         ).then((value) {
                           String formattedTime =
                               value!.hour.toString().padLeft(2, '0') +

@@ -68,7 +68,7 @@ class _DetailPengajuanAbsensiViewState
       
       debugPrint('URL: ${Variables.baseUrl}/find/approval/attendance/$idAttendance');
       debugPrint('Response Status Code: ${response.statusCode}');
-      debugPrint('Response Body: ${await response.stream.bytesToString()}');
+      // debugPrint('Response Body: ${await response.stream.bytesToString()}');
 
       if (response.statusCode == 200) {
         final str = await response.stream.bytesToString();
