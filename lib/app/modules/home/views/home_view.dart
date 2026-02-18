@@ -1105,7 +1105,7 @@ class BuildMenuService extends StatelessWidget {
                           builder: (context) => IzinKembaliView(),
                         ),
                       ),
-                      title: "Izin Kembali",
+                      title: "Istirahat",
                       icons: Iconsax.refresh_circle_copy,
                       iconsColor: HexColor("#FF6C6C"),
                       colors: HexColor("#9B4C7C"),

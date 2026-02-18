@@ -544,9 +544,9 @@ class _PengajuanPergantianShiftViewState
       final str = await response.stream.bytesToString();
       final jsonR = json.decode(str);
 
-      // debugPrint('URL: ${request.url}');
-      // debugPrint('Response Status Code: ${response.statusCode}');
-      // debugPrint('Response Body Attendance: ${jsonR}');
+      debugPrint('URL: ${request.url}');
+      debugPrint('Response Status Code: ${response.statusCode}');
+      debugPrint('Response Body Attendance: ${jsonR}');
 
       if (jsonR['data'] == null) {
         if (Get.isDialogOpen!) Get.back();
@@ -577,6 +577,10 @@ class _PengajuanPergantianShiftViewState
 
     try {
       http.StreamedResponse response = await request.send();
+
+      debugPrint('URL: ${request.url}');
+      debugPrint('Response Status Code: ${response.statusCode}');
+      debugPrint('Response Body: ${await response.stream.bytesToString()}');
 
       if (response.statusCode == 200) {
         final str = await response.stream.bytesToString();

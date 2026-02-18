@@ -160,7 +160,7 @@ class LocationsTrackerController extends GetxController {
       Get.back();
       Snackbar().snackbar1(
         'Berhasil',
-        'Berhasil izin',
+        'Berhasil Istirahat',
         null,
         Colors.white,
         Colors.amber,
@@ -196,6 +196,10 @@ class LocationsTrackerController extends GetxController {
     try {
       http.StreamedResponse response = await request.send();
       var data = await response.stream.bytesToString();
+
+      debugPrint('URL: ${request.url}');
+      debugPrint('Status Code: ${response.statusCode}');
+      debugPrint('Response Body: $data');
 
       if (response.statusCode == 201) {
         return true;

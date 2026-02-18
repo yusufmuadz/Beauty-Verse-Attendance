@@ -277,6 +277,21 @@ class _LocationsTrackerViewState extends State<LocationsTrackerView> {
           // Plenty of other options available!
         ),
 
+        // TileLayer(
+        //   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        //   userAgentPackageName: 'com.ags.lancar_cat',
+        //   maxZoom: 19,
+        //   // urlTemplate: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png',
+        //   subdomains: ['a', 'b', 'c', 'd'],
+        //   tileProvider: NetworkTileProvider(
+        //     headers: {
+        //       'User-Agent': 'FlutterMapApp/1.0 (com.ags.lancar_cat)',
+        //       'Accept': '*/*',
+        //     },
+        //   ),
+        //   // Plenty of other options available!
+        // ),
+
         CurrentLocationLayer(
           alignPositionOnUpdate: AlignOnUpdate.always,
           alignDirectionOnUpdate: AlignOnUpdate.never,

@@ -709,7 +709,7 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
                           ],
                           if (permits!.isNotEmpty) ...[
                             Text(
-                              'Izin keluar',
+                              'Istirahat keluar',
                               style: GoogleFonts.quicksand(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -724,12 +724,12 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
                                     : 'Approved',
                                 showStatus: false,
                                 mainTitle:
-                                    "Waktu izin ${permits[index].type == 'out' ? 'Keluar' : 'Masuk'}",
+                                    "Waktu istirahat ${permits[index].type == 'out' ? 'Keluar' : 'Masuk'}",
                                 mainSubtitle:
                                     '${DateFormat('dd MMM yyyy, HH:mm', 'id_ID').format(permits[index].createdAt!)}',
-                                secTitle: "Alasan izin",
+                                secTitle: "Alasan istirahat ${permits[index].type == 'out' ? 'keluar' : 'masuk'}",
                                 secSubtitle: permits[index].catatan ?? '-',
-                                thirdTitle: "Izin untuk",
+                                thirdTitle: "Istirahat untuk",
                                 thirdSubtitle:
                                     '${permits[index].type == 'out' ? "Keluar" : "Masuk"}',
                               ),

@@ -58,7 +58,7 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 1,
-        title: const Text('Izin Kembali'),
+        title: const Text('Istirahat'),
         centerTitle: true,
       ),
       body: FutureBuilder(
@@ -141,7 +141,7 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
                 data.logs == null || data.logs!.isEmpty ?
                 Expanded(
                   child: Center(
-                    child: CustomEmptySubmission(title: 'Izin Kembali Kosong', subtitle: 'Belum ada pengajuan izin kembali, silahkan ajukan izin kembali anda',),
+                    child: CustomEmptySubmission(title: 'Istirahat Kosong', subtitle: 'Belum ada pengajuan istirahat, silahkan ajukan istirahat anda',),
                   ),
                 )
                 :
@@ -242,17 +242,17 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
                                     ),
                                   ),
                                   TileInformation(
-                                    title: 'Tanggal izin keluar',
+                                    title: 'Tanggal istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}',
                                     subTitle:
                                         '${DateFormat('dd MMMM yyyy', 'id_ID').format(perm.createdAt ?? DateTime.now())}',
                                   ),
                                   TileInformation(
-                                    title: 'Waktu izin keluar',
+                                    title: 'Waktu istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}',
                                     subTitle:
                                         '${DateFormat('HH:mm', 'id_ID').format(perm.createdAt ?? DateTime.now())}',
                                   ),
                                   TileInformation(
-                                    title: 'Alasan izin keluar',
+                                    title: 'Alasan istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}',
                                     subTitle: '${perm.catatan ?? '-'}',
                                   ),
                                   TileInformation(
@@ -268,15 +268,14 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
                             },
                           );
                         },
-                        status: (perm.type == 'out') ? 'Rejected' : 'Approved',
+                        status: (perm.type == 'out') ? 'Approved' : 'Rejected',
                         showStatus: false,
                         mainTitle:
-                            "Waktu izin ${perm.type == 'out' ? 'Keluar' : 'Masuk'}",
-                        mainSubtitle:
-                            '${DateFormat('dd MMM yyyy, HH:mm', 'id_ID').format(perm.createdAt!)}',
-                        secTitle: "Alasan izin",
+                            "Waktu Istirahat ${perm.type == 'out' ? 'Keluar' : 'Masuk'}",
+                        mainSubtitle: '${DateFormat('dd MMM yyyy, HH:mm', 'id_ID').format(perm.createdAt!)}',
+                        secTitle: "Alasan istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}",
                         secSubtitle: perm.catatan ?? '-',
-                        thirdTitle: "Izin untuk",
+                        thirdTitle: "Istirahat untuk",
                         thirdSubtitle:
                             '${perm.type == 'out' ? "Keluar" : "Masuk"}',
                       );
@@ -301,16 +300,16 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
                             key: _keyForm,
                             child: TextfieldForm(
                               controller: reason,
-                              hintText: 'contoh: mengantar saudara',
-                              labelText: 'Alasan izin',
+                              hintText: 'contoh: Lapar',
+                              labelText: 'Alasan',
                               keyboardType: TextInputType.text,
                               prefixIcon: Icon(Iconsax.note_1_copy),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Alasan wajib di isi';
-                                }
-                                return null;
-                              },
+                              // validator: (value) {
+                              //   if (value!.isEmpty) {
+                              //     return 'Alasan wajib di isi';
+                              //   }
+                              //   return null;
+                              // },
                             ),
                           ),
                           const Gap(10),
@@ -320,8 +319,8 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
                           ))
                             Button1(
                               title: (data.logs!.length % 2 == 0)
-                                  ? 'Izin Keluar'
-                                  : 'Izin Masuk',
+                                  ? 'Istirahat Keluar'
+                                  : 'Istirahat Masuk',
                               showOutline: false,
                               onTap: _onTapSubmitPermitOut,
                             ),
@@ -339,7 +338,7 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
   }
 
   _onTapSubmitPermitOut() async {
-    if (_keyForm.currentState!.validate()) {
+    // if (_keyForm.currentState!.validate()) {
       if (m.ci.value.createdAt == null) {
         Get.dialog(
           AlertDialog(
@@ -400,7 +399,7 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
       );
       reason.text = '';
       setState(() {});
-    }
+    // }
   }
 
   bool checkCrossingMidnight(TimeOfDay scheduleIn, TimeOfDay scheduleOut) {

@@ -253,7 +253,7 @@ class MenuView extends GetView<HomeController> {
                     ),
                     DrawerContent(
                       icons: Iconsax.programming_arrow_copy,
-                      title: 'Izin Kembali',
+                      title: 'Istirahat',
                       onTap: () {
                         Get.to(IzinKembaliView());
                       },

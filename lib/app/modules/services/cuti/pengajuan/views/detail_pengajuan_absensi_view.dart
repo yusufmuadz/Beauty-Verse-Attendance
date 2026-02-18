@@ -38,6 +38,8 @@ class _DetailPengajuanAbsensiViewState
   late String idAttendance;
   Content? content;
   RxBool isShowing = false.obs;
+  final contentNotNull = false.obs;
+  final contentStatusLine = ''.obs;
 
   final m = Get.find<ModelController>();
   final keteranganC = TextEditingController();
@@ -77,6 +79,10 @@ class _DetailPengajuanAbsensiViewState
 
         final data = RespModelAttendance.fromJson(str);
         isShowing.value = true;
+        if (data.content != null) {
+          contentNotNull.value = true;
+          contentStatusLine.value = data.content?.statusLine ?? '';
+        }
         return data;
       } else {
         throw Exception(response.reasonPhrase);
@@ -304,11 +310,15 @@ class _DetailPengajuanAbsensiViewState
         ),
       ),
       bottomSheet: Obx(
-        () =>
-            isShowing.value &&
-                content != null &&
-                content!.statusLine == "Pending"
-            ? Container(
+        () {
+          debugPrint('isShowing: ${isShowing.value}');
+                debugPrint('content: ${contentNotNull.value}');
+                debugPrint('statusLine: ${contentStatusLine.value}');
+                debugPrint('statusLine: ${isShowing.value && !contentNotNull.value && contentStatusLine.value == "Pending"}');
+            if(isShowing.value &&
+                contentNotNull.value &&
+                contentStatusLine.value == "Pending") {
+             return Container(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 decoration: BoxDecoration(
                   color: whiteColor,
@@ -358,8 +368,9 @@ class _DetailPengajuanAbsensiViewState
                     ),
                   ],
                 ),
-              )
-            : SizedBox(),
+              );}
+            return const SizedBox.shrink();
+          },
       ),
     );
   }
