@@ -62,11 +62,13 @@ class _DetailPengajuanAbsensiViewState
     );
 
     request.headers.addAll(headers);
-    
+
     try {
       http.StreamedResponse response = await request.send();
-      
-      debugPrint('URL: ${Variables.baseUrl}/find/approval/attendance/$idAttendance');
+
+      debugPrint(
+        'URL: ${Variables.baseUrl}/find/approval/attendance/$idAttendance',
+      );
       debugPrint('Response Status Code: ${response.statusCode}');
       // debugPrint('Response Body: ${await response.stream.bytesToString()}');
 
@@ -114,9 +116,7 @@ class _DetailPengajuanAbsensiViewState
                 return Center(child: CupertinoActivityIndicator());
               } else if (snapshot.data == null) {
                 return Center(child: Text('Tidak ada data'));
-              }
-              else if (snapshot.connectionState == ConnectionState.done) {
-                
+              } else if (snapshot.connectionState == ConnectionState.done) {
                 RespModelAttendance detail =
                     snapshot.data as RespModelAttendance;
                 Content content = detail.content!;
@@ -304,63 +304,62 @@ class _DetailPengajuanAbsensiViewState
         ),
       ),
       bottomSheet: Obx(
-        () => isShowing.value
-            ? content == null
-                  ? const SizedBox()
-                  : (content!.statusLine == "Pending")
-                  ? Container(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      decoration: BoxDecoration(
-                        color: whiteColor,
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(1, -1),
-                            color: greyColor.withAlpha(25),
-                            blurRadius: 2,
-                            spreadRadius: 2,
+        () =>
+            isShowing.value &&
+                content != null &&
+                content!.statusLine == "Pending"
+            ? Container(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                decoration: BoxDecoration(
+                  color: whiteColor,
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(1, -1),
+                      color: greyColor.withAlpha(25),
+                      blurRadius: 2,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MyTextfield(
+                      controller: keteranganC,
+                      showTxt: false,
+                      hintText: 'Contoh: Jangan di ulangi lagi yaa...',
+                      prefix: Icon(Iconsax.note_1_copy),
+                    ),
+                    const Gap(10),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: MyButton(
+                            txtBtn: 'Tolak',
+                            color: Colors.red,
+                            onTap: () {
+                              Get.dialog(Loading1());
+                              _onPressed(0, content!.id!);
+                            },
                           ),
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          MyTextfield(
-                            controller: keteranganC,
-                            showTxt: false,
-                            hintText: 'Contoh: Jangan di ulangi lagi yaa...',
-                            prefix: Icon(Iconsax.note_1_copy),
+                        ),
+                        Expanded(
+                          child: MyButton(
+                            txtBtn: 'Setujui',
+                            color: Colors.green,
+                            onTap: () {
+                              Get.dialog(Loading1());
+                              _onPressed(1, content!.id!);
+                            },
                           ),
-                          const Gap(10),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: MyButton(
-                                  txtBtn: 'Tolak',
-                                  color: Colors.red,
-                                  onTap: () {
-                                    Get.dialog(Loading1());
-                                    _onPressed(0, content!.id!);
-                                  },
-                                ),
-                              ),
-                              Expanded(
-                                child: MyButton(
-                                  txtBtn: 'Setujui',
-                                  color: Colors.amber,
-                                  onTap: () {
-                                    Get.dialog(Loading1());
-                                    _onPressed(1, content!.id!);
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  : SizedBox()
-            : Text(isShowing.value.toString()),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            : SizedBox(),
       ),
     );
   }
