@@ -76,9 +76,9 @@ flutter:
     - assets/gif/
 
 flutter_icons:
-  image_path: assets/logo/logo.png
+  image_path: assets/logo/logo_.png
   adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: assets/logo/logo.png
+  adaptive_icon_foreground: assets/logo/logo_.png
   remove_alpha_ios: true
   android: true
   ios: true
