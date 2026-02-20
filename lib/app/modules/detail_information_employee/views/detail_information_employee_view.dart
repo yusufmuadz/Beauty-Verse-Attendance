@@ -369,6 +369,14 @@ class PersonTabView extends StatelessWidget {
                   ?.namaPerusahaan,
             ),
             _buildInfoTile(
+              'Penempatan Pertama',
+              profileResponseModel
+                  .data
+                  ?.person
+                  ?.informasiPekerjaan
+                  ?.penempatanPertama ?? '-',
+            ),
+            _buildInfoTile(
               'Posisi Pekerjaan',
               profileResponseModel
                   .data
@@ -391,6 +399,14 @@ class PersonTabView extends StatelessWidget {
                   ?.person
                   ?.informasiPekerjaan
                   ?.statusPekerjaan,
+            ),
+            _buildInfoTile(
+              'Status PTKP',
+              profileResponseModel
+                  .data
+                  ?.person
+                  ?.informasiPekerjaan
+                  ?.statusPTKP,
             ),
             _buildInfoTile(
               'Tanggal Bergabung',

@@ -218,6 +218,8 @@ class Job {
   final String? approvalIstirahatTelat;
   final dynamic createdBy;
   final JobLevelMaster1? jobLevelMaster1;
+  final String? penempatanPertama;
+  final String? statusPTKP;
 
   Job({
     this.idKaryawan,
@@ -232,6 +234,8 @@ class Job {
     this.approvalIstirahatTelat,
     this.createdBy,
     this.jobLevelMaster1,
+    this.penempatanPertama,
+    this.statusPTKP,
   });
 
   factory Job.fromJson(String str) => Job.fromMap(json.decode(str));
@@ -257,6 +261,8 @@ class Job {
     jobLevelMaster1: json["job_level_master1"] == null
         ? null
         : JobLevelMaster1.fromMap(json["job_level_master1"]),
+    penempatanPertama: json["penempatan_pertama"] ?? '',
+    statusPTKP: json["ptkp"] ?? '',
   );
 
   Map<String, dynamic> toMap() => {
@@ -274,6 +280,8 @@ class Job {
     "approval_istirahat_telat": approvalIstirahatTelat,
     "created_by": createdBy,
     "job_level_master1": jobLevelMaster1?.toMap(),
+    'penempatan_pertama': penempatanPertama,
+    'ptkp': statusPTKP,
   };
 }
 

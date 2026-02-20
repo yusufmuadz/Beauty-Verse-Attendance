@@ -184,6 +184,8 @@ class InformasiPekerjaan {
   final DateTime? tanggalBergabung;
   final DateTime? tanggalBerakhirKontrak;
   final String? masaKerja;
+  final String? penempatanPertama;
+  final String? statusPTKP;
 
   InformasiPekerjaan({
     this.idKaryawan,
@@ -195,6 +197,8 @@ class InformasiPekerjaan {
     this.tanggalBergabung,
     this.tanggalBerakhirKontrak,
     this.masaKerja,
+    this.penempatanPertama,
+    this.statusPTKP,
   });
 
   factory InformasiPekerjaan.fromJson(String str) =>
@@ -217,6 +221,8 @@ class InformasiPekerjaan {
             ? null
             : DateTime.parse(json["tanggal_berakhir_kontrak"]),
         masaKerja: json["masa_kerja"],
+        penempatanPertama: json["penempatan_pertama"] ?? '-',
+        statusPTKP: json["ptkp"] ?? '-',
       );
 
   Map<String, dynamic> toMap() => {
@@ -231,6 +237,8 @@ class InformasiPekerjaan {
         "tanggal_berakhir_kontrak":
             "${tanggalBerakhirKontrak!.year.toString().padLeft(4, '0')}-${tanggalBerakhirKontrak!.month.toString().padLeft(2, '0')}-${tanggalBerakhirKontrak!.day.toString().padLeft(2, '0')}",
         "masa_kerja": masaKerja,
+        'penempatan_pertama': penempatanPertama,
+        'ptkp': statusPTKP,
       };
 }
 

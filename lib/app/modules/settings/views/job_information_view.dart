@@ -49,10 +49,20 @@ class JobInformationView extends GetView {
             iconColor: Colors.amber, // biru = corporate
           ),
           ListTile2(
-            title: 'Cabang',
-            subTitle: m.u.value.cabang!.nama ?? '-',
-            icons: Icons.apartment, // 🏬 cabang
+            title: 'Penempatan Pertama',
+            subTitle:
+                m.u.value.job!.penempatanPertama != null &&
+                    m.u.value.job!.penempatanPertama!.isNotEmpty
+                ? m.u.value.job!.penempatanPertama!
+                : '-',
+            icons: Icons.apartment, // 🏬 Penempatan Pertama
             iconColor: Colors.orange, // oranye = lokasi
+          ),
+          ListTile2(
+            title: 'Penempatan Saat Ini',
+            subTitle: m.u.value.cabang!.nama ?? '-',
+            icons: Icons.location_city, // 🏬 Penermpatan saat ini
+            iconColor: Color(0xFF3B82F6), // biru = lokasi
           ),
           ListTile2(
             title: 'Nama Organisasi',
@@ -81,6 +91,15 @@ class JobInformationView extends GetView {
                 : '-',
             icons: Icons.verified_user, // ✅ status kerja
             iconColor: Colors.cyan, // biru muda = validasi
+          ),
+          ListTile2(
+            title: 'Status PTKP',
+            subTitle:
+                m.u.value.job!.statusPTKP != null && m.u.value.job!.statusPTKP!.isNotEmpty
+                ? m.u.value.job!.statusPTKP!
+                : '-',
+            icons: Icons.paid, // ✅ status PTKP
+            iconColor: Color(0xFF059669), // emerald = keuangan / pajak
           ),
           ListTile2(
             title: 'Tanggal Bergabung',

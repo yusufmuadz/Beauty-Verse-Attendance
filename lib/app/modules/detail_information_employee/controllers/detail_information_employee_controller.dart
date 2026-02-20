@@ -58,12 +58,23 @@ class DetailInformationEmployeeController extends GetxController
         Uri.parse('${Variables.baseUrl}/user/detail/$idEmployee'),
       );
 
+      debugPrint('log_info: $idEmployee => ${request.url}');
+
+      debugPrint('log_info: $idEmployee => ${request.headers}');
+
+      debugPrint('log_info: $idEmployee => ${request.method}');
+
+      debugPrint('log_info: $idEmployee => ${request.body}');
+
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
+        debugPrint('log_info: $idEmployee => response success');
+        debugPrint('log_info: $idEmployee => ${response.statusCode}');
         final data = await response.stream.bytesToString();
+        debugPrint('log_info: $idEmployee => ${data}');
         final result = ProfileResponseModel.fromJson(data);
         profileResponseModel = result;
         imgUrl(profileResponseModel.data!.person!.informasiPribadi!.imageUrl);

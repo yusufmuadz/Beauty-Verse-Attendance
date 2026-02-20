@@ -549,9 +549,9 @@ class ApiController extends GetxController {
         headers: {"Authorization": "Bearer ${m.token.value}"},
       );
 
-      // debugPrint('URL: ${Variables.baseUrl}/v3/user');
-      // debugPrint('Response Status Code: ${response.statusCode}');
-      // debugPrint('Response Body: ${response.body}');
+      debugPrint('URL: ${Variables.baseUrl}/v3/user');
+      debugPrint('Response Status Code: ${response.statusCode}');
+      debugPrint('Response Body: ${response.body}');
 
       log('Response User');
       log(response.body);
