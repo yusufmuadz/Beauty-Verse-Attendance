@@ -1,6 +1,7 @@
-import 'package:lancar_cat/app/models/shift.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../models/shift.dart';
 
 class LemburController extends GetxController {
   RxBool isClicked = true.obs;

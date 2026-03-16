@@ -9,18 +9,17 @@ import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/core/components/custom_dialog.dart';
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/core/components/detail_absensi_bottom_sheet.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/list_shift_response_model.dart';
-import 'package:lancar_cat/app/models/shift.dart';
-import 'package:lancar_cat/app/modules/home/controllers/home_controller.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/textfieldform.dart';
-
+import '../../../../../core/components/custom_dialog.dart';
+import '../../../../../core/components/custom_empty_submission.dart';
+import '../../../../../core/components/detail_absensi_bottom_sheet.dart';
+import '../../../../../core/constant/variables.dart';
+import '../../../../../data/model/list_shift_response_model.dart';
+import '../../../../../models/shift.dart';
+import '../../../../../shared/button/button_1.dart';
 import '../../../../../shared/dialog.dart';
+import '../../../../../shared/snackbar/snackbar_1.dart';
+import '../../../../../shared/textfieldform.dart';
+import '../../../../home/controllers/home_controller.dart';
 
 class PengajuanPergantianShiftView extends StatefulWidget {
   const PengajuanPergantianShiftView({super.key});
@@ -478,7 +477,7 @@ class _PengajuanPergantianShiftViewState
       Uri.parse('${Variables.baseUrl}/v1/user/submit/flexible/shift'),
     );
 
-    print('Url => ${request.url}');
+    debugPrint('Url => ${request.url}');
 
     request.fields.addAll({
       'shift_id': shiftId,
@@ -544,9 +543,9 @@ class _PengajuanPergantianShiftViewState
       final str = await response.stream.bytesToString();
       final jsonR = json.decode(str);
 
-      debugPrint('URL: ${request.url}');
-      debugPrint('Response Status Code: ${response.statusCode}');
-      debugPrint('Response Body Attendance: ${jsonR}');
+      // debugPrint('URL: ${request.url}');
+      // debugPrint('Response Status Code: ${response.statusCode}');
+      // debugPrint('Response Body Attendance: ${jsonR}');
 
       if (jsonR['data'] == null) {
         if (Get.isDialogOpen!) Get.back();
@@ -556,7 +555,7 @@ class _PengajuanPergantianShiftViewState
       selectedShift = Shift.fromMap(jsonR['data']);
       return selectedShift;
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
     }
     } catch (e) {
       if (Get.isDialogOpen!) Get.back();

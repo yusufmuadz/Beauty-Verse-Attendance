@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/models/leave.dart';
-import 'package:lancar_cat/app/models/profile_response_model.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/constant/variables.dart';
+import '../../../models/leave.dart';
+import '../../../models/profile_response_model.dart';
 
 class DetailInformationEmployeeController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -23,11 +23,6 @@ class DetailInformationEmployeeController extends GetxController
         '${DateTime.now().year}-${monthFormatted(DateTime.now().month)}-${DateTime.now().day}',
       ),
     );
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
   }
 
   @override
@@ -47,7 +42,7 @@ class DetailInformationEmployeeController extends GetxController
   RxBool isLoading = true.obs;
   RxString imgUrl = ''.obs;
 
-  monthFormatted(int month) => (month < 10) ? "0$month" : month;
+  Object monthFormatted(int month) => (month < 10) ? "0$month" : month;
 
   Future getProfileInformation() async {
     try {

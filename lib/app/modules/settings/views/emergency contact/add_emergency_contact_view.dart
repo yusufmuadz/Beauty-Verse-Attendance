@@ -4,10 +4,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-import 'package:lancar_cat/app/data/model/emergency_contact_response_model.dart';
-import 'package:lancar_cat/app/modules/settings/controllers/emergency_contact_controller.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
+import '../../../../data/model/emergency_contact_response_model.dart';
+import '../../../../shared/button/button_1.dart';
+import '../../../../shared/textfield/textfield_1.dart';
+import '../../controllers/emergency_contact_controller.dart';
 
 class AddEmergencyContactView extends StatefulWidget {
   const AddEmergencyContactView({super.key});
@@ -71,7 +71,7 @@ class _AddEmergencyContactViewState extends State<AddEmergencyContactView> {
                   return const Center(child: LinearProgressIndicator());
                 } else if (snapshot.connectionState == ConnectionState.done) {
                   final options = snapshot.data;
-                  print(options);
+                  debugPrint(options);
                   return TextField1(
                     controller: hubungan,
                     preffixIcon: Icon(Iconsax.personalcard_copy),
@@ -132,7 +132,7 @@ class _AddEmergencyContactViewState extends State<AddEmergencyContactView> {
     );
   }
 
-  _showOptionsHubungan(List<String> options) {
+  void _showOptionsHubungan(List<String> options) {
     showModalBottomSheet(
       showDragHandle: true,
       shape: RoundedRectangleBorder(
@@ -143,7 +143,7 @@ class _AddEmergencyContactViewState extends State<AddEmergencyContactView> {
       ),
       context: context,
       builder: (context) {
-        return Container(
+        return SizedBox(
           height: Get.height * 0.7,
           child: ListView.builder(
             itemCount: options.length,

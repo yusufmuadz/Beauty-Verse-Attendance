@@ -4,26 +4,24 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:lancar_cat/app/data/model/login_response_model.dart';
-import 'package:lancar_cat/app/data/model/month_attendance_response_model.dart';
-import 'package:lancar_cat/app/data/model/today_attendance_response_model.dart';
-import 'package:lancar_cat/app/models/attendance.dart';
-import 'package:lancar_cat/app/models/location.dart';
-import 'package:lancar_cat/app/models/schedules.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_face_api/flutter_face_api.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-// import 'package:lancar_cat/app/models/job.dart';
-import 'package:lancar_cat/app/models/schedule.dart';
-import 'package:lancar_cat/app/models/shift.dart';
-import 'package:lancar_cat/app/models/time_off.dart';
-
+import '../data/model/login_response_model.dart';
+import '../data/model/month_attendance_response_model.dart';
+import '../data/model/today_attendance_response_model.dart';
+import '../models/attendance.dart';
+import '../models/location.dart';
+import '../models/schedule.dart';
+import '../models/schedules.dart';
+import '../models/time_off.dart';
 import '../modules/camera_capture/views/camera_capture_view.dart';
 import '../shared/button/button_1.dart';
-// import 'package:lancar_cat/app/models/user.dart';
+
+import '../models/shift.dart';
 
 class ModelController extends GetxController {
   RxString token = ''.obs;

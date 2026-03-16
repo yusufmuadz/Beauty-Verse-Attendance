@@ -1,9 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:lancar_cat/app/core/components/my_button.dart';
-import 'package:lancar_cat/app/core/components/my_textfield.dart';
-import 'package:lancar_cat/app/models/detail_atendance.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,17 +12,19 @@ import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/time_format_schedule.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/submission_attendance_response_model.dart';
-import 'package:lancar_cat/app/shared/loading/loading1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
+import '../../../../../controllers/model_controller.dart';
+import '../../../../../core/components/my_button.dart';
+import '../../../../../core/components/my_textfield.dart';
+import '../../../../../core/constant/time_format_schedule.dart';
+import '../../../../../core/constant/variables.dart';
+import '../../../../../data/model/submission_attendance_response_model.dart';
+import '../../../../../models/detail_atendance.dart';
 import '../../../../../shared/attach/show_multiple_file.dart';
+import '../../../../../shared/loading/loading1.dart';
+import '../../../../../shared/utils.dart';
 
 class DetailPengajuanAbsensiView extends StatefulWidget {
-  DetailPengajuanAbsensiView({super.key});
+  const DetailPengajuanAbsensiView({super.key});
 
   @override
   State<DetailPengajuanAbsensiView> createState() =>
@@ -375,7 +374,7 @@ class _DetailPengajuanAbsensiViewState
     );
   }
 
-  _onPressed(int line_status, String idSubmission) async {
+  Future<void> _onPressed(int line_status, String idSubmission) async {
     approvePengajuanAttendance(line_status, idSubmission).then((value) {
       Get.back();
       Get.back(result: true);
@@ -407,16 +406,16 @@ class _DetailPengajuanAbsensiViewState
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        print(await response.stream.bytesToString());
+        debugPrint(await response.stream.bytesToString());
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } catch (e) {
       log(e.toString());
     }
   }
 
-  _tileDetailTimeOff(String title, String subTilte) {
+  Column _tileDetailTimeOff(String title, String subTilte) {
     return Column(
       children: [
         Row(
@@ -447,29 +446,5 @@ class _DetailPengajuanAbsensiViewState
         Divider(thickness: .5, color: Colors.grey.shade300),
       ],
     );
-    // return Row(
-    //   children: [
-    //     Expanded(
-    //       child: Text(
-    //         title,
-    //         style: TextStyle(
-    //           fontFamily: 'Figtree',
-    //           color: indigoColor,
-    //           fontSize: 13,
-    //         ),
-    //       ),
-    //     ),
-    //     Expanded(
-    //       child: Text(
-    //         subTilte,
-    //         textAlign: TextAlign.left,
-    //         style: TextStyle(
-    //           fontFamily: 'Figtree',
-    //           fontSize: 13,
-    //         ),
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 }

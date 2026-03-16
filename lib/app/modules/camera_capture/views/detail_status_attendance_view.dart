@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/daftar_absen_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -8,13 +7,14 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/routes/app_pages.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../routes/app_pages.dart';
+import '../../../shared/button/button_1.dart';
+import '../../../shared/utils.dart';
+import '../../services/daftar_absen/views/daftar_absen_view.dart';
 
 class DetailStatusAttendanceView extends StatefulWidget {
-  const DetailStatusAttendanceView({Key? key}) : super(key: key);
+  const DetailStatusAttendanceView({super.key});
 
   @override
   State<DetailStatusAttendanceView> createState() =>
@@ -116,7 +116,7 @@ class _DetailStatusAttendanceViewState
     );
   }
 
-  _typeAttendance({required String type}) {
+  Text _typeAttendance({required String type}) {
     String ket = '';
 
     switch (type) {

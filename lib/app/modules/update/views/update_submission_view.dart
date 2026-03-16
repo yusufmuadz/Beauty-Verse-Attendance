@@ -16,15 +16,15 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_calendar.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/components/custom_calendar.dart';
+import '../../../core/constant/variables.dart';
+import '../../../shared/button/button_1.dart';
+import '../../../shared/images/images.dart';
+import '../../../shared/snackbar/snackbar_1.dart';
+import '../../../shared/textfield/textfield_1.dart';
+import '../../../shared/utils.dart';
 
 // ignore: must_be_immutable
 class UpdateSubmissionView extends StatefulWidget {
@@ -345,12 +345,12 @@ class _UpdateSubmissionViewState extends State<UpdateSubmissionView> {
     );
   }
 
-  _selectedOptions() {
+  void _selectedOptions() {
     resetForm();
     Get.dialog(
       AlertDialog(
         backgroundColor: whiteColor,
-        content: Container(
+        content: SizedBox(
           width: Get.width,
           height: Get.height * 0.5,
           child: Column(
@@ -433,7 +433,7 @@ class _UpdateSubmissionViewState extends State<UpdateSubmissionView> {
         final List<String> relationships = json.decode(data).cast<String>();
         return relationships;
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } catch (e) {
       log(e.toString());
@@ -469,10 +469,10 @@ class _UpdateSubmissionViewState extends State<UpdateSubmissionView> {
             style: TextStyle(fontSize: 12, color: blackColor),
             underline: SizedBox(),
             items: [
-              DropdownMenuItem(child: Text('Menikah'), value: 'Menikah'),
+              DropdownMenuItem(value: 'Menikah', child: Text('Menikah')),
               DropdownMenuItem(
-                child: Text('Belum Menikah'),
                 value: 'Belum Menikah',
+                child: Text('Belum Menikah'),
               ),
             ],
             value: selectedValue,
@@ -566,11 +566,11 @@ class _UpdateSubmissionViewState extends State<UpdateSubmissionView> {
                 items: gender
                     .map(
                       (e) => DropdownMenuItem(
+                        value: e.toString(),
                         child: Text(
                           e,
                           style: GoogleFonts.varelaRound(color: Colors.black),
                         ),
-                        value: e.toString(),
                       ),
                     )
                     .toList(),
@@ -698,7 +698,7 @@ class _UpdateSubmissionViewState extends State<UpdateSubmissionView> {
     }
   }
 
-  _checkTypeKeyboard() {
+  TextInputType _checkTypeKeyboard() {
     switch (dataC.text.toLowerCase()) {
       case 'telepon':
         return TextInputType.number;
@@ -713,7 +713,7 @@ class _UpdateSubmissionViewState extends State<UpdateSubmissionView> {
       AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: Colors.white,
-        content: Container(
+        content: SizedBox(
           width: Get.width * 0.8,
           height: 100,
           child: Row(
@@ -924,7 +924,7 @@ class _UpdateSubmissionViewState extends State<UpdateSubmissionView> {
     }
   }
 
-  submitUpdate() async {
+  Future<void> submitUpdate() async {
     Variables().loading();
 
     if (ubahC.text.isEmpty && dataC.text.toLowerCase() != 'avatar') {

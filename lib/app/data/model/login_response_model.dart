@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:lancar_cat/app/models/user_attendance.dart';
+import '../../models/user_attendance.dart';
 
 class LoginResponseModel {
   final bool? status;

@@ -1,6 +1,4 @@
 import 'package:hexcolor/hexcolor.dart';
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/daftar_absen_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -9,13 +7,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/detail_absensi_bottom_sheet.dart';
-import 'package:lancar_cat/app/modules/locations_tracker/views/locations_tracker_view.dart';
-import 'package:lancar_cat/app/modules/services/absen/views/absen_locations.dart';
-
+import '../../../../controllers/api_controller.dart';
+import '../../../../controllers/model_controller.dart';
+import '../../../../core/components/custom_empty_submission.dart';
+import '../../../../core/components/detail_absensi_bottom_sheet.dart';
+import '../../../../models/shift.dart';
 import '../../../home/controllers/home_controller.dart';
+import '../../../locations_tracker/views/locations_tracker_view.dart';
+import '../../daftar_absen/views/daftar_absen_view.dart';
+import 'absen_locations.dart';
 
 class AbsenView extends StatefulWidget {
   const AbsenView({super.key});
@@ -132,7 +132,7 @@ class _AbsenViewState extends State<AbsenView> {
                     Text(
                       m.todayShift.value.id == null
                           ? "Shift belum tersedia"
-                          : findShiftName(m.todayShift.value),
+                          : findShiftName(m.todayShift.value as Shift),
                       style: GoogleFonts.urbanist(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,

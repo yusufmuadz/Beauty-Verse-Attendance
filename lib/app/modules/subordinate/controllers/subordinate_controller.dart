@@ -12,15 +12,15 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/modules/subordinate/models/detail_attendance.dart';
-import 'package:lancar_cat/app/modules/subordinate/models/subordinate.dart';
-import 'package:lancar_cat/app/shared/tile/tile3.dart';
-
+import '../../../controllers/model_controller.dart';
 import '../../../core/constant/time_format_schedule.dart';
+import '../../../core/constant/variables.dart';
 import '../../../shared/images/images.dart';
+import '../../../shared/maps/tile_layer_maps.dart';
+import '../../../shared/tile/tile3.dart';
 import '../../services/team_members/views/team_subordinate_view.dart';
+import '../models/detail_attendance.dart';
+import '../models/subordinate.dart';
 
 class SubordinateController extends GetxController {
   RxBool isLoading = false.obs;
@@ -36,16 +36,6 @@ class SubordinateController extends GetxController {
   void onInit() async {
     super.onInit();
     await selectDay(selectedDay.value);
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
   Future<void> selectDay(DateTime pickDate) async {
@@ -218,12 +208,7 @@ class SubordinateController extends GetxController {
                             minZoom: 17,
                           ),
                           children: [
-                            TileLayer(
-                              urlTemplate:
-                                  'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                              subdomains: ['a', 'b', 'c'],
-                              maxZoom: 19,
-                            ),
+                            TileLayerMaps().sharedTile(),
                             MarkerLayer(
                               markers: [
                                 Marker(

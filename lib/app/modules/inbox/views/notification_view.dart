@@ -1,6 +1,3 @@
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/core/components/custom_tile_status.dart';
-import 'package:lancar_cat/app/shared/tile/tile3.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -9,14 +6,17 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/superadmin_response_model.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/components/custom_empty_submission.dart';
+import '../../../core/components/custom_tile_status.dart';
+import '../../../core/constant/variables.dart';
+import '../../../data/model/superadmin_response_model.dart';
+import '../../../shared/tile/tile3.dart';
+import '../../../shared/utils.dart';
 
 class NotificationView extends GetView {
-  NotificationView({Key? key}) : super(key: key);
+  NotificationView({super.key});
 
   final m = Get.find<ModelController>();
   final a = Get.put(ApiController());
@@ -118,7 +118,7 @@ class NotificationView extends GetView {
       final result = SuperadminResponseModel.fromJson(data);
       return result.data!.isEmpty ? null : result;
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
     }
   }
 }

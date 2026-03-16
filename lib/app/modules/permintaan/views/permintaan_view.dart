@@ -1,12 +1,12 @@
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:lancar_cat/app/modules/permintaan/views/history_permintaan_view.dart';
-import 'package:lancar_cat/app/shared/dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
 
+import '../../../shared/dropdown/custom_dropdown.dart';
 import '../controllers/permintaan_controller.dart';
+import 'history_permintaan_view.dart';
 
 class PermintaanView extends GetView<PermintaanController> {
   const PermintaanView({super.key});

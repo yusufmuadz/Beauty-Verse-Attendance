@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:lancar_cat/app/core/components/custom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,15 +19,15 @@ import 'package:image/image.dart' as img;
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/submit_attendance_response_model.dart';
-import 'package:lancar_cat/app/modules/camera_capture/views/detail_status_attendance_view.dart';
-import 'package:lancar_cat/app/modules/home/views/menu_view.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/components/custom_dialog.dart';
+import '../../../core/constant/variables.dart';
+import '../../../data/model/submit_attendance_response_model.dart';
 import '../../../shared/snackbar/snackbar_1.dart';
+import '../../../shared/utils.dart';
+import '../../home/views/menu_view.dart';
+import '../views/detail_status_attendance_view.dart';
 
 class CameraCaptureController extends GetxController {
   final _box = Hive.box('andioffset');
@@ -79,7 +78,7 @@ class CameraCaptureController extends GetxController {
     return file;
   }
 
-  deleteAll() async {
+  Future<void> deleteAll() async {
     _box.deleteAll([
       'storedImage',
       'storedLat',
@@ -89,7 +88,7 @@ class CameraCaptureController extends GetxController {
     ]);
   }
 
-  offlineAttendanceCheck() async {
+  Future<void> offlineAttendanceCheck() async {
     // Check if the user has present
     Uint8List? sImage = _box.get('storedImage');
     String? sLat = _box.get('storedLat');
@@ -670,64 +669,7 @@ class CameraCaptureController extends GetxController {
     }
   }
 
-  // Future overtimeSubmitAttendance(
-  //   XFile? image,
-  //   String catatan,
-  // ) async {
-  //   var headers = {'Authorization': 'Bearer ${m.token.value}'};
-  //   var request = http.MultipartRequest(
-  //       'POST',
-  //       Uri.parse(
-  //         '${Variables.baseUrl}/v1/user/presence/lembur',
-  //       ));
-
-  //   // /v1/user/submit/overtime
-
-  //   final data = await GeoLocation().currentLocation();
-
-  //   request.fields.addAll({
-  //     'overtime_request_id': m.overtimeReqId.value,
-  //     'lat': data['lat'].toString(),
-  //     'lang': data['lng'].toString(),
-  //     'address': data['address'].toString(),
-  //     'catatan': catatan,
-  //     'type_overtime': m.typeOvertime.value,
-  //   });
-
-  //   XFile? file = await Variables().compressFile(File(image!.path));
-  //   File result = await Variables().cropSquareImage(File(file!.path));
-  //   request.files.add(await http.MultipartFile.fromPath(
-  //     'image',
-  //     result.path,
-  //   ));
-
-  //   request.headers.addAll(headers);
-
-  //   try {
-  //     log('send message');
-  //     http.StreamedResponse response = await request.send();
-
-  //     if (response.statusCode == 200) {
-  //       final str = await response.stream.bytesToString();
-  //       final data = json.decode(str);
-  //       log(data.toString());
-  //       isLoading(false);
-  //       noteC.clear();
-
-  //       Get.back();
-  //       Get.back();
-  //       Get.back();
-  //     } else {
-  //       print(response.reasonPhrase);
-  //       CustomDialog(title: 'Error', content: response.reasonPhrase!);
-  //     }
-  //   } catch (e) {
-  //     CustomDialog(title: 'Error', content: e.toString());
-  //     log(e.toString());
-  //   }
-  // }
-
-  lateBreakIn(XFile? fileImage, String note) async {
+  Future<void> lateBreakIn(XFile? fileImage, String note) async {
     bool isSuccess = await a.calculateDelayDuration(
       image: File(fileImage!.path),
       catatan: note,
@@ -741,7 +683,7 @@ class CameraCaptureController extends GetxController {
     return;
   }
 
-  defaultSubmitAttendance({
+  Future<void> defaultSubmitAttendance({
     required XFile? fileImage,
     required DateTime presentTime,
   }) async {
@@ -798,7 +740,7 @@ class CameraCaptureController extends GetxController {
     );
   }
 
-  customDialog(String message) => Get.dialog(
+  Future<dynamic> customDialog(String message) => Get.dialog(
     // ignore: deprecated_member_use
     WillPopScope(
       child: AlertDialog(

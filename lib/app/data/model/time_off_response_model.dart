@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:lancar_cat/app/data/model/leave_response_model.dart';
+import 'leave_response_model.dart';
 
 class TimeOffResponseModel {
   final bool? status;

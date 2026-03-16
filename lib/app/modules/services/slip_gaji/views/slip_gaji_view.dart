@@ -7,15 +7,15 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../../controllers/api_controller.dart';
+import '../../../../controllers/model_controller.dart';
+import '../../../../core/constant/variables.dart';
+import '../../../../shared/button/button_1.dart';
+import '../../../../shared/textfield/textfield_1.dart';
+import '../../../../shared/utils.dart';
 
 class SlipGajiView extends StatefulWidget {
-  const SlipGajiView({Key? key}) : super(key: key);
+  const SlipGajiView({super.key});
 
   @override
   State<SlipGajiView> createState() => _SlipGajiViewState();
@@ -59,7 +59,7 @@ class _SlipGajiViewState extends State<SlipGajiView> {
     }
   }
 
-  _showDialogPassword() {
+  void _showDialogPassword() {
     Get.dialog(
       AlertDialog(
         title: Text('Password', style: TextStyle(fontSize: 16)),
@@ -73,7 +73,7 @@ class _SlipGajiViewState extends State<SlipGajiView> {
                 maxLines: 1,
                 suffixIcon: IconButton(
                   onPressed: () {
-                    print('on tap');
+                    debugPrint('on tap');
                     setState(() {
                       isObsecure.value = !isObsecure.value;
                     });

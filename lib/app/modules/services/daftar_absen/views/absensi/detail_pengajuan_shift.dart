@@ -8,15 +8,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_dialog.dart';
-import 'package:lancar_cat/app/core/components/custom_stepper_approve.dart';
-import 'package:lancar_cat/app/core/constant/time_format_schedule.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/change_shift_response_model.dart';
-import 'package:lancar_cat/app/modules/services/cuti/pengajuan/views/detail_pengajuan_cuti_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
+
+import '../../../../../controllers/model_controller.dart';
+import '../../../../../core/components/custom_dialog.dart';
+import '../../../../../core/components/custom_stepper_approve.dart';
+import '../../../../../core/constant/time_format_schedule.dart';
+import '../../../../../core/constant/variables.dart';
+import '../../../../../data/model/change_shift_response_model.dart';
+import '../../../../../shared/button/button_1.dart';
+import '../../../../../shared/images/images.dart';
+import '../../../cuti/pengajuan/views/detail_pengajuan_cuti_view.dart';
 
 class DetailPengajuanShiftView extends StatefulWidget {
   const DetailPengajuanShiftView({super.key});
@@ -56,7 +57,7 @@ class _DetailPengajuanShiftViewState extends State<DetailPengajuanShiftView> {
     );
   }
 
-  _checkStatusApprovalUser(String approval) {
+  String _checkStatusApprovalUser(String approval) {
     switch (approval) {
       case "Rejected":
         return 'dibatalkan';
@@ -65,13 +66,13 @@ class _DetailPengajuanShiftViewState extends State<DetailPengajuanShiftView> {
     }
   }
 
-  _checkRejected(String line, String superAdmin) {
+  void _checkRejected(String line, String superAdmin) {
     if (line.contains('Rejected') || superAdmin.contains('Rejected')) {
       isRejected = true;
     }
   }
 
-  _settingIndexApprove(String user, String line, String superAdmin) {
+  void _settingIndexApprove(String user, String line, String superAdmin) {
     if (user.contains('Rejected')) {
       isRejected = true;
     }

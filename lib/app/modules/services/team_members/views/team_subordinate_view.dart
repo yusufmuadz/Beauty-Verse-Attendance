@@ -12,12 +12,14 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/data/model/identify_job_scope_response_model.dart';
-import 'package:lancar_cat/app/data/model/login_response_model.dart';
-import 'package:lancar_cat/app/models/attendance.dart';
-import 'package:lancar_cat/app/shared/tile/tile3.dart';
+import '../../../../controllers/api_controller.dart';
+import '../../../../core/components/custom_empty_submission.dart';
+import '../../../../core/constant/variables.dart';
+import '../../../../data/model/identify_job_scope_response_model.dart';
+import '../../../../data/model/login_response_model.dart';
+import '../../../../models/attendance.dart';
+import '../../../../shared/maps/tile_layer_maps.dart';
+import '../../../../shared/tile/tile3.dart';
 
 class TeamSubordinateView extends StatefulWidget {
   const TeamSubordinateView({super.key});
@@ -162,7 +164,7 @@ class _SubordinateViewState extends State<TeamSubordinateView> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: user.avatar?.contains('default') == true
-                    ? Image.asset('assets/logo/logo.png')
+                    ? Image.asset(Variables.avatarDefault)
                     : CachedNetworkImage(imageUrl: user.avatar ?? ''),
               ),
             ),
@@ -255,7 +257,7 @@ class _SubordinateViewState extends State<TeamSubordinateView> {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
+            SizedBox(
               width: Get.width,
               height: 200,
               child: Row(
@@ -272,12 +274,7 @@ class _SubordinateViewState extends State<TeamSubordinateView> {
                         minZoom: 17,
                       ),
                       children: [
-                        TileLayer(
-                          urlTemplate:
-                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          subdomains: ['a', 'b', 'c'],
-                          maxZoom: 19,
-                        ),
+                        TileLayerMaps().sharedTile(),
                         MarkerLayer(
                           markers: [
                             Marker(

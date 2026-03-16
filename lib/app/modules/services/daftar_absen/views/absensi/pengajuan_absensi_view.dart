@@ -14,14 +14,14 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/selected_date_response_model.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/daftar_absen_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/textfieldform.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../../../controllers/model_controller.dart';
+import '../../../../../core/constant/variables.dart';
+import '../../../../../data/model/selected_date_response_model.dart';
+import '../../../../../shared/button/button_1.dart';
+import '../../../../../shared/snackbar/snackbar_1.dart';
+import '../../../../../shared/textfieldform.dart';
+import '../../../../../shared/utils.dart';
+import '../daftar_absen_view.dart';
 
 class PengajuanAbsensiView extends StatefulWidget {
   const PengajuanAbsensiView({super.key});
@@ -496,7 +496,7 @@ class _PengajuanAbsensiViewState extends State<PengajuanAbsensiView> {
     );
   }
 
-  _submitAttendance() async {
+  Future<void> _submitAttendance() async {
     log('submit attendance');
     if (isButtonClicked.value) return;
     isButtonClicked.value = true;
@@ -612,12 +612,12 @@ class _PengajuanAbsensiViewState extends State<PengajuanAbsensiView> {
   RxList<XFile> files = RxList<XFile>();
   TextEditingController fileC = TextEditingController();
 
-  _pickFileFrom() async {
+  Future<void> _pickFileFrom() async {
     ImagePicker picker = ImagePicker();
 
     Get.dialog(
       AlertDialog(
-        content: Container(
+        content: SizedBox(
           width: Get.width,
           height: Get.height * 0.3,
           child: Column(
@@ -713,7 +713,7 @@ class _PengajuanAbsensiViewState extends State<PengajuanAbsensiView> {
 
       isButtonEnable(false);
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
     }
   }
 }

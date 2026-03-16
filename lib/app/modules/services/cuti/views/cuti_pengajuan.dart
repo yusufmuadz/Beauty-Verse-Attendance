@@ -1,15 +1,16 @@
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/core/components/custom_tile_status.dart';
-import 'package:lancar_cat/app/data/model/time_off_response_model.dart';
-import 'package:lancar_cat/app/modules/services/cuti/pengajuan/views/detail_pengajuan_cuti_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../controllers/api_controller.dart';
+import '../../../../core/components/custom_empty_submission.dart';
+import '../../../../core/components/custom_tile_status.dart';
+import '../../../../data/model/time_off_response_model.dart';
+import '../pengajuan/views/detail_pengajuan_cuti_view.dart';
+
 class CutiPengajuan extends StatefulWidget {
-  CutiPengajuan({super.key, required this.time});
+  const CutiPengajuan({super.key, required this.time});
   final DateTime time;
 
   @override
@@ -82,7 +83,7 @@ class _CutiPengajuanState extends State<CutiPengajuan> {
     );
   }
 
-  checkIsSameDay(DateTime start, DateTime end) {
+  String checkIsSameDay(DateTime start, DateTime end) {
     return (start.day == end.day &&
             start.month == end.month &&
             start.year == end.year)

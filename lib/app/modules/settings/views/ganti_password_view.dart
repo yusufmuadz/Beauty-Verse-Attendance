@@ -1,18 +1,17 @@
-import 'package:lancar_cat/app/shared/loading/loading1.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
 import '../../../controllers/api_controller.dart';
+import '../../../shared/button/button_1.dart';
+import '../../../shared/loading/loading1.dart';
+import '../../../shared/snackbar/snackbar_1.dart';
+import '../../../shared/textfield/textfield_1.dart';
+import '../../../shared/utils.dart';
 
 class ChangePasswordView extends StatefulWidget {
-  ChangePasswordView({super.key});
+  const ChangePasswordView({super.key});
 
   @override
   State<ChangePasswordView> createState() => _ChangePasswordViewState();
@@ -117,7 +116,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
     );
   }
 
-  _onPressed() async {
+  Future<void> _onPressed() async {
     if (oldPasswordC.text.isEmpty) {
       Snackbar().snackbar1(
         'Informasi',

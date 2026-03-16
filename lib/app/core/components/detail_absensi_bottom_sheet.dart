@@ -1,19 +1,20 @@
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/models/attendance.dart';
-import 'package:lancar_cat/app/models/pattern.dart';
-import 'package:lancar_cat/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../controllers/model_controller.dart';
+import '../../models/attendance.dart';
+import '../../models/pattern.dart';
 import '../../models/shift.dart';
+import '../../modules/home/controllers/home_controller.dart';
+import '../../shared/maps/tile_layer_maps.dart';
 import '../../shared/tile/tile3.dart';
 
 final m = Get.find<ModelController>();
 final h = Get.put(HomeController());
-detailInformationAbsen({
+void detailInformationAbsen({
   required Attendance attendance,
   required BuildContext context,
   CPattern? pattern,
@@ -79,11 +80,7 @@ detailInformationAbsen({
                               initialZoom: 17,
                             ),
                             children: [
-                              TileLayer(
-                                urlTemplate:
-                                    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                maxZoom: 19,
-                              ),
+                              TileLayerMaps().sharedTile(),
                               MarkerLayer(
                                 markers: [
                                   Marker(

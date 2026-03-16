@@ -10,20 +10,19 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/core/components/custom_tile_status.dart';
-import 'package:lancar_cat/app/core/components/detail_absensi_bottom_sheet.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/submission_attendance_response_model.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/absensi/detail_absensi_view.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/absensi/pengajuan_absensi_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-
+import '../../../../core/components/custom_empty_submission.dart';
+import '../../../../core/components/custom_tile_status.dart';
+import '../../../../core/components/detail_absensi_bottom_sheet.dart';
+import '../../../../core/constant/variables.dart';
+import '../../../../data/model/submission_attendance_response_model.dart';
+import '../../../../shared/button/button_1.dart';
 import '../../../../shared/textfield/textfield_1.dart';
 import '../../../../shared/utils.dart';
+import 'absensi/detail_absensi_view.dart';
+import 'absensi/pengajuan_absensi_view.dart';
 
 class DaftarAbsenAbsensiView extends StatefulWidget {
-  DaftarAbsenAbsensiView({Key? key}) : super(key: key);
+  const DaftarAbsenAbsensiView({super.key});
 
   @override
   State<DaftarAbsenAbsensiView> createState() => _DaftarAbsenAbsensiViewState();
@@ -34,7 +33,7 @@ class _DaftarAbsenAbsensiViewState extends State<DaftarAbsenAbsensiView> {
 
   int sYear = DateTime.now().year;
   int sMonth = DateTime.now().month;
-  DateTime _selectedDate = DateTime.now();
+  final DateTime _selectedDate = DateTime.now();
 
   @override
   void initState() {
@@ -244,7 +243,7 @@ class _DaftarAbsenAbsensiViewState extends State<DaftarAbsenAbsensiView> {
     );
   }
 
-  _formatDate(String time) {
+  String _formatDate(String time) {
     // Parsing string ke DateTime
     DateTime dateTime = DateFormat('HH:mm:ss').parse(time);
     // Mengubah ke format yang diinginkan
@@ -269,7 +268,7 @@ class _DaftarAbsenAbsensiViewState extends State<DaftarAbsenAbsensiView> {
       final results = await response.stream.bytesToString();
       return SubmissionApprovalResponseModel.fromJson(results);
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
     }
   }
 }

@@ -5,12 +5,11 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/modules/update/views/update_data_view.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/model_controller.dart';
 import '../../../shared/tile/tile2.dart';
+import '../../../shared/utils.dart';
+import '../../update/views/update_data_view.dart';
 
 class DetailInformationView extends StatefulWidget {
   const DetailInformationView({super.key});
@@ -133,7 +132,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
     );
   }
 
-  checkIsEmpty(String? value) {
+  String checkIsEmpty(String? value) {
     return value ?? "-";
   }
 }

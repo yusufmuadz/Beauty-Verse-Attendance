@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:lancar_cat/app/models/shift.dart';
+
+import '../../models/shift.dart';
 
 class ShiftResponseModel {
   final bool? status;

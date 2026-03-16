@@ -9,13 +9,13 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/change_shift_response_model.dart';
-import 'package:lancar_cat/app/modules/home/views/menu_view.dart';
-import 'package:lancar_cat/app/modules/services/shift/detail_pengajuan_shift.dart';
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/components/custom_empty_submission.dart';
+import '../../../core/constant/variables.dart';
+import '../../../data/model/change_shift_response_model.dart';
+import '../../home/views/menu_view.dart';
+import '../../services/daftar_absen/views/absensi/detail_pengajuan_shift.dart';
 
 class AgreementShiftView extends StatefulWidget {
   const AgreementShiftView({super.key});
@@ -82,8 +82,9 @@ class _AgreementShiftViewState extends State<AgreementShiftView> {
   }) {
     return PopupMenuItem<dynamic>(
       // Eksplisitkan tipe generic di sini
-      child: Text(title),
       onTap: onTap,
+      // Eksplisitkan tipe generic di sini
+      child: Text(title),
     );
   }
 
@@ -274,7 +275,7 @@ class _AgreementShiftViewState extends State<AgreementShiftView> {
       final data = ChangeShiftResponseModel.fromJson(str);
       return data;
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
       return null; // Return null on error
     }
   }

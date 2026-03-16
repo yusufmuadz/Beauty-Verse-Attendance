@@ -1,6 +1,3 @@
-import 'package:lancar_cat/app/models/time_off_request.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -8,8 +5,12 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../models/time_off_request.dart';
+import '../../../../shared/images/images.dart';
+import '../../../../shared/utils.dart';
+
 class DetailInboxView extends StatefulWidget {
-  const DetailInboxView({Key? key}) : super(key: key);
+  const DetailInboxView({super.key});
 
   @override
   State<DetailInboxView> createState() => _DetailInboxViewState();

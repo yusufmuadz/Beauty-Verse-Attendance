@@ -1,10 +1,6 @@
 import 'dart:developer';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lancar_cat/app/core/components/custom_dialog.dart';
-import 'package:lancar_cat/app/core/constant/time_format_schedule.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/shared/loading/loading1.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -12,13 +8,18 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_stepper_approve.dart';
-import 'package:lancar_cat/app/data/model/agreement_overtime_response_model.dart';
-import 'package:lancar_cat/app/modules/services/cuti/pengajuan/views/detail_pengajuan_cuti_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
+import '../../../../controllers/model_controller.dart';
+import '../../../../core/components/custom_dialog.dart';
+import '../../../../core/components/custom_stepper_approve.dart';
+import '../../../../core/constant/time_format_schedule.dart';
+import '../../../../core/constant/variables.dart';
+import '../../../../data/model/agreement_overtime_response_model.dart';
+import '../../../../shared/button/button_1.dart';
+import '../../../../shared/images/images.dart';
+import '../../../../shared/loading/loading1.dart';
+import '../../../../shared/textfield/textfield_1.dart';
+import '../../cuti/pengajuan/views/detail_pengajuan_cuti_view.dart';
+import '../controllers/lembur_controller.dart';
 
 class DetailPengajuanLemburUser extends StatefulWidget {
   const DetailPengajuanLemburUser({super.key});
@@ -66,7 +67,7 @@ class _DetailPengajuanLemburUserState extends State<DetailPengajuanLemburUser> {
     );
   }
 
-  _checkStatusApprovalUser(String approval) {
+  String _checkStatusApprovalUser(String approval) {
     switch (approval) {
       case "Rejected":
         return 'dibatalkan';
@@ -75,13 +76,13 @@ class _DetailPengajuanLemburUserState extends State<DetailPengajuanLemburUser> {
     }
   }
 
-  _checkRejected(String line, String superAdmin) {
+  void _checkRejected(String line, String superAdmin) {
     if (line.contains('Rejected') || superAdmin.contains('Rejected')) {
       isRejected = true;
     }
   }
 
-  _settingIndexApprove(String user, String line, String superAdmin) {
+  void _settingIndexApprove(String user, String line, String superAdmin) {
     if (user.contains('Rejected')) {
       isRejected = true;
     }
@@ -103,7 +104,7 @@ class _DetailPengajuanLemburUserState extends State<DetailPengajuanLemburUser> {
     log(indexStatus.toString());
   }
 
-  _checkStatusApproval(String approval) {
+  String _checkStatusApproval(String approval) {
     switch (approval) {
       case "Pending":
         return 'Menunggu perjetujuan ';
@@ -417,7 +418,7 @@ class _DetailPengajuanLemburUserState extends State<DetailPengajuanLemburUser> {
     );
   }
 
-  customDialogAlert({
+  Future<dynamic> customDialogAlert({
     required String overtime_request_id,
     required String type,
     required String type_duration,
@@ -520,7 +521,7 @@ class _DetailPengajuanLemburUserState extends State<DetailPengajuanLemburUser> {
       // Tambahkan headers
       request.headers.addAll(headers);
 
-      print(request.fields);
+      debugPrint('${request.fields}');
 
       // Kirim request dan dapatkan response
       http.StreamedResponse streamedResponse = await request.send();
@@ -530,14 +531,14 @@ class _DetailPengajuanLemburUserState extends State<DetailPengajuanLemburUser> {
 
       if (response.statusCode == 200) {
         // Berhasil, log response body
-        print('Success: ${response.body}');
+        // debugPrint('Success: ${response.body}');
       } else {
         // Gagal, log alasan
-        print('Error: ${response.statusCode}, ${response.reasonPhrase}');
+        debugPrint('Error: ${response.statusCode}, ${response.reasonPhrase}');
       }
     } catch (e) {
       // Tangani error lainnya
-      print('Exception caught: $e');
+      debugPrint('Exception caught: $e');
     }
   }
 

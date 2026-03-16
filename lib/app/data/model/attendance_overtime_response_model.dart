@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:lancar_cat/app/data/model/agreement_overtime_response_model.dart';
+import 'agreement_overtime_response_model.dart';
 
 class AttendanceOvertimeResponseModel {
   final bool? status;

@@ -2,9 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:lancar_cat/app/core/constant/geolocator_locations.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -14,13 +11,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/geolocator_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/modules/camera_capture/views/camera_capture_view.dart';
-import 'package:lancar_cat/app/modules/services/absen/views/absen_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/geolocator_controller.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/constant/geolocator_locations.dart';
+import '../../../core/constant/variables.dart';
+import '../../../shared/button/button_1.dart';
+import '../../../shared/snackbar/snackbar_1.dart';
+import '../../../shared/utils.dart';
+import '../../camera_capture/views/camera_capture_view.dart';
+import '../../services/absen/views/absen_view.dart';
 
 class LocationsTrackerController extends GetxController {
   RxBool isLoading = true.obs;
@@ -44,11 +44,6 @@ class LocationsTrackerController extends GetxController {
     g.askingPermission().then((value) {
       isStreamEnable(true);
     });
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
   }
 
   @override
@@ -240,7 +235,7 @@ class LocationsTrackerController extends GetxController {
   }
 }
 
-_alertInternetNoConnection() {
+void _alertInternetNoConnection() {
   Get.bottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -282,7 +277,7 @@ _alertInternetNoConnection() {
   );
 }
 
-_alertOutOfRange() {
+void _alertOutOfRange() {
   Get.bottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(

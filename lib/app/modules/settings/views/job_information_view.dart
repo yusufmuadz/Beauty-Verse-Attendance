@@ -4,8 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-
+import '../../../controllers/model_controller.dart';
 import '../../../shared/tile/tile2.dart';
 import '../../../shared/utils.dart';
 

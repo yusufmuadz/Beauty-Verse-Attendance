@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/models/shift.dart';
+import '../data/model/submission_attendance_response_model.dart';
+import 'model_controller.dart';
 
 class CalendarController extends GetxController {
   final List<Map<String, dynamic>> events = [];

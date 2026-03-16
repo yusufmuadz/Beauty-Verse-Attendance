@@ -1,7 +1,8 @@
-import 'package:lancar_cat/app/controllers/model_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../controllers/model_controller.dart';
 
 class IstirahatTelatController extends GetxController {
   final m = Get.find<ModelController>();

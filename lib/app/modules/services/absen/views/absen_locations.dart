@@ -4,14 +4,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/modules/services/absen/views/detail_locations_absen_view.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
+import '../../../../controllers/model_controller.dart';
 import '../../../../models/location.dart';
+import '../../../../shared/utils.dart';
+import 'detail_locations_absen_view.dart';
 
 class AbsenLocationsView extends StatefulWidget {
-  AbsenLocationsView({super.key});
+  const AbsenLocationsView({super.key});
 
   @override
   State<AbsenLocationsView> createState() => _AbsenLocationsViewState();

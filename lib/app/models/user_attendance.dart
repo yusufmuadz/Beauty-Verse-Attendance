@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:lancar_cat/app/models/attendance.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/daftar_absen_riwayat_view.dart';
+import '../modules/services/daftar_absen/views/daftar_absen_riwayat_view.dart';
+import 'attendance.dart';
 
 class UserAttendance {
   final String? id;

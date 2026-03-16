@@ -1,9 +1,5 @@
 import 'package:flutter_custom_month_picker/flutter_custom_month_picker.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/models/resp_approval_leave.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/textfieldform.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +9,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/modules/home/views/menu_view.dart';
-import 'package:lancar_cat/app/modules/inbox/views/agreement_detail_view.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../controllers/api_controller.dart';
+import '../../../core/components/custom_empty_submission.dart';
+import '../../../models/resp_approval_leave.dart';
+import '../../../shared/button/button_1.dart';
+import '../../../shared/textfieldform.dart';
+import '../../../shared/utils.dart';
+import '../../home/views/menu_view.dart';
+import 'agreement_detail_view.dart';
 
 class AgreementListView extends StatefulWidget {
   const AgreementListView({super.key});
@@ -85,7 +85,7 @@ class _AgreementListViewState extends State<AgreementListView> {
     ).format(DateTime(year.value, month.value));
   }
 
-  checkApprovalStatus(String status) {
+  Color checkApprovalStatus(String status) {
     switch (status) {
       case 'pending':
         return orangeColor;
@@ -406,21 +406,13 @@ class _AgreementListViewState extends State<AgreementListView> {
                 return Expanded(child: const CustomEmptySubmission(title: 'Belum ada pengajuan', subtitle: 'Belum ada yang mengajukan cuti, tunggu hingga ada yang mengajukan cuti',));
               }
             }),
-
-            // !isLoading.value && filteredAgreements.isEmpty
-            //     ? Center(
-            //         child: CustomEmptySubmission(title: 'Belum Ada Pengajuan'),
-            //       )
-            //     : filteredAgreements.isEmpty
-            //     ? Center(child: CupertinoActivityIndicator())
-            //     :
           ],
         ),
       ),
     );
   }
 
-  checkApprovalStatusColors(String status) {
+  MaterialColor checkApprovalStatusColors(String status) {
     switch (status) {
       case 'Pending':
         return Colors.orange;

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -36,6 +37,19 @@ class MyHttpOverrides extends HttpOverrides {
 Future<void> main() async {
   // Initialize Flutter bindings and Firebase.
   WidgetsFlutterBinding.ensureInitialized();
+
+  await FMTCObjectBoxBackend().initialise();
+  final store = FMTCStore('mapStore');
+
+  // final stats = await store.stats.all;
+
+  // print("Tile tersimpan: ${stats.length}");
+
+  // cek apakah store sudah ada
+  if (!(await store.manage.ready)) {
+    await store.manage.create(maxLength: 4000);
+    // await store.manage.setMaxLength(5000);
+  }
 
   // if (Firebase.apps.isEmpty) {
   //   await Firebase.initializeApp(
@@ -131,7 +145,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       ),
       theme: _customTheme(),
       debugShowCheckedModeBanner: false,
-      title: "Lancar SIAP",
+      title: "Beauty Verse SIAP",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       unknownRoute: GetPage(

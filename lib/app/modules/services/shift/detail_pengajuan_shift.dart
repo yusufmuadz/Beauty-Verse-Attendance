@@ -9,13 +9,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/time_format_schedule.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/models/detail_shift.dart';
-import 'package:lancar_cat/app/modules/services/cuti/pengajuan/views/detail_pengajuan_cuti_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/constant/time_format_schedule.dart';
+import '../../../core/constant/variables.dart';
+import '../../../models/detail_shift.dart';
+import '../../../shared/button/button_1.dart';
+import '../../../shared/textfield/textfield_1.dart';
+import '../cuti/pengajuan/views/detail_pengajuan_cuti_view.dart';
 
 class DetailPengajuanShiftView extends StatefulWidget {
   const DetailPengajuanShiftView({super.key});

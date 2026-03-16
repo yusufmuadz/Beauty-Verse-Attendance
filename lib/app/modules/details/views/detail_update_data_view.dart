@@ -5,12 +5,12 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../shared/images/images.dart';
+import '../../../shared/utils.dart';
 
 class DetailUpdateDataView extends GetView {
-  DetailUpdateDataView({Key? key}) : super(key: key);
+  DetailUpdateDataView({super.key});
 
   final m = Get.find<ModelController>();
 

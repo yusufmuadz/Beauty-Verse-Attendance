@@ -5,12 +5,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lancar_cat/app/models/barang_permintaan.dart';
-import 'package:lancar_cat/app/models/permintaan_barang.dart';
-import 'package:lancar_cat/app/models/tipe_permintaan.dart';
-import 'package:lancar_cat/app/modules/permintaan/views/gudang_stok_view.dart';
-import 'package:lancar_cat/app/shared/dropdown/custom_dropdown.dart';
-import 'package:lancar_cat/app/shared/textfieldform.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -20,6 +14,12 @@ import 'package:intl/intl.dart';
 
 import '../../../controllers/model_controller.dart';
 import '../../../core/constant/variables.dart';
+import '../../../models/barang_permintaan.dart';
+import '../../../models/permintaan_barang.dart';
+import '../../../models/tipe_permintaan.dart';
+import '../../../shared/dropdown/custom_dropdown.dart';
+import '../../../shared/textfieldform.dart';
+import '../views/gudang_stok_view.dart';
 import '../views/history_permintaan_view.dart';
 
 class PermintaanController extends GetxController {
@@ -27,11 +27,6 @@ class PermintaanController extends GetxController {
   void onInit() async {
     super.onInit();
     await fetchRolePermintaan();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
   }
 
   @override
@@ -140,7 +135,7 @@ class PermintaanController extends GetxController {
     }
   }
 
-  logReachedBottom() async {
+  Future<void> logReachedBottom() async {
     page.value = page.value + 1;
     await fetchBarangByPermintaan(idPermintaan: idPermintaan);
     isLoading(false);
@@ -765,7 +760,7 @@ class PermintaanController extends GetxController {
     );
   }
 
-  settingsTextfield() {
+  List<String> settingsTextfield() {
     final tipe = slugPermintaan; // Bersihkan input
     if (tipe == "permintaan-kertas-order-kecil-luar" ||
         tipe == "permintaan-kertas-kesalahan-kekurangan") {
@@ -1412,7 +1407,7 @@ class PermintaanController extends GetxController {
     } finally {}
   }
 
-  onPreseedUpload() async {
+  Future<void> onPreseedUpload() async {
     if (kDebugMode) {
       debugPrint(tipePermintaan.text);
     }
@@ -1643,7 +1638,7 @@ class PermintaanController extends GetxController {
   RxBool isEmptyBarang = false.obs;
   RxList<PermintaanBarang> historyPermintaanBarang = <PermintaanBarang>[].obs;
 
-  logReachBottomPermintaan({required int month, required int year}) async {
+  Future<void> logReachBottomPermintaan({required int month, required int year}) async {
     paginate++;
     isLoading(true);
 
@@ -1656,7 +1651,7 @@ class PermintaanController extends GetxController {
     }
   }
 
-  _sortingStatus() {
+  void _sortingStatus() {
     const statusOrder = {
       "pending": 0,
       "antrian": 1,

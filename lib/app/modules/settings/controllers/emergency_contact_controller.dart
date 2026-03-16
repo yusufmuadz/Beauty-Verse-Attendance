@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/emergency_contact_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+
+import '../../../controllers/model_controller.dart';
+import '../../../core/constant/variables.dart';
+import '../../../data/model/emergency_contact_response_model.dart';
 
 class EmergencyContactController {
   final m = Get.find<ModelController>();
@@ -27,7 +28,7 @@ class EmergencyContactController {
         final List<String> relationships = json.decode(data).cast<String>();
         return relationships;
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } on HttpException catch (e) {
       Get.dialog(AlertDialog(title: Text(e.message)));
@@ -58,9 +59,9 @@ class EmergencyContactController {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+      debugPrint(await response.stream.bytesToString());
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
     }
   }
 
@@ -78,9 +79,9 @@ class EmergencyContactController {
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        print(await response.stream.bytesToString());
+        debugPrint(await response.stream.bytesToString());
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } catch (e) {
       Get.dialog(AlertDialog(title: Text(e.toString())));
@@ -117,7 +118,7 @@ class EmergencyContactController {
       if (response.statusCode == 200) {
         log(await response.stream.bytesToString());
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } on HttpException catch (e) {
       Get.dialog(AlertDialog(title: Text(e.message)));
@@ -144,7 +145,7 @@ class EmergencyContactController {
         log(data.toJson());
         return data;
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } on HttpException catch (e) {
       Get.dialog(AlertDialog(title: Text(e.message)));

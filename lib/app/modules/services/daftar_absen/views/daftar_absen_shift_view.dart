@@ -7,19 +7,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
 
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/core/components/custom_tile_status.dart';
-import 'package:lancar_cat/app/core/constant/time_format_schedule.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/change_shift_response_model.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/absensi/detail_pengajuan_shift.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/absensi/pengajuan_pergantian_shift_view.dart';
-
+import '../../../../controllers/model_controller.dart';
+import '../../../../core/components/custom_empty_submission.dart';
+import '../../../../core/components/custom_tile_status.dart';
+import '../../../../core/constant/time_format_schedule.dart';
+import '../../../../core/constant/variables.dart';
+import '../../../../data/model/change_shift_response_model.dart';
 import '../../../../shared/button/button_1.dart';
 import '../../../../shared/textfield/textfield_1.dart';
 import '../../../../shared/utils.dart';
+import 'absensi/detail_pengajuan_shift.dart';
+import 'absensi/pengajuan_pergantian_shift_view.dart';
 
 class DaftarAbsenShiftView extends StatefulWidget {
   const DaftarAbsenShiftView({super.key});
@@ -216,7 +215,7 @@ class _DaftarAbsenShiftViewState extends State<DaftarAbsenShiftView> {
       final shifts = ChangeShiftResponseModel.fromJson(str);
       return shifts;
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
     }
   }
 }

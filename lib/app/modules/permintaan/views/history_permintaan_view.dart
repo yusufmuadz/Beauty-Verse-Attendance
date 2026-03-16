@@ -6,13 +6,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/core/components/my_button.dart';
-
-import 'package:lancar_cat/app/models/permintaan_barang.dart';
-import 'package:lancar_cat/app/modules/permintaan/views/detail_permintaan_view.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
-
+import '../../../core/components/my_button.dart';
+import '../../../models/permintaan_barang.dart';
+import '../../../shared/textfield/textfield_1.dart';
 import '../controllers/permintaan_controller.dart';
+import 'detail_permintaan_view.dart';
 
 class HistoryPermintaanView extends StatefulWidget {
   const HistoryPermintaanView({super.key});

@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:lancar_cat/app/shared/button/button_1.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -18,16 +17,17 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/calendar_controller.dart';
-import 'package:lancar_cat/app/controllers/geolocator_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/submission_attendance_response_model.dart';
-import 'package:lancar_cat/app/modules/camera_capture/controllers/camera_capture_controller.dart';
-import 'package:lancar_cat/app/service/local_notification_service.dart';
-import 'package:lancar_cat/app/core/components/notifications/firebase_api.dart';
 import 'package:version/version.dart';
+
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/calendar_controller.dart';
+import '../../../controllers/geolocator_controller.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/constant/variables.dart';
+import '../../../models/shift.dart';
+import '../../../service/local_notification_service.dart';
+import '../../../shared/button/button_1.dart';
+import '../../camera_capture/controllers/camera_capture_controller.dart';
 
 class HomeController extends GetxController {
   final globalKey = GlobalKey();
@@ -71,7 +71,8 @@ class HomeController extends GetxController {
   }
 
   Future<bool> isAvailableVersion() async {
-    final appVersion = await checkVersion();
+    try {
+      final appVersion = await checkVersion();
     final availableVersion = await checkApplicationVersion();
 
     List<int> appVersionList = appVersion
@@ -91,6 +92,12 @@ class HomeController extends GetxController {
       return true;
     }
     return false;
+    } catch (e) {
+      var box = await Hive.openBox('andioffset');
+      await box.delete('token');
+      debugPrint(e.toString());
+      return false;
+    }
   }
 
   Future<void> countApplications() async {
@@ -100,22 +107,12 @@ class HomeController extends GetxController {
     await a.lenghtCountShiftLine();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   Future<String> checkVersion() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     return packageInfo.version;
   }
 
-  showVersionAlert() async => await Get.bottomSheet(
+  Future<dynamic> showVersionAlert() async => await Get.bottomSheet(
     backgroundColor: Colors.white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -191,14 +188,14 @@ class HomeController extends GetxController {
         final data = await response.stream.bytesToString();
         return json.decode(data);
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } catch (e) {
-      print(e);
+      debugPrint('$e');
     }
   }
 
-  initializeNotification() async {
+  Future<void> initializeNotification() async {
     log('Start initializing notification');
     String date = DateFormat('yyyy-MM-dd', 'id').format(DateTime.now());
 
@@ -255,7 +252,7 @@ class HomeController extends GetxController {
   RxInt curIndex = 0.obs;
   RxInt curIndexCarousel = 0.obs;
 
-  stringToDate(String time) {
+  DateTime stringToDate(String time) {
     List<String> timeParts = time.split(':');
     int hours = int.parse(timeParts[0]);
 
@@ -288,7 +285,7 @@ class HomeController extends GetxController {
     return false;
   }
 
-  timeOfDayFormat(String timeString) {
+  String timeOfDayFormat(String timeString) {
     // Split the time string into hours, minutes, and seconds
     List<String> timeParts = timeString.split(':');
     int hours = int.parse(timeParts[0]);
@@ -315,7 +312,7 @@ class HomeController extends GetxController {
     return formattedDateTime;
   }
 
-  checkClockOut(String aP) {
+  bool checkClockOut(String aP) {
     DateTime now = DateTime.now();
     // Combine the current date with the provided time string
     String dateTimeString =

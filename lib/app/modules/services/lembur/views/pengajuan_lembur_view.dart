@@ -12,19 +12,18 @@ import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_tile_status.dart';
-import 'package:lancar_cat/app/core/components/my_button.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/agreement_overtime_response_model.dart';
-import 'package:lancar_cat/app/data/model/submission_attendance_response_model.dart';
-import 'package:lancar_cat/app/modules/services/lembur/views/detail_pengajuan_lembur_user_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/dialog.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
-
+import '../../../../controllers/model_controller.dart';
+import '../../../../core/components/custom_tile_status.dart';
+import '../../../../core/components/my_button.dart';
+import '../../../../core/constant/variables.dart';
+import '../../../../data/model/agreement_overtime_response_model.dart';
+import '../../../../models/shift.dart';
+import '../../../../shared/button/button_1.dart';
+import '../../../../shared/dialog.dart';
+import '../../../../shared/snackbar/snackbar_1.dart';
+import '../../../../shared/textfield/textfield_1.dart';
 import '../controllers/lembur_controller.dart';
+import 'detail_pengajuan_lembur_user_view.dart';
 
 class PengajuanLemburView extends StatefulWidget {
   const PengajuanLemburView({super.key});
@@ -197,7 +196,7 @@ class _PengajuanLemburViewState extends State<PengajuanLemburView> {
         }
         controller.isHoliday(true);
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
         controller.isHoliday(false);
       }
     } catch (e) {
@@ -229,12 +228,12 @@ class _PengajuanLemburViewState extends State<PengajuanLemburView> {
         durasiLembur.isNotEmpty ||
         durasiIstirahat.isNotEmpty) {
       // Jika salah satu tidak kosong, bisa melanjutkan ke step berikutnya
-      print("Lanjut ke step berikutnya");
+      debugPrint("Lanjut ke step berikutnya");
       return false;
       // Lanjut ke next step, bisa memanggil navigator atau logic yang sesuai
     } else {
       // Jika semua field kosong, tampilkan pesan error atau alert
-      print("Harap isi minimal satu field untuk melanjutkan");
+      debugPrint("Harap isi minimal satu field untuk melanjutkan");
       return true;
     }
   }
@@ -702,7 +701,7 @@ class _PengajuanLemburViewState extends State<PengajuanLemburView> {
         selectedShift = Shift.fromMap(jsonR['data']);
         return selectedShift;
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } catch (e) {
       if (Get.isDialogOpen!) Get.back();

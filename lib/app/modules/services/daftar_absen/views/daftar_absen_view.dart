@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'package:lancar_cat/app/modules/home/views/menu_view.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/daftar_absen_absensi_view.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/daftar_absen_shift_view.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
+import '../../../../shared/utils.dart';
+import '../../../home/views/menu_view.dart';
+import 'daftar_absen_absensi_view.dart';
 import 'daftar_absen_riwayat_view.dart';
+import 'daftar_absen_shift_view.dart';
 
 class DaftarAbsenView extends StatefulWidget {
   const DaftarAbsenView({super.key});

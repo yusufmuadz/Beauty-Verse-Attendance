@@ -1,8 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
 import 'package:flutter/material.dart';
+
+import '../utils.dart';
 
 class Loading1 extends StatelessWidget {
   const Loading1({super.key});

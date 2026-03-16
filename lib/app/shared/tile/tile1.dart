@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import 'package:lancar_cat/app/shared/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../utils.dart';
 
 class ListTile1 extends StatelessWidget {
   const ListTile1({

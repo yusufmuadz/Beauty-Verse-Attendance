@@ -7,11 +7,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/core/components/custom_tile_status.dart';
-import 'package:lancar_cat/app/models/leave.dart';
-import 'package:lancar_cat/app/models/profile_response_model.dart';
-import 'package:lancar_cat/app/shared/textfieldform.dart';
-
+import '../../../core/components/custom_tile_status.dart';
+import '../../../models/leave.dart';
+import '../../../models/profile_response_model.dart';
+import '../../../shared/textfieldform.dart';
 import '../controllers/detail_information_employee_controller.dart';
 
 class DetailInformationEmployeeView

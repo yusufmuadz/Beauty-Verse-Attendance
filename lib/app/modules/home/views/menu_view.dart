@@ -1,6 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
@@ -10,24 +8,25 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-import 'package:lancar_cat/app/modules/home/controllers/home_controller.dart';
-import 'package:lancar_cat/app/modules/home/views/employee_view.dart';
-import 'package:lancar_cat/app/modules/home/views/home_view.dart';
-import 'package:lancar_cat/app/modules/home/views/inbox_view.dart';
-import 'package:lancar_cat/app/modules/home/views/setting_view.dart';
-import 'package:lancar_cat/app/modules/services/cuti/views/cuti_view.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/absensi/pengajuan_absensi_view.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/daftar_absen_view.dart';
-import 'package:lancar_cat/app/modules/services/lembur/views/history_lembur_view.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/model_controller.dart';
 import '../../../core/components/my_drawer_content.dart';
 import '../../../core/constant/variables.dart';
 import '../../../data/model/login_response_model.dart';
 import '../../../models/drawer_content.dart';
+import '../../../shared/utils.dart';
 import '../../services/absen/views/absen_view.dart';
+import '../../services/cuti/views/cuti_view.dart';
+import '../../services/daftar_absen/views/absensi/pengajuan_absensi_view.dart';
+import '../../services/daftar_absen/views/daftar_absen_view.dart';
 import '../../services/istirahat_telat/views/istirahat_telat_view.dart';
 import '../../services/izin kembali/izin_kembali_view.dart';
+import '../../services/lembur/views/history_lembur_view.dart';
+import '../controllers/home_controller.dart';
+import 'employee_view.dart';
+import 'home_view.dart';
+import 'inbox_view.dart';
+import 'setting_view.dart';
 
 // ignore: must_be_immutable
 class MenuView extends GetView<HomeController> {
@@ -45,7 +44,6 @@ class MenuView extends GetView<HomeController> {
 
     final List<Widget> widget = [
       HomeView(),
-      // if (controller.m.u.value.manager == '1')
       EmployeeView(),
       InboxView(),
       SettingView(),
@@ -123,7 +121,6 @@ class MenuView extends GetView<HomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image.asset('assets/logo/transparent_background.png', width: 90),
             Container(
               margin: EdgeInsets.only(bottom: 10),
               width: Get.width,
@@ -334,7 +331,7 @@ class MenuView extends GetView<HomeController> {
     );
   }
 
-  _dialogExit() {
+  Future<dynamic> _dialogExit() {
     return Get.dialog(
       AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -370,7 +367,7 @@ class MenuView extends GetView<HomeController> {
     );
   }
 
-  _onWillPop(BuildContext context) {
+  Future<bool> _onWillPop(BuildContext context) {
     final now = DateTime.now();
     final maxDuration = Duration(seconds: 2);
 
@@ -392,7 +389,7 @@ class MenuView extends GetView<HomeController> {
     return Future.value(true); // Allow back navigation
   }
 
-  bottomNavBar(BuildContext context) {
+  BottomAppBar bottomNavBar(BuildContext context) {
     final model = Get.find<ModelController>();
 
     int totalApplications =
@@ -453,7 +450,7 @@ class MenuView extends GetView<HomeController> {
   }
 }
 
-showModalPengajuan(BuildContext context) {
+Future<dynamic> showModalPengajuan(BuildContext context) {
   return showModalBottomSheet(
     showDragHandle: true,
     backgroundColor: Colors.white,
@@ -510,7 +507,7 @@ showModalPengajuan(BuildContext context) {
   );
 }
 
-getColors(int curIndex, int index) =>
+Color getColors(int curIndex, int index) =>
     (curIndex == index) ? HexColor('#01bede') : Colors.grey;
 
 class CustomTilePengajuan extends StatelessWidget {

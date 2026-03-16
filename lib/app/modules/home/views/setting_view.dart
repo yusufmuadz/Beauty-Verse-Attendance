@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -11,23 +10,24 @@ import 'package:hive/hive.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/login_response_model.dart';
-import 'package:lancar_cat/app/modules/home/controllers/home_controller.dart';
-import 'package:lancar_cat/app/modules/settings/views/detail_information_view.dart';
-import 'package:lancar_cat/app/modules/settings/views/emergency%20contact/emergency_contact_view.dart';
-import 'package:lancar_cat/app/modules/settings/views/ganti_password_view.dart';
-import 'package:lancar_cat/app/modules/settings/views/job_information_view.dart';
-import 'package:lancar_cat/app/modules/settings/views/pusat_bantuan_view.dart';
-import 'package:lancar_cat/app/service/local_notification_service.dart';
-import 'package:lancar_cat/app/shared/tile/tile1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/constant/variables.dart';
+import '../../../data/model/login_response_model.dart';
+import '../../../service/local_notification_service.dart';
+import '../../../shared/snackbar/snackbar_1.dart';
+import '../../../shared/tile/tile1.dart';
+import '../../../shared/utils.dart';
+import '../../settings/views/detail_information_view.dart';
+import '../../settings/views/emergency contact/emergency_contact_view.dart';
+import '../../settings/views/ganti_password_view.dart';
+import '../../settings/views/job_information_view.dart';
+import '../../settings/views/pusat_bantuan_view.dart';
+import '../controllers/home_controller.dart';
 
 // ignore: must_be_immutable
 class SettingView extends GetView {
-  SettingView({Key? key}) : super(key: key);
+  SettingView({super.key});
 
   final _myBox = Hive.box("andioffset");
 
@@ -90,9 +90,9 @@ class SettingView extends GetView {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: (m.u.value.avatar == null)
-                    ? Image.asset('assets/logo/logo.png')
+                    ? Image.asset(Variables.avatarDefault)
                     : (m.u.value.avatar!.split('/').last.contains('default'))
-                    ? Image.asset('assets/logo/logo.png')
+                    ? Image.asset(Variables.avatarDefault)
                     : CachedNetworkImage(
                         imageUrl: m.u.value.avatar ?? '',
                         errorWidget: (context, url, error) {
@@ -233,7 +233,7 @@ class SettingView extends GetView {
     );
   }
 
-  _dialogExit() {
+  Future<dynamic> _dialogExit() {
     return Get.dialog(
       AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

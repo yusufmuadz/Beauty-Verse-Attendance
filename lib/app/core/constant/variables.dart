@@ -13,10 +13,16 @@ import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 
 class Variables {
-  static const String appName = "Lancar Presensi";
+  static const String appName = "Beauty Verse Presensi";
   // static const String baseUrl = "https://192.168.5.3:8000/api";
-  static const String baseUrl = "https://apilancar.aisystem.id/api";
-  static const String logoPath = "assets/logo/logo.png";
+  static const String baseUrl = "https://apibeautyverse.aisystem.id/api";
+  static const String logoPath = "assets/logo/logo_.png";
+  static const String logoPathSecond = "assets/logo/logo.png";
+  static const String avatarDefault = "assets/logo/logo_.png";
+  static const String logoError = "assets/logo/logo_.png";
+
+  static const String apiKeyMaps = "1993c870-88fb-4df9-8daf-ca2a3b19080d";
+  static const String baseUrlMaps = "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.png?api_key=$apiKeyMaps";
 
   static String FCMToken = '';
 

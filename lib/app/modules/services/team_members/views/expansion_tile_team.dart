@@ -7,13 +7,15 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:lancar_cat/app/modules/services/team_members/views/team_subordinate_view.dart';
 
+import '../../../../core/constant/variables.dart';
 import '../../../../data/model/login_response_model.dart';
 import '../../../../models/attendance.dart';
 import '../../../../shared/images/images.dart';
+import '../../../../shared/maps/tile_layer_maps.dart';
 import '../../../../shared/tile/tile3.dart';
 import '../controllers/team_members_controller.dart';
+import 'team_subordinate_view.dart';
 
 final controller = Get.put(TeamMembersController());
 
@@ -69,7 +71,7 @@ ExpansionTile expansionTileTeam(
               ? ""
               : e.avatar ?? "",
           errorWidget: (context, url, error) {
-            return Image.asset('assets/logo/logo.png', fit: BoxFit.cover);
+            return Image.asset(Variables.logoError, fit: BoxFit.cover);
           },
         ),
       ),
@@ -191,12 +193,7 @@ Future<dynamic> _onTap(BuildContext context, Attendance e, String imgUrl) {
                           minZoom: 17,
                         ),
                         children: [
-                          TileLayer(
-                            urlTemplate:
-                                'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                            subdomains: ['a', 'b', 'c'],
-                            maxZoom: 19,
-                          ),
+                          TileLayerMaps().sharedTile(),
                           MarkerLayer(
                             markers: [
                               Marker(

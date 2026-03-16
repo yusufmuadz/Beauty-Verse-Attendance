@@ -7,12 +7,12 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/modules/inbox/views/agreement_detail_view.dart';
-import 'package:lancar_cat/app/modules/services/cuti/pengajuan/views/detail_pengajuan_absensi_view.dart';
-import 'package:lancar_cat/app/modules/services/lembur/views/detail_pengajuan_lembur_view.dart';
-import 'package:lancar_cat/app/modules/services/shift/detail_pengajuan_shift.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../modules/inbox/views/agreement_detail_view.dart';
+import '../../../modules/services/cuti/pengajuan/views/detail_pengajuan_absensi_view.dart';
+import '../../../modules/services/daftar_absen/views/absensi/detail_pengajuan_shift.dart';
+import '../../../modules/services/lembur/views/detail_pengajuan_lembur_view.dart';
+import '../../constant/variables.dart';
 
 class FirebaseApi {
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;

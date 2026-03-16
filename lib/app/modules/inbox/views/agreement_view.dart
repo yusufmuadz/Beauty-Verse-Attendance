@@ -7,15 +7,15 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/detail_absensi_bottom_sheet.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/models/approval_index.dart';
-import 'package:lancar_cat/app/modules/inbox/views/agreement_lembur_view.dart';
-import 'package:lancar_cat/app/modules/inbox/views/agreement_list_view.dart';
-import 'package:lancar_cat/app/modules/inbox/views/agreement_shift.dart';
-import 'package:lancar_cat/app/modules/inbox/views/submission/submission_absensi_view.dart';
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/components/detail_absensi_bottom_sheet.dart';
+import '../../../core/constant/variables.dart';
+import '../../../models/approval_index.dart';
+import 'agreement_lembur_view.dart';
+import 'agreement_list_view.dart';
+import 'agreement_shift.dart';
+import 'submission/submission_absensi_view.dart';
 
 class AgreementView extends StatefulWidget {
   const AgreementView({super.key});

@@ -1,5 +1,3 @@
-import 'package:lancar_cat/app/core/components/my_button.dart';
-import 'package:lancar_cat/app/models/detail_overtime.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,11 +7,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/agreement_overtime_response_model.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../../controllers/model_controller.dart';
+import '../../../../core/components/my_button.dart';
+import '../../../../core/constant/variables.dart';
+import '../../../../data/model/agreement_overtime_response_model.dart';
+import '../../../../models/detail_overtime.dart';
+import '../../../../shared/images/images.dart';
+import '../../../../shared/utils.dart';
 
 class DetailPengajuanLemburView extends StatefulWidget {
   const DetailPengajuanLemburView({super.key});
@@ -49,8 +49,8 @@ class _DetailPengajuanLemburViewState extends State<DetailPengajuanLemburView> {
     try {
       http.StreamedResponse response = await request.send();
 
-      debugPrint('log: ${response.statusCode}');
-      debugPrint('log: ${m.token.value}');
+      // debugPrint('log: ${response.statusCode}');
+      // debugPrint('log: ${m.token.value}');
 
       if (response.statusCode == 200) {
         final str = await response.stream.bytesToString();
@@ -59,7 +59,7 @@ class _DetailPengajuanLemburViewState extends State<DetailPengajuanLemburView> {
         isDone.value = true;
         return data;
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } catch (e) {
       throw Exception(e);
@@ -206,14 +206,14 @@ class _DetailPengajuanLemburViewState extends State<DetailPengajuanLemburView> {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+      debugPrint(await response.stream.bytesToString());
       Get.back();
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
     }
   }
 
-  checkIsDayOff(Content overtime) {
+  List<dynamic> checkIsDayOff(Content overtime) {
     if (overtime.type == 'Day off') {
       return [
         const Gap(20),
@@ -308,7 +308,7 @@ class _DetailPengajuanLemburViewState extends State<DetailPengajuanLemburView> {
     );
   }
 
-  _tileDetailTimeOff(String title, String subTilte) {
+  Column _tileDetailTimeOff(String title, String subTilte) {
     return Column(
       children: [
         Row(
@@ -339,22 +339,5 @@ class _DetailPengajuanLemburViewState extends State<DetailPengajuanLemburView> {
         Divider(thickness: .5, color: Colors.grey.shade300),
       ],
     );
-    // return Row(
-    //   children: [
-    //     Expanded(
-    //       flex: 2,
-    //       child: Text(
-    //         title,
-    //       ),
-    //     ),
-    //     Text(' : '),
-    //     Expanded(
-    //       flex: 1,
-    //       child: Text(
-    //         subTilte,
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 }

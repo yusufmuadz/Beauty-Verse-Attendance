@@ -12,30 +12,29 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:lancar_cat/app/modules/services/daftar_absen/views/absensi/pengajuan_pergantian_shift_view.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_dialog.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/attendance_overtime_response_model.dart';
-import 'package:lancar_cat/app/data/model/identify_job_scope_response_model.dart';
-import 'package:lancar_cat/app/data/model/login_response_model.dart';
-import 'package:lancar_cat/app/modules/locations_tracker/views/locations_tracker_view.dart';
-import 'package:lancar_cat/app/modules/services/cuti/views/cuti_view.dart';
-import 'package:lancar_cat/app/modules/services/istirahat_telat/views/istirahat_telat_view.dart';
-import 'package:lancar_cat/app/modules/services/izin%20kembali/izin_kembali_view.dart';
-import 'package:lancar_cat/app/routes/app_pages.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
 import '../../../controllers/api_controller.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../core/components/custom_dialog.dart';
 import '../../../core/constant/time_format_schedule.dart';
+import '../../../core/constant/variables.dart';
+import '../../../data/model/attendance_overtime_response_model.dart';
+import '../../../data/model/identify_job_scope_response_model.dart';
+import '../../../data/model/login_response_model.dart';
+import '../../../routes/app_pages.dart';
+import '../../../shared/button/button_1.dart';
 import '../../../shared/icons/icon_widget_service.dart';
+import '../../../shared/snackbar/snackbar_1.dart';
+import '../../../shared/utils.dart';
+import '../../locations_tracker/views/locations_tracker_view.dart';
 import '../../services/absen/views/absen_view.dart';
+import '../../services/cuti/views/cuti_view.dart';
+import '../../services/daftar_absen/views/absensi/pengajuan_pergantian_shift_view.dart';
 import '../../services/daftar_absen/views/daftar_absen_view.dart';
+import '../../services/istirahat_telat/views/istirahat_telat_view.dart';
+import '../../services/izin kembali/izin_kembali_view.dart';
 import '../../services/lembur/views/history_lembur_view.dart';
 import '../controllers/home_controller.dart';
 
@@ -107,7 +106,7 @@ class _HomeViewState extends State<HomeView> {
     }
   }
 
-  _buildOvertimeWidget() {
+  FutureBuilder<dynamic> _buildOvertimeWidget() {
     return FutureBuilder(
       future: fetchAttendanceLembur(),
       builder: (context, snapshot) {
@@ -217,7 +216,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  _buildTeamWidget() {
+  FutureBuilder<dynamic> _buildTeamWidget() {
     return FutureBuilder(
       future: a.identifyJobScope(
         date: DateFormat('yyyy-MM-dd', 'id_ID').format(DateTime.now()),
@@ -812,7 +811,7 @@ class _HomeViewState extends State<HomeView> {
     }
   }
 
-  initHistory() async {
+  Future<void> initHistory() async {
     try {
       await controller.a.todayAttendance();
       await controller.a.fetchCurrentUser();
@@ -826,7 +825,7 @@ class _HomeViewState extends State<HomeView> {
 
   // make a greeting message
 
-  greetingMessage() {
+  void greetingMessage() {
     Get.dialog(
       AlertDialog(
         title: Text(
@@ -866,7 +865,7 @@ class _HomeViewState extends State<HomeView> {
         final data = AttendanceOvertimeResponseModel.fromJson(str);
         return data;
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } catch (e) {
       CustomDialog(title: 'Error!', content: e.toString());
@@ -879,7 +878,7 @@ class _HomeViewState extends State<HomeView> {
         : true; // clockout // clockin
   }
 
-  _submitAttendance() async {
+  Future<void> _submitAttendance() async {
     // Pengecekan apakah waktu di atur secara otomatis
     if (Platform.isAndroid) {
       bool timeAuto = await DatetimeSetting.timeIsAuto();
@@ -941,7 +940,7 @@ class _HomeViewState extends State<HomeView> {
     }
   }
 
-  _alertLocationNeeded() {
+  void _alertLocationNeeded() {
     Get.bottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -1217,7 +1216,7 @@ class CustomTileInfo extends StatelessWidget {
   }
 }
 
-_skeletonWidget() {
+Skeletonizer _skeletonWidget() {
   return Skeletonizer(
     child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),

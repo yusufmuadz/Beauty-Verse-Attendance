@@ -9,17 +9,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_stepper_approve.dart';
-import 'package:lancar_cat/app/core/constant/time_format_schedule.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/submission_attendance_response_model.dart';
-import 'package:lancar_cat/app/modules/services/cuti/pengajuan/views/detail_pengajuan_cuti_view.dart';
-import 'package:lancar_cat/app/shared/attach/show_multiple_file.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/loading/loading1.dart';
-
+import '../../../../../controllers/model_controller.dart';
+import '../../../../../core/components/custom_stepper_approve.dart';
+import '../../../../../core/constant/time_format_schedule.dart';
+import '../../../../../core/constant/variables.dart';
+import '../../../../../data/model/submission_attendance_response_model.dart';
+import '../../../../../shared/attach/show_multiple_file.dart';
+import '../../../../../shared/button/button_1.dart';
 import '../../../../../shared/images/images.dart';
+import '../../../../../shared/loading/loading1.dart';
+import '../../../cuti/pengajuan/views/detail_pengajuan_cuti_view.dart';
 
 class DetailPengajuanAbsensi extends StatefulWidget {
   const DetailPengajuanAbsensi({super.key});
@@ -53,7 +52,7 @@ class _DetailPengajuanAbsensiState extends State<DetailPengajuanAbsensi> {
     _checkRejected(data.statusLine!, data.statusSuperadmin ?? 'Pending');
   }
 
-  _checkStatusApprovalUser(String approval) {
+  String _checkStatusApprovalUser(String approval) {
     switch (approval) {
       case "Rejected":
         return 'dibatalkan';
@@ -62,13 +61,13 @@ class _DetailPengajuanAbsensiState extends State<DetailPengajuanAbsensi> {
     }
   }
 
-  _checkRejected(String line, String superAdmin) {
+  void _checkRejected(String line, String superAdmin) {
     if (line.contains('Rejected') || superAdmin.contains('Rejected')) {
       isRejected = true;
     }
   }
 
-  _settingIndexApprove(String user, String line, String superAdmin) {
+  void _settingIndexApprove(String user, String line, String superAdmin) {
     if (user.contains('Rejected')) {
       isRejected = true;
     }
@@ -226,32 +225,30 @@ class _DetailPengajuanAbsensiState extends State<DetailPengajuanAbsensi> {
                   ),
 
                   // informasi pegawai cuti
-                  Container(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Tanggal Pengajuan :',
-                            style: GoogleFonts.quicksand(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                            ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Tanggal Pengajuan :',
+                          style: GoogleFonts.quicksand(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
                           ),
                         ),
-                        Expanded(
-                          child: Text(
-                            DateFormat(
-                              'dd MMMM yyyy',
-                              'id_ID',
-                            ).format(data.dateRequest ?? DateTime.now()),
-                            style: GoogleFonts.quicksand(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                            ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          DateFormat(
+                            'dd MMMM yyyy',
+                            'id_ID',
+                          ).format(data.dateRequest ?? DateTime.now()),
+                          style: GoogleFonts.quicksand(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
 
                   // custom stepper
@@ -496,7 +493,7 @@ class _DetailPengajuanAbsensiState extends State<DetailPengajuanAbsensi> {
     );
   }
 
-  _formatDate(String time) {
+  String _formatDate(String time) {
     // Parsing string ke DateTime
     DateTime dateTime = DateFormat('HH:mm:ss').parse(time);
     // Mengubah ke format yang diinginkan

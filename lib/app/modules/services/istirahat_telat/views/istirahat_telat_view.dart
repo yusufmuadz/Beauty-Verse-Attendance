@@ -10,25 +10,25 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_dialog.dart';
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/core/components/custom_tile_status.dart';
-import 'package:lancar_cat/app/core/constant/time_format_schedule.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/late_break_response_model.dart';
-import 'package:lancar_cat/app/modules/locations_tracker/views/locations_tracker_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
-import 'package:lancar_cat/app/shared/tile/tile3.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
+import '../../../../controllers/model_controller.dart';
+import '../../../../core/components/custom_dialog.dart';
+import '../../../../core/components/custom_empty_submission.dart';
+import '../../../../core/components/custom_tile_status.dart';
+import '../../../../core/constant/time_format_schedule.dart';
+import '../../../../core/constant/variables.dart';
+import '../../../../data/model/late_break_response_model.dart';
+import '../../../../shared/button/button_1.dart';
+import '../../../../shared/images/images.dart';
+import '../../../../shared/maps/tile_layer_maps.dart';
+import '../../../../shared/snackbar/snackbar_1.dart';
+import '../../../../shared/textfield/textfield_1.dart';
+import '../../../../shared/tile/tile3.dart';
+import '../../../../shared/utils.dart';
+import '../../../locations_tracker/views/locations_tracker_view.dart';
 import '../controllers/istirahat_telat_controller.dart';
 
 class IstirahatTelatView extends StatefulWidget {
-  IstirahatTelatView({Key? key}) : super(key: key);
+  const IstirahatTelatView({super.key});
 
   @override
   State<IstirahatTelatView> createState() => _IstirahatTelatViewState();
@@ -164,12 +164,7 @@ class _IstirahatTelatViewState extends State<IstirahatTelatView> {
                                                   minZoom: 17,
                                                 ),
                                                 children: [
-                                                  TileLayer(
-                                                    urlTemplate:
-                                                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                                    subdomains: ['a', 'b', 'c'],
-                                                    maxZoom: 19,
-                                                  ),
+                                                  TileLayerMaps().sharedTile(),
                                                   MarkerLayer(
                                                     markers: [
                                                       Marker(
@@ -325,7 +320,7 @@ class _IstirahatTelatViewState extends State<IstirahatTelatView> {
         final str = await response.stream.bytesToString();
         return LateBreakResponseModel.fromJson(str);
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } catch (e) {
       CustomDialog(title: 'Gagal', content: e.toString());

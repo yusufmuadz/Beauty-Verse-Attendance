@@ -16,18 +16,17 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:hive/hive.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:lancar_cat/app/core/components/custom_dialog.dart';
 
-import 'package:lancar_cat/app/core/constant/geolocator_locations.dart';
-import 'package:lancar_cat/app/modules/camera_capture/controllers/camera_capture_controller.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
+import '../../../core/components/custom_dialog.dart';
+import '../../../core/constant/geolocator_locations.dart';
 import '../../../shared/button/button_1.dart';
+import '../../../shared/snackbar/snackbar_1.dart';
 import '../../../shared/textfield/textfield_1.dart';
+import '../../../shared/utils.dart';
+import '../controllers/camera_capture_controller.dart';
 
 class CameraCaptureView extends StatefulWidget {
-  CameraCaptureView({Key? key}) : super(key: key);
+  const CameraCaptureView({super.key});
 
   @override
   State<CameraCaptureView> createState() => _CameraCaptureViewState();
@@ -136,7 +135,7 @@ class _CameraCaptureViewState extends State<CameraCaptureView> {
                         alignment: Alignment.center,
                         child: FittedBox(
                           fit: BoxFit.cover,
-                          child: Container(
+                          child: SizedBox(
                             width: Get.width,
                             child: CameraPreview(controller.camController),
                           ),
@@ -311,7 +310,7 @@ Future<void> setExposureSafe(double value) async {
 }
 
 
-  saveImageIntoHive() async {
+  Future<void> saveImageIntoHive() async {
     try {
       XFile? picture = await controller.camController.takePicture();
 

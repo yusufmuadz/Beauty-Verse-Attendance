@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lancar_cat/app/core/components/my_button.dart';
+
+import 'my_button.dart';
 
 // ignore: must_be_immutable
 class CustomDialog extends StatelessWidget {

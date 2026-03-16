@@ -1,9 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:lancar_cat/app/data/model/leave_response_model.dart';
-import 'package:lancar_cat/app/models/detail_leave.dart';
-import 'package:lancar_cat/app/shared/loading/loading1.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -12,11 +9,15 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../data/model/leave_response_model.dart';
+import '../../models/detail_leave.dart';
+import '../loading/loading1.dart';
+
 class ShowMultipleFile extends StatelessWidget {
   final Function()? onTap;
   final List<Attach> attach;
   final List<Attachment>? attachment;
-  ShowMultipleFile({
+  const ShowMultipleFile({
     super.key,
     this.onTap,
     required this.attach,
@@ -115,7 +116,7 @@ Future<void> openFile({required String url, required String name}) async {
   try {
     final file = await downloadFile(url: url, name: name);
     if (file == null) {
-      print('Failed to download file.');
+      debugPrint('Failed to download file.');
       return;
     }
 
@@ -124,7 +125,7 @@ Future<void> openFile({required String url, required String name}) async {
       await OpenFile.open(file.path);
     });
   } catch (e) {
-    print('Exception opening file: $e');
+    debugPrint('Exception opening file: $e');
   }
 }
 
@@ -167,17 +168,17 @@ Future<File?> downloadFile({required String url, required String name}) async {
       await raf.close();
 
       if (await file.exists()) {
-        print('File exists at path: ${file.path}');
+        debugPrint('File exists at path: ${file.path}');
       } else {
-        print('File does not exist at path: ${file.path}');
+        debugPrint('File does not exist at path: ${file.path}');
       }
 
       return file;
     } else {
-      print('Failed to download file. Status code: ${response.statusCode}');
+      debugPrint('Failed to download file. Status code: ${response.statusCode}');
     }
   } catch (e) {
-    print('Error: $e');
+    debugPrint('Error: $e');
   }
 
   return null;

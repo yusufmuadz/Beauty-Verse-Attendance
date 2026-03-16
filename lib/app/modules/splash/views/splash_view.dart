@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
 
-import 'package:lancar_cat/app/modules/camera_capture/views/camera_capture_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-
+import '../../../core/constant/variables.dart';
+import '../../../shared/button/button_1.dart';
+import '../../camera_capture/views/camera_capture_view.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {

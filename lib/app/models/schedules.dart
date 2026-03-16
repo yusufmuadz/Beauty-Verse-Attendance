@@ -1,5 +1,6 @@
-import 'package:lancar_cat/app/models/attendance.dart';
-import 'package:lancar_cat/app/models/pattern.dart';
+
+import 'attendance.dart';
+import 'pattern.dart';
 
 class SchedulesPackage {
   final List<Schedules>? schedules;

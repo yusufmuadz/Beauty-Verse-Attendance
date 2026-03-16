@@ -1,19 +1,19 @@
-import 'package:lancar_cat/app/core/components/tile/custom_tile_emergency_contact.dart';
-import 'package:lancar_cat/app/data/model/emergency_contact_response_model.dart';
-import 'package:lancar_cat/app/modules/settings/controllers/emergency_contact_controller.dart';
-import 'package:lancar_cat/app/modules/settings/views/emergency%20contact/add_emergency_contact_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:lancar_cat/app/shared/loading/loading1.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 import '../../../../core/components/custom_empty_submission.dart';
+import '../../../../core/components/tile/custom_tile_emergency_contact.dart';
+import '../../../../data/model/emergency_contact_response_model.dart';
+import '../../../../shared/button/button_1.dart';
+import '../../../../shared/loading/loading1.dart';
+import '../../controllers/emergency_contact_controller.dart';
+import 'add_emergency_contact_view.dart';
 
 class EmergencyContactView extends StatefulWidget {
-  EmergencyContactView({super.key});
+  const EmergencyContactView({super.key});
 
   @override
   State<EmergencyContactView> createState() => _EmergencyContactViewState();
@@ -80,7 +80,7 @@ class _EmergencyContactViewState extends State<EmergencyContactView> {
     );
   }
 
-  _showOptionsBottomSheet({required int id, required Contact contact}) {
+  void _showOptionsBottomSheet({required int id, required Contact contact}) {
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(

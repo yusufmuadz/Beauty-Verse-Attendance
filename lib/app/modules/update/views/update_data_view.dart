@@ -1,15 +1,16 @@
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/core/components/custom_tile_status.dart';
-import 'package:lancar_cat/app/core/components/detail_absensi_bottom_sheet.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/biodata_response_model.dart';
-import 'package:lancar_cat/app/modules/update/views/update_submission_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+
+import '../../../core/components/custom_empty_submission.dart';
+import '../../../core/components/custom_tile_status.dart';
+import '../../../core/components/detail_absensi_bottom_sheet.dart';
+import '../../../core/constant/variables.dart';
+import '../../../data/model/biodata_response_model.dart';
+import '../../../shared/button/button_1.dart';
+import 'update_submission_view.dart';
 
 class UpdateDataView extends GetView {
   const UpdateDataView({super.key});
@@ -123,7 +124,7 @@ class UpdateDataView extends GetView {
 
       return (result.status!) ? result : null;
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
     }
   }
 }

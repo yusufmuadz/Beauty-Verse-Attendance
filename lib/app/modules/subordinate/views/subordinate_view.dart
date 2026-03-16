@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../../core/components/custom_empty_submission.dart';
 import '../controllers/subordinate_controller.dart';
 
 class SubordinateView extends GetView<SubordinateController> {
@@ -116,7 +116,7 @@ class SubordinateView extends GetView<SubordinateController> {
     );
   }
 
-  _buildCalendar() {
+  Obx _buildCalendar() {
     return Obx(
       () => TableCalendar(
         locale: 'id_ID',

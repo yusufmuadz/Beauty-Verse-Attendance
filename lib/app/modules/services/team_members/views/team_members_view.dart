@@ -1,6 +1,4 @@
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lancar_cat/app/data/model/login_response_model.dart';
-import 'package:lancar_cat/app/modules/services/team_members/views/expansion_tile_team.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -9,9 +7,11 @@ import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/data/model/identify_job_scope_response_model.dart';
+import '../../../../controllers/api_controller.dart';
+import '../../../../data/model/identify_job_scope_response_model.dart';
+import '../../../../data/model/login_response_model.dart';
 import '../controllers/team_members_controller.dart';
+import 'expansion_tile_team.dart';
 
 // ignore: must_be_immutable
 class TeamMembersView extends StatefulWidget {

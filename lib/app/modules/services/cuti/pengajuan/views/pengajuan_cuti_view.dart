@@ -12,17 +12,17 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/models/time_off.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/loading/loading1.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/textfieldform.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../../../controllers/api_controller.dart';
+import '../../../../../controllers/model_controller.dart';
+import '../../../../../models/time_off.dart';
+import '../../../../../shared/button/button_1.dart';
+import '../../../../../shared/loading/loading1.dart';
+import '../../../../../shared/snackbar/snackbar_1.dart';
+import '../../../../../shared/textfieldform.dart';
+import '../../../../../shared/utils.dart';
 
 class PengajuanCutiView extends StatefulWidget {
-  const PengajuanCutiView({Key? key}) : super(key: key);
+  const PengajuanCutiView({super.key});
 
   @override
   State<PengajuanCutiView> createState() => _PengajuanCutiViewState();
@@ -121,7 +121,7 @@ class _PengajuanCutiViewState extends State<PengajuanCutiView> {
                   ),
                 const Gap(10),
                 Obx(
-                  () => Container(
+                  () => SizedBox(
                     width: Get.width,
                     height: 100,
                     child: Wrap(
@@ -208,7 +208,7 @@ class _PengajuanCutiViewState extends State<PengajuanCutiView> {
     );
   }
 
-  _submitPengajuanCuti() async {
+  Future<void> _submitPengajuanCuti() async {
     // pengecekan cuti hari ini jika sudah clock-in tidak bisa cuti
 
     /**
@@ -308,19 +308,19 @@ class _PengajuanCutiViewState extends State<PengajuanCutiView> {
     }
   }
 
-  DateTime? _startDate = null;
-  DateTime? _endDate = null;
+  DateTime? _startDate;
+  DateTime? _endDate;
 
   RxList<XFile> files = RxList<XFile>();
   TextEditingController fileC = TextEditingController();
   String timeOffMasterId = '';
 
-  _pickFileFrom() async {
+  Future<void> _pickFileFrom() async {
     ImagePicker picker = ImagePicker();
 
     Get.dialog(
       AlertDialog(
-        content: Container(
+        content: SizedBox(
           width: Get.width,
           height: Get.height * 0.3,
           child: Column(
@@ -490,7 +490,7 @@ class _PengajuanCutiViewState extends State<PengajuanCutiView> {
   RxList<TimeOff> sortingTimeOff = RxList<TimeOff>([]);
 
   // bottom sheet
-  _showJenisCuti() {
+  void _showJenisCuti() {
     Get.bottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -595,13 +595,4 @@ class _PengajuanCutiViewState extends State<PengajuanCutiView> {
    *  tahunan = sisa cuti 
    * 
    */
-
-  Card SkeletonizerPengajuan() {
-    return Card(
-      child: ListTile(
-        title: Text('The title goes here'),
-        trailing: Skeleton.ignore(child: Icon(Icons.ac_unit, size: 40)),
-      ),
-    );
-  }
 }

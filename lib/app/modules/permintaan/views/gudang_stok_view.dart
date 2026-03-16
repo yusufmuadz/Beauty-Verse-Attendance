@@ -1,14 +1,15 @@
 import 'dart:async';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lancar_cat/app/models/barang_permintaan.dart';
-import 'package:lancar_cat/app/modules/permintaan/controllers/permintaan_controller.dart';
-import 'package:lancar_cat/app/shared/textfieldform.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+
+import '../../../models/barang_permintaan.dart';
+import '../../../shared/textfieldform.dart';
+import '../controllers/permintaan_controller.dart';
 
 class GudangStokView extends GetView<PermintaanController> {
   const GudangStokView({super.key});
@@ -158,45 +159,6 @@ class GudangStokView extends GetView<PermintaanController> {
                         ),
                       ),
                     );
-
-                    // return ListTile(
-                    //   onTap: () {
-                    //     controller.selectedBarang.add(barang);
-                    //     Get.back();
-                    //   },
-
-                    //   titleTextStyle: TextStyle(
-                    //     fontFamily: "Figtree",
-                    //     fontWeight: FontWeight.w600,
-                    //     color: Colors.grey,
-                    //     fontSize: 12,
-                    //   ),
-                    //   subtitleTextStyle: TextStyle(
-                    //     fontFamily: "Figtree",
-                    //     color: Colors.black,
-                    //     fontSize: 14.5,
-                    //   ),
-                    //   title: Text("Nama Barang"),
-                    //   subtitle: Text(barang.namaStok!),
-                    //   trailing: Container(
-                    //     padding: const EdgeInsets.all(7),
-                    //     decoration: BoxDecoration(
-                    //       color: outOfStok
-                    //           ? Colors.red.shade50
-                    //           : Colors.amber.shade50,
-                    //       borderRadius: BorderRadius.circular(7),
-                    //     ),
-                    //     child: Text(
-                    //       outOfStok ? "Stok Habis" : "Stok Tersedia",
-                    //       style: TextStyle(
-                    //         color: outOfStok ? Colors.red : Colors.amber,
-                    //         fontWeight: FontWeight.w600,
-                    //         fontFamily: "Figtree",
-                    //         fontSize: 12,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // );
                   },
                 ),
               ),

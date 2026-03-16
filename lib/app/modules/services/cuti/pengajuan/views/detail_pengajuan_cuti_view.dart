@@ -10,16 +10,16 @@ import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_dialog.dart';
-import 'package:lancar_cat/app/core/components/custom_stepper_approve.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/time_off_response_model.dart';
-import 'package:lancar_cat/app/shared/attach/show_multiple_file.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../../../controllers/model_controller.dart';
+import '../../../../../core/components/custom_dialog.dart';
+import '../../../../../core/components/custom_stepper_approve.dart';
+import '../../../../../core/constant/variables.dart';
+import '../../../../../data/model/time_off_response_model.dart';
+import '../../../../../shared/attach/show_multiple_file.dart';
+import '../../../../../shared/button/button_1.dart';
+import '../../../../../shared/images/images.dart';
+import '../../../../../shared/snackbar/snackbar_1.dart';
+import '../../../../../shared/utils.dart';
 
 class DetailPengajuanCutiView extends StatefulWidget {
   const DetailPengajuanCutiView({super.key});
@@ -52,7 +52,7 @@ class _DetailPengajuanCutiViewState extends State<DetailPengajuanCutiView> {
     ];
   }
 
-  _settingIndexApprove(String user, String line, String superAdmin) {
+  void _settingIndexApprove(String user, String line, String superAdmin) {
     if (user.contains('Rejected') || user.contains('Canceled')) {
       isRejected = true;
     }
@@ -342,7 +342,7 @@ class _DetailPengajuanCutiViewState extends State<DetailPengajuanCutiView> {
     );
   }
 
-  cancelSubmissionTimeOff() async {
+  Future<void> cancelSubmissionTimeOff() async {
     showDialog(
       context: context,
       builder: (context) {

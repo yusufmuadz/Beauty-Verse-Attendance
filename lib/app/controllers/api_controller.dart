@@ -16,34 +16,35 @@ import "package:hive/hive.dart";
 import "package:http/http.dart" as http;
 import "package:iconsax_flutter/iconsax_flutter.dart";
 
-import "package:lancar_cat/app/controllers/calendar_controller.dart";
-import "package:lancar_cat/app/controllers/geolocator_controller.dart";
-import "package:lancar_cat/app/controllers/model_controller.dart";
-import "package:lancar_cat/app/core/components/custom_dialog.dart";
-import "package:lancar_cat/app/core/constant/variables.dart";
-import "package:lancar_cat/app/data/model/agreement_overtime_response_model.dart";
-import "package:lancar_cat/app/data/model/attendance_response_model.dart";
-import "package:lancar_cat/app/data/model/identify_job_scope_response_model.dart";
-import "package:lancar_cat/app/data/model/leave_response_model.dart";
-import "package:lancar_cat/app/data/model/login_response_model.dart";
-import "package:lancar_cat/app/data/model/submission_attendance_response_model.dart";
-import "package:lancar_cat/app/data/model/time_off_response_model.dart";
-import "package:lancar_cat/app/data/model/timeoff_submission_response_model.dart";
-import "package:lancar_cat/app/data/model/today_attendance_response_model.dart";
-import "package:lancar_cat/app/models/attendance.dart";
-import "package:lancar_cat/app/models/location.dart";
-import "package:lancar_cat/app/models/resp_approval_leave.dart";
-import "package:lancar_cat/app/models/resp_approval_overtime.dart";
-import "package:lancar_cat/app/models/schedule.dart";
-import "package:lancar_cat/app/models/time_off.dart";
-import "package:lancar_cat/app/models/time_off_request.dart";
-import "package:lancar_cat/app/modules/authentication/views/sign_in_view.dart";
-import "package:lancar_cat/app/modules/camera_capture/controllers/camera_capture_controller.dart";
-import "package:lancar_cat/app/modules/home/views/menu_view.dart";
-import "package:lancar_cat/app/shared/snackbar/snackbar_1.dart";
-import "package:lancar_cat/app/shared/utils.dart";
-import "package:lancar_cat/app/models/shift.dart" as a;
 import "package:intl/intl.dart";
+
+import "../core/components/custom_dialog.dart";
+import "../core/constant/variables.dart";
+import "../data/model/agreement_overtime_response_model.dart";
+import "../data/model/attendance_response_model.dart";
+import "../data/model/identify_job_scope_response_model.dart";
+import "../data/model/leave_response_model.dart";
+import "../data/model/login_response_model.dart";
+import "../data/model/submission_attendance_response_model.dart";
+import "../data/model/time_off_response_model.dart";
+import "../data/model/timeoff_submission_response_model.dart";
+import "../data/model/today_attendance_response_model.dart";
+import "../models/attendance.dart";
+import "../models/location.dart";
+import "../models/resp_approval_leave.dart";
+import "../models/resp_approval_overtime.dart";
+import "../models/schedule.dart";
+import "../models/shift.dart" as a;
+import "../models/time_off.dart";
+import "../models/time_off_request.dart";
+import "../modules/authentication/views/sign_in_view.dart";
+import "../modules/camera_capture/controllers/camera_capture_controller.dart";
+import "../modules/home/views/menu_view.dart";
+import "../shared/snackbar/snackbar_1.dart";
+import "../shared/utils.dart";
+import "calendar_controller.dart";
+import "geolocator_controller.dart";
+import "model_controller.dart";
 
 class ApiController extends GetxController {
   final _box = Hive.box("andioffset");
@@ -391,7 +392,7 @@ class ApiController extends GetxController {
         m.overtimeSize(data.pendingLenght);
         return data;
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } catch (e) {
       log(e.toString());
@@ -470,7 +471,7 @@ class ApiController extends GetxController {
         final leave = TimeOffResponseModel.fromJson(data);
         return leave.content;
       } else {
-        print(response.reasonPhrase);
+        debugPrint(response.reasonPhrase);
       }
     } catch (e) {
       log(e.toString());
@@ -549,9 +550,9 @@ class ApiController extends GetxController {
         headers: {"Authorization": "Bearer ${m.token.value}"},
       );
 
-      debugPrint('URL: ${Variables.baseUrl}/v3/user');
-      debugPrint('Response Status Code: ${response.statusCode}');
-      debugPrint('Response Body: ${response.body}');
+      // debugPrint('URL: ${Variables.baseUrl}/v3/user');
+      // debugPrint('Response Status Code: ${response.statusCode}');
+      // debugPrint('Response Body: ${response.body}');
 
       log('Response User');
       log(response.body);
@@ -853,7 +854,7 @@ class ApiController extends GetxController {
       quality: 40,
     );
 
-    print(file.lengthSync());
+    debugPrint('${file.lengthSync()}');
 
     return result;
   }
@@ -933,7 +934,7 @@ class ApiController extends GetxController {
 
       if (res.statusCode == 200) {
         var data = json.decode(res.body);
-        print(data);
+        debugPrint(data);
       } else {
         log(json.decode(res.body));
       }

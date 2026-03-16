@@ -9,24 +9,24 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/custom_dialog.dart';
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-import 'package:lancar_cat/app/core/components/custom_tile_status.dart';
-import 'package:lancar_cat/app/core/constant/time_format_schedule.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/permit_response_model.dart';
-import 'package:lancar_cat/app/modules/locations_tracker/views/locations_tracker_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
-import 'package:lancar_cat/app/shared/textfieldform.dart';
-import 'package:lancar_cat/app/shared/tile/tile3.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
+import '../../../controllers/model_controller.dart';
+import '../../../core/components/custom_dialog.dart';
+import '../../../core/components/custom_empty_submission.dart';
+import '../../../core/components/custom_tile_status.dart';
+import '../../../core/constant/time_format_schedule.dart';
+import '../../../core/constant/variables.dart';
+import '../../../data/model/permit_response_model.dart';
+import '../../../shared/button/button_1.dart';
 import '../../../shared/images/images.dart';
+import '../../../shared/maps/tile_layer_maps.dart';
+import '../../../shared/textfield/textfield_1.dart';
+import '../../../shared/textfieldform.dart';
+import '../../../shared/tile/tile3.dart';
+import '../../../shared/utils.dart';
+import '../../locations_tracker/views/locations_tracker_view.dart';
 
 class IzinKembaliView extends StatefulWidget {
-  IzinKembaliView({super.key});
+  const IzinKembaliView({super.key});
 
   @override
   State<IzinKembaliView> createState() => _IzinKembaliViewState();
@@ -68,43 +68,6 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
             return LinearProgressIndicator();
           } else if (snapshot.hasData) {
             PermitResponseModel data = snapshot.data as PermitResponseModel;
-
-            //   return Column(
-            //     children: [
-            //       Padding(
-            //         padding: const EdgeInsets.all(10),
-            //         child: TextField1(
-            //           controller: searchC,
-            //           suffixIcon: Icon(Icons.keyboard_arrow_down_outlined),
-            //           preffixIcon: Icon(Iconsax.calendar_1_copy),
-            //           hintText: 'Pilih Tanggal',
-            //           readOnly: true,
-            //           onTap: () async {
-            //             final result = await showDatePicker(
-            //               context: context,
-            //               firstDate: DateTime(2024),
-            //               lastDate: DateTime(2025),
-            //               initialDate: selectedDate,
-            //               locale: Locale('id', 'ID'),
-            //             );
-
-            //             if (result != null) {
-            //               selectedDate = result;
-            //               searchC.text = DateFormat('dd MMMM yyyy', 'id_ID')
-            //                   .format(result);
-            //               setState(() {});
-            //             }
-            //           },
-            //         ),
-            //       ),
-            //       Expanded(
-            //         child: Center(
-            //           child: CustomEmptySubmission(),
-            //         ),
-            //       ),
-            //     ],
-            //   );
-            // }
 
             data.logs!.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
 
@@ -189,12 +152,7 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
                                                 minZoom: 17,
                                               ),
                                               children: [
-                                                TileLayer(
-                                                  urlTemplate:
-                                                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                                  subdomains: ['a', 'b', 'c'],
-                                                  maxZoom: 19,
-                                                ),
+                                                TileLayerMaps().sharedTile(),
                                                 MarkerLayer(
                                                   markers: [
                                                     Marker(
@@ -337,7 +295,7 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
     );
   }
 
-  _onTapSubmitPermitOut() async {
+  Future<void> _onTapSubmitPermitOut() async {
     // if (_keyForm.currentState!.validate()) {
       if (m.ci.value.createdAt == null) {
         Get.dialog(
@@ -369,7 +327,7 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
       }
 
       DateTime timeIn = TimeFormatSchedule().timeFormatDateTime(
-        m.todayShift.value.scheduleIn,
+m.todayShift.value.scheduleIn,
       );
       DateTime timeOut = TimeFormatSchedule().timeFormatDateTime(
         m.todayShift.value.scheduleOut,
@@ -457,7 +415,7 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
 
       return data;
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
     }
   }
 }

@@ -1,20 +1,22 @@
 import 'dart:io';
 
-import 'package:lancar_cat/app/modules/update/views/update_submission_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../core/constant/variables.dart';
+import '../../modules/update/views/update_submission_view.dart';
+
 class ImageNetwork extends StatelessWidget {
   const ImageNetwork({
-    Key? key,
+    super.key,
     required this.url,
     this.borderRadius = 100,
     this.boxFit = BoxFit.fill,
     this.colors = Colors.white,
-  }) : super(key: key);
+  });
 
   final Color? colors;
   final String url;
@@ -46,7 +48,7 @@ class ImageNetwork extends StatelessWidget {
         height: 44,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(100),
-          child: Image.asset('assets/logo/logo.png', fit: BoxFit.cover),
+          child: Image.asset(Variables.avatarDefault, fit: BoxFit.cover),
         ),
       );
     }
@@ -116,7 +118,7 @@ class ImageNetwork extends StatelessWidget {
         Get.to(UpdateSubmissionView());
       },
       child: Center(
-        child: Container(
+        child: SizedBox(
           width: 44,
           height: 44,
           child: Icon(Iconsax.gallery_copy, color: colors),

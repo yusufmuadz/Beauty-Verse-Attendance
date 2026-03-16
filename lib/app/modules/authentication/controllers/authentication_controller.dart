@@ -1,8 +1,9 @@
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/modules/authentication/views/sign_in_view.dart';
-import 'package:lancar_cat/app/modules/home/views/menu_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../controllers/api_controller.dart';
+import '../../home/views/menu_view.dart';
+import '../views/sign_in_view.dart';
 
 class AuthenticationController extends GetxController {
   final a = Get.put(ApiController());

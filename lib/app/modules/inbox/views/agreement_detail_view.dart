@@ -1,7 +1,5 @@
 import 'dart:developer';
 
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/models/detail_leave.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,19 +10,21 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/core/components/detail_absensi_bottom_sheet.dart';
-import 'package:lancar_cat/app/data/model/leave_response_model.dart';
-import 'package:lancar_cat/app/modules/inbox/views/agreement_list_view.dart';
-import 'package:lancar_cat/app/shared/attach/show_multiple_file.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
-import 'package:lancar_cat/app/shared/loading/loading1.dart';
-import 'package:lancar_cat/app/shared/textfield/textfield_1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../controllers/api_controller.dart';
+import '../../../core/components/detail_absensi_bottom_sheet.dart';
+import '../../../core/constant/variables.dart';
+import '../../../data/model/leave_response_model.dart';
+import '../../../models/detail_leave.dart';
+import '../../../shared/attach/show_multiple_file.dart';
+import '../../../shared/button/button_1.dart';
+import '../../../shared/images/images.dart';
+import '../../../shared/loading/loading1.dart';
+import '../../../shared/textfield/textfield_1.dart';
+import '../../../shared/utils.dart';
+import 'agreement_list_view.dart';
 
 class AgreementDetailView extends StatefulWidget {
-  AgreementDetailView({Key? key}) : super(key: key);
+  const AgreementDetailView({super.key});
 
   @override
   State<AgreementDetailView> createState() => _AgreementDetailViewState();
@@ -67,7 +67,7 @@ class _AgreementDetailViewState extends State<AgreementDetailView> {
       final data = RespModelLeave.fromJson(str);
       return data;
     } else {
-      print(response.reasonPhrase);
+      debugPrint(response.reasonPhrase);
     }
   }
 
@@ -272,7 +272,7 @@ class _AgreementDetailViewState extends State<AgreementDetailView> {
     );
   }
 
-  _myCustomInfo({required String title, required String data}) {
+  Column _myCustomInfo({required String title, required String data}) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

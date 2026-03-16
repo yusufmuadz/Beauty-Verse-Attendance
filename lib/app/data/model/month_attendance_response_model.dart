@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:lancar_cat/app/models/attendance.dart';
-import 'package:lancar_cat/app/models/holiday.dart';
-import 'package:lancar_cat/app/models/pattern.dart';
-
+import '../../models/attendance.dart';
+import '../../models/holiday.dart';
 import '../../models/overtime.dart';
+import '../../models/pattern.dart';
 
 class MonthAttendanceResponseModel {
   final bool? status;

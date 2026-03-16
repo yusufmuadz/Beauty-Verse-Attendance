@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:lancar_cat/app/core/components/custom_tile_status.dart';
-import 'package:lancar_cat/app/data/model/log_submission_response_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -17,25 +15,28 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:lancar_cat/app/shared/error_message.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:lancar_cat/app/shared/dialog.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/constant/time_format_schedule.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
-import 'package:lancar_cat/app/data/model/month_attendance_response_model.dart';
-import 'package:lancar_cat/app/models/attendance.dart';
-import 'package:lancar_cat/app/models/holiday.dart';
-import 'package:lancar_cat/app/models/overtime.dart';
-import 'package:lancar_cat/app/modules/home/controllers/home_controller.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
-import 'package:lancar_cat/app/shared/tile/tile3.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
+import '../../../../controllers/api_controller.dart';
+import '../../../../controllers/model_controller.dart';
+import '../../../../core/components/custom_tile_status.dart';
+import '../../../../core/constant/time_format_schedule.dart';
+import '../../../../core/constant/variables.dart';
+import '../../../../data/model/log_submission_response_model.dart';
+import '../../../../data/model/month_attendance_response_model.dart';
+import '../../../../models/attendance.dart';
+import '../../../../models/holiday.dart';
+import '../../../../models/overtime.dart';
 
+import '../../../../shared/dialog.dart';
+import '../../../../shared/error_message.dart';
+import '../../../../shared/images/images.dart';
+import '../../../../shared/maps/tile_layer_maps.dart';
 import '../../../../shared/textfield/textfield_1.dart';
+import '../../../../shared/tile/tile3.dart';
+import '../../../../shared/utils.dart';
+import '../../../home/controllers/home_controller.dart';
 
 class DaftarAbsenRiwayatView extends StatefulWidget {
   const DaftarAbsenRiwayatView({super.key});
@@ -77,7 +78,7 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
     super.dispose();
   }
 
-  initHistory() async {
+  Future<void> initHistory() async {
     calendarC.text = DateFormat(
       'MMMM yyyy',
       'id_ID',
@@ -127,7 +128,7 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
     );
   }
 
-  datePicker(BuildContext context) {
+  Padding datePicker(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: TextField1(
@@ -168,7 +169,7 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
     );
   }
 
-  listTileDate() {
+  Container listTileDate() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
@@ -181,7 +182,7 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
     );
   }
 
-  attendanceReport() {
+  Container attendanceReport() {
     final alert = DialogCustom();
 
     return Container(
@@ -259,7 +260,7 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
     );
   }
 
-  tileInfo({final String? text, final int? value, Function()? onTap}) {
+  Expanded tileInfo({final String? text, final int? value, Function()? onTap}) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -319,8 +320,8 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
         headers: {'Authorization': 'Bearer ${m.token.value}'},
       );
 
-      debugPrint('URL: $url');
-      debugPrint('Response status: ${response.statusCode}');
+      // debugPrint('URL: $url');
+      // debugPrint('Response status: ${response.statusCode}');
       // debugPrint('Response body: ${response.body}');
 
       if (response.statusCode == 200) {
@@ -340,7 +341,7 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
     m.loading.value = false;
   }
 
-  _customTileDate({
+  Column _customTileDate({
     required DetailSchedule schedule,
     required BuildContext context,
   }) {
@@ -845,12 +846,7 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
                                   minZoom: 17,
                                 ),
                                 children: [
-                                  TileLayer(
-                                    urlTemplate:
-                                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                    subdomains: ['a', 'b', 'c'],
-                                    maxZoom: 19,
-                                  ),
+                                  TileLayerMaps().sharedTile(),
                                   MarkerLayer(
                                     markers: [
                                       Marker(
@@ -989,12 +985,7 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
                               minZoom: 17,
                             ),
                             children: [
-                              TileLayer(
-                                urlTemplate:
-                                    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                subdomains: ['a', 'b', 'c'],
-                                maxZoom: 19,
-                              ),
+                              TileLayerMaps().sharedTile(),
                               MarkerLayer(
                                 markers: [
                                   Marker(
@@ -1098,8 +1089,8 @@ class _DaftarAbsenRiwayatViewState extends State<DaftarAbsenRiwayatView> {
     DateTime sDate = DateTime(pYear, sMonth, sDay);
     DateTime eDate = DateTime(eYear, eMonth, eDay);
 
-    print(sDate);
-    print(eDate);
+    debugPrint('$sDate');
+    debugPrint('$eDate');
 
     // ambil tanggal di atara sDate & eDate
     int lenghtDay = eDate.difference(sDate).inDays;
@@ -1187,7 +1178,7 @@ class SkletonizerWidgetRiwayat extends StatelessWidget {
             child: Card(
               elevation: 0,
               margin: const EdgeInsets.symmetric(horizontal: 15),
-              child: Container(width: Get.width, height: 140),
+              child: SizedBox(width: Get.width, height: 140),
             ),
           ),
           Expanded(

@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 import 'package:detect_fake_location/detect_fake_location.dart';
@@ -10,16 +9,16 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/models/location.dart';
-import 'package:lancar_cat/app/modules/camera_capture/controllers/camera_capture_controller.dart';
-import 'package:lancar_cat/app/modules/camera_capture/views/camera_capture_view.dart';
-import 'package:lancar_cat/app/shared/button/button_1.dart';
-import 'package:lancar_cat/app/shared/images/images.dart';
-import 'package:lancar_cat/app/shared/snackbar/snackbar_1.dart';
-import 'package:lancar_cat/app/shared/utils.dart';
-
+import '../../../controllers/api_controller.dart';
+import '../../../controllers/model_controller.dart';
+import '../../../models/location.dart';
+import '../../../shared/button/button_1.dart';
+import '../../../shared/images/images.dart';
+import '../../../shared/maps/tile_layer_maps.dart';
+import '../../../shared/snackbar/snackbar_1.dart';
+import '../../../shared/utils.dart';
+import '../../camera_capture/controllers/camera_capture_controller.dart';
+import '../../camera_capture/views/camera_capture_view.dart';
 import '../controllers/locations_tracker_controller.dart';
 
 class LocationsTrackerView extends StatefulWidget {
@@ -53,7 +52,7 @@ class _LocationsTrackerViewState extends State<LocationsTrackerView> {
     super.dispose();
   }
 
-  checkCurrentLocation() async {
+  Future<void> checkCurrentLocation() async {
     bool isEnabled = await controller.g.askingPermission();
 
     if (!isEnabled) {
@@ -189,17 +188,17 @@ class _LocationsTrackerViewState extends State<LocationsTrackerView> {
     return await DetectFakeLocation().detectFakeLocation();
   }
 
-  _setButtonEnabled() {
+  void _setButtonEnabled() {
     controller.textB("Cek lokasi");
     controller.isLoading(true);
   }
 
-  _setButtonDisabled() {
+  void _setButtonDisabled() {
     controller.textB('Tunggu sebentar..');
     controller.isLoading(false);
   }
 
-  _onTap() async {
+  Future<void> _onTap() async {
     // Fake GPS location checker
     if (await checkMockLocation()) {
       Get.snackbar('Gagal...', "Anda terdeteksi menggunkan fake gps");
@@ -259,7 +258,7 @@ class _LocationsTrackerViewState extends State<LocationsTrackerView> {
     }
   }
 
-  _flutterMaps({required Position position}) {
+  FlutterMap _flutterMaps({required Position position}) {
     return FlutterMap(
       options: MapOptions(
         maxZoom: 18,
@@ -270,27 +269,7 @@ class _LocationsTrackerViewState extends State<LocationsTrackerView> {
         interactionOptions: InteractionOptions(flags: ~InteractiveFlag.all),
       ),
       children: [
-        TileLayer(
-          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-          userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-          maxZoom: 19,
-          // Plenty of other options available!
-        ),
-
-        // TileLayer(
-        //   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-        //   userAgentPackageName: 'com.ags.lancar_cat',
-        //   maxZoom: 19,
-        //   // urlTemplate: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png',
-        //   subdomains: ['a', 'b', 'c', 'd'],
-        //   tileProvider: NetworkTileProvider(
-        //     headers: {
-        //       'User-Agent': 'FlutterMapApp/1.0 (com.ags.lancar_cat)',
-        //       'Accept': '*/*',
-        //     },
-        //   ),
-        //   // Plenty of other options available!
-        // ),
+        TileLayerMaps().sharedTile(),
 
         CurrentLocationLayer(
           alignPositionOnUpdate: AlignOnUpdate.always,

@@ -5,15 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lancar_cat/app/core/components/custom_empty_submission.dart';
-
-import 'package:lancar_cat/app/core/components/detail_absensi_bottom_sheet.dart';
-import 'package:lancar_cat/app/core/components/my_textfield.dart';
-import 'package:lancar_cat/app/data/model/login_response_model.dart';
-import 'package:lancar_cat/app/modules/employees/views/details_employee_view.dart';
-import 'package:lancar_cat/app/routes/app_pages.dart';
 
 import '../../../controllers/api_controller.dart';
+import '../../../core/components/custom_empty_submission.dart';
+import '../../../core/components/detail_absensi_bottom_sheet.dart';
+import '../../../core/components/my_textfield.dart';
+import '../../../data/model/login_response_model.dart';
+import '../../../routes/app_pages.dart';
+import '../../employees/views/details_employee_view.dart';
 
 class EmployeeView extends StatefulWidget {
   const EmployeeView({super.key});
@@ -26,7 +25,7 @@ class _EmployeeViewState extends State<EmployeeView> {
   final a = Get.put(ApiController());
   final ScrollController _scrollController = ScrollController();
   final _searchController = TextEditingController();
-  List<User> _karyawanList = [];
+  final List<User> _karyawanList = [];
   List<User> _filteredKaryawanList = [];
   int _currentPage = 1;
   bool _isLoading = false;

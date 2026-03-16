@@ -1,6 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:lancar_cat/app/core/components/my_button.dart';
-import 'package:lancar_cat/app/core/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -8,8 +6,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-import 'package:lancar_cat/app/controllers/api_controller.dart';
-import 'package:lancar_cat/app/core/constant/variables.dart';
+import '../../../controllers/api_controller.dart';
+import '../../../core/components/my_button.dart';
+import '../../../core/components/my_textfield.dart';
+import '../../../core/constant/variables.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
@@ -41,7 +41,10 @@ class _SignInViewState extends State<SignInView> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
-      value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent, statusBarIconBrightness: Brightness.light),
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+      ),
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -53,17 +56,14 @@ class _SignInViewState extends State<SignInView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // SafeArea(
-                    //   child: Row(
-                    //     crossAxisAlignment: CrossAxisAlignment.center,
-                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     children: [Image.asset(Variables.logoPath, height: 120)],
-                    //   ),
-                    // ),
                     SafeArea(
                       child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Image.asset(Variables.logoPath, width: 90, height: 120),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Image.asset(
+                          Variables.logoPath,
+                          width: 90,
+                          height: 120,
+                        ),
                       ),
                     ),
                     Padding(
@@ -147,22 +147,20 @@ class _SignInViewState extends State<SignInView> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    // TextButton(
-                    //   onPressed: () {},
-                    //   child: Text(
-                    //     'Lupa Password?',
-                    //     style: GoogleFonts.outfit(
-                    //       decoration: TextDecoration.underline,
-                    //       decorationColor: Colors.amber,
-                    //       color: Colors.amber,
-                    //       fontSize: 12,
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Lupa Password?',
+                      style: GoogleFonts.outfit(
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.amber,
+                        color: Colors.amber,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               const Gap(30),
@@ -172,145 +170,9 @@ class _SignInViewState extends State<SignInView> {
         ),
       ),
     );
-    // return Scaffold(
-    //   backgroundColor: HexColor("E5F7FF"),
-    //   body: ListView(
-    //     physics: BouncingScrollPhysics(),
-    //     padding: const EdgeInsets.all(15),
-    //     children: [
-    //       SizedBox(height: context.height * 0.09),
-    //       Image.asset(
-    //         "assets/logo/logo.png",
-    //         width: 150,
-    //         height: 150,
-    //       ),
-    //       const SizedBox(height: 10),
-    //       const Text(
-    //         'Selamat Datang! Silahkan Login',
-    //         textAlign: TextAlign.center,
-    //         style: TextStyle(
-    //           fontSize: 20,
-    //           fontWeight: FontWeight.w700,
-    //         ),
-    //       ),
-    //       const SizedBox(height: 15),
-    //       const Text(
-    //         'Login menggunakan akun yang sudah didaftarkan oleh personalia',
-    //         textAlign: TextAlign.center,
-    //         style: TextStyle(
-    //           color: Colors.grey,
-    //         ),
-    //       ),
-    //       Gap(context.height * 0.04),
-    //       Form(
-    //         key: _formAuth,
-    //         child: Column(
-    //           children: [
-    //             TextfieldForm(
-    //               controller: _emailC,
-    //               hintText: "example@gmail.com",
-    //               fillColor: Colors.white,
-    //               filled: true,
-    //               prefixIcon: Icon(Iconsax.user_copy),
-    //               validator: (value) {
-    //                 if (value!.isEmpty) {
-    //                   return 'Email tidak boleh kosong';
-    //                 } else if (!value.contains('@')) {
-    //                   return 'Email tidak valid';
-    //                 }
-
-    //                 return null;
-    //               },
-    //             ),
-    //             const Gap(10),
-    //             Obx(
-    //               () => TextfieldForm(
-    //                 prefixIcon: Icon(Iconsax.lock_copy),
-    //                 controller: _passC,
-    //                 hintText: "password",
-    //                 fillColor: Colors.white,
-    //                 obsecureText: obsecure.value,
-    //                 keyboardType: TextInputType.visiblePassword,
-    //                 filled: true,
-    //                 suffixIcon: IconButton(
-    //                   onPressed: () => obsecure.toggle(),
-    //                   icon: Icon(
-    //                     (obsecure.value)
-    //                         ? Iconsax.eye_slash_copy
-    //                         : Iconsax.eye_copy,
-    //                     color: Colors.grey.shade500,
-    //                   ),
-    //                 ),
-    //                 validator: (value) {
-    //                   if (value!.isEmpty) {
-    //                     return 'Password tidak boleh kosong';
-    //                   } else if (value.length < 8) {
-    //                     return 'Password minimal 8 karakter';
-    //                   }
-    //                   return null;
-    //                 },
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //       const Gap(15),
-    //       Button1(title: "Log In", onTap: _onPressed),
-    //       const Gap(15),
-    //       Row(
-    //         children: [
-    //           Expanded(
-    //             child: Divider(
-    //               thickness: 1,
-    //               color: Colors.grey.shade500,
-    //             ),
-    //           ),
-    //           const Gap(10),
-    //           const Text(
-    //             "atau",
-    //             style: TextStyle(
-    //               fontSize: 12,
-    //               color: Colors.grey,
-    //             ),
-    //           ),
-    //           const Gap(10),
-    //           Expanded(
-    //             child: Divider(
-    //               thickness: 1,
-    //               color: Colors.grey.shade500,
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //       const Gap(15),
-    //       Center(
-    //         child: Text(
-    //           'Belum memiliki akun?, Hubungi personalia.',
-    //           style: TextStyle(
-    //             fontSize: 12,
-    //             fontWeight: FontWeight.normal,
-    //             color: Colors.grey,
-    //           ),
-    //         ),
-    //       ),
-    //       const Gap(15),
-    //       Button1(
-    //         title: "Bantuan",
-    //         onTap: () async {
-    //           String formattedNumber = "+628112831859";
-    //           Uri url = Uri.parse('https://wa.me/$formattedNumber');
-    //           if (!await launchUrl(url)) {
-    //             throw 'Could not launch $url';
-    //           }
-    //         },
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 
-  _onPressed() async {
-    // cek apakah password kurang dari 8 char
+  Future<void> _onPressed() async {
     if (_formAuth.currentState!.validate()) {
       Variables().loading();
       await a.login(email: _emailC.text, password: _passC.text);

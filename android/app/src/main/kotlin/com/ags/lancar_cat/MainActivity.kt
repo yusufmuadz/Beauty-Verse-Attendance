@@ -1,4 +1,4 @@
-package com.ags.lancar_cat
+package com.ags.beauty_verse_attendance
 
 import io.flutter.embedding.android.FlutterActivity
 

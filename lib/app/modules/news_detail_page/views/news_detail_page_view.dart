@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
+import '../../../core/constant/variables.dart';
 import '../controllers/news_detail_page_controller.dart';
 
 class NewsDetailPageView extends GetView<NewsDetailPageController> {
@@ -56,7 +57,7 @@ class NewsDetailPageView extends GetView<NewsDetailPageController> {
                           child: CachedNetworkImage(
                             imageUrl: '',
                             errorWidget: (context, url, error) =>
-                                Image.asset('assets/logo/logo.png'),
+                                Image.asset(Variables.logoError),
                           ),
                         ),
                       ),

@@ -7,7 +7,8 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'package:lancar_cat/app/models/location.dart';
+import '../../../../models/location.dart';
+import '../../../../shared/maps/tile_layer_maps.dart';
 
 class DetailLocationsAbsenView extends StatefulWidget {
   const DetailLocationsAbsenView({super.key});
@@ -47,17 +48,7 @@ class _DetailLocationsAbsenViewState extends State<DetailLocationsAbsenView> {
           interactionOptions: InteractionOptions(flags: ~InteractiveFlag.all),
         ),
         children: [
-          TileLayer(
-            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-            maxZoom: 19,
-            userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-            errorImage: AssetImage('assets/images/ic_empty_box.png'),
-            errorTileCallback: (tile, error, stackTrace) {
-              debugPrint('Error Map: $error');
-              mapError = true;
-              debugPrint('Error Map: $mapError');
-            },
-          ),
+          TileLayerMaps().sharedTile(),
           MarkerLayer(
             markers: [
               Marker(

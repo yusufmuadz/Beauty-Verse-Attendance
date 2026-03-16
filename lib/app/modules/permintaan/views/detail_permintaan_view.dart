@@ -9,15 +9,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:lancar_cat/app/core/components/custom_dialog.dart';
-import 'package:lancar_cat/app/modules/permintaan/controllers/permintaan_controller.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
-import 'package:lancar_cat/app/controllers/model_controller.dart';
-import 'package:lancar_cat/app/core/components/my_button.dart';
-
+import '../../../controllers/model_controller.dart';
+import '../../../core/components/custom_dialog.dart';
+import '../../../core/components/my_button.dart';
 import '../../../core/constant/variables.dart';
 import '../../../models/permintaan_barang.dart';
+import '../controllers/permintaan_controller.dart';
 
 class DetailPermintaanView extends StatefulWidget {
   const DetailPermintaanView({super.key});
@@ -161,7 +160,7 @@ class _DetailPermintaanViewState extends State<DetailPermintaanView> {
     );
   }
 
-  _batalkanPermintaan() async {
+  Future<void> _batalkanPermintaan() async {
     showDialog(
       context: context,
       builder: (context) {

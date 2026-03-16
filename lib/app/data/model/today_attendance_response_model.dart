@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:lancar_cat/app/models/attendance.dart';
-import 'package:lancar_cat/app/models/shift.dart';
+import '../../models/attendance.dart';
+import '../../models/shift.dart';
 
 class TodayAttendanceResponseModel {
   final List<Attendance>? attendance;

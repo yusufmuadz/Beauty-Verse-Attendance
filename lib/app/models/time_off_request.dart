@@ -1,5 +1,6 @@
-import 'package:lancar_cat/app/data/model/login_response_model.dart';
-import 'package:lancar_cat/app/models/cuti.dart';
+
+import '../data/model/leave_response_model.dart';
+import '../data/model/login_response_model.dart';
 
 class TimeOffRequest {
   String? id;

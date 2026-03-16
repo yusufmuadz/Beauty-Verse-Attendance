@@ -11,7 +11,7 @@
 
     <application
         android:enableOnBackInvokedCallback="true"
-        android:label="Lancar Attendance"
+        android:label="Beauty Verse Attendance"
         android:fullBackupOnly="false"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
