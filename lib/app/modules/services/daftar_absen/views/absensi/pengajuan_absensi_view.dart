@@ -713,7 +713,7 @@ class _PengajuanAbsensiViewState extends State<PengajuanAbsensiView> {
 
       isButtonEnable(false);
     } else {
-      debugPrint(response.reasonPhrase);
+      debugPrint('${response.reasonPhrase}');
     }
   }
 }

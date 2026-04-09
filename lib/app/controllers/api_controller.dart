@@ -339,7 +339,7 @@ class ApiController extends GetxController {
         final data = json.decode(str);
         m.changeShift(data);
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } on SocketException catch (e) {
       m.dialogNoInternet();
@@ -392,7 +392,7 @@ class ApiController extends GetxController {
         m.overtimeSize(data.pendingLenght);
         return data;
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       log(e.toString());
@@ -471,7 +471,7 @@ class ApiController extends GetxController {
         final leave = TimeOffResponseModel.fromJson(data);
         return leave.content;
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       log(e.toString());
@@ -622,7 +622,7 @@ class ApiController extends GetxController {
     // URL untuk API request
     Uri url = Uri.parse('${Variables.baseUrl}/v2/user/today/attendance/input');
     // Uri url = Uri.parse("${Variables.baseUrl}/v2/user/today/attendance");
-    debugPrint(m.token.value);
+    // debugPrint(m.token.value);
 
     // Membuat permintaan HTTP GET
     try {
@@ -662,13 +662,13 @@ class ApiController extends GetxController {
         );
         m.timeOffMaster(data.timeoff);
       } else if (response.statusCode == 404) {
-        debugPrint("== masuk sini ==");
+        // debugPrint("== masuk sini ==");
         // Menangani kasus data tidak ditemukan
         m.ci(Attendance());
         m.co(Attendance());
-        debugPrint("== masuk sini ==");
+        // debugPrint("== masuk sini ==");
       } else {
-        debugPrint("== masuk sini Else ==");
+        // debugPrint("== masuk sini Else ==");
         // Menangani respons selain 200 dan 404
         m.ci(Attendance());
         m.co(Attendance());
@@ -772,9 +772,9 @@ class ApiController extends GetxController {
       if (response.statusCode == 201) {
         // Check for correct status code
         final data = AttendanceResponseModel.fromRawJson(results);
-        if (kDebugMode) {
-          debugPrint(data.toJson().toString());
-        }
+        // if (kDebugMode) {
+        //   debugPrint(data.toJson().toString());
+        // }
         return data;
       } else {
         if (kDebugMode) {
@@ -904,12 +904,14 @@ class ApiController extends GetxController {
 
       if (res.statusCode == 200) {
         List data = json.decode(res.body)["data"];
-      // debugPrint('Response Body: $data');
+        // debugPrint('Response Body Data Cuti: $data');
         List<TimeOff> result = data.map((e) => TimeOff.fromJson(e)).toList();
         m.timeOff(result);
+
+        // debugPrint('Response Result Cuti: $result');
         return result;
       } else {
-      // debugPrint('Response Body: ${res.body}');
+        // debugPrint('Response Body Cuti: ${res.body}');
         log(json.decode(res.body));
       }
     } catch (e) {
@@ -934,7 +936,7 @@ class ApiController extends GetxController {
 
       if (res.statusCode == 200) {
         var data = json.decode(res.body);
-        debugPrint(data);
+        // debugPrint(data);
       } else {
         log(json.decode(res.body));
       }

@@ -71,7 +71,7 @@ class _DaftarAbsenAbsensiViewState extends State<DaftarAbsenAbsensiView> {
                 initialSelectedMonth: sMonth,
                 initialSelectedYear: sYear,
                 firstYear: 2000,
-                lastYear: 2025,
+                lastYear: DateTime.now().year + 1,
                 selectButtonText: 'OK',
                 cancelButtonText: 'Cancel',
                 highlightColor: Colors.amber,
@@ -94,7 +94,11 @@ class _DaftarAbsenAbsensiViewState extends State<DaftarAbsenAbsensiView> {
 
               if (request.submission!.isEmpty) {
                 return Expanded(
-                  child: CustomEmptySubmission(title: 'Belum ada pengajuan', subtitle: 'Belum ada pengajuan presensi yang anda ajukan, silakan ajukan pengajuan presensi anda',),
+                  child: CustomEmptySubmission(
+                    title: 'Belum ada pengajuan',
+                    subtitle:
+                        'Belum ada pengajuan presensi yang anda ajukan, silakan ajukan pengajuan presensi anda',
+                  ),
                 );
               }
 
@@ -268,7 +272,7 @@ class _DaftarAbsenAbsensiViewState extends State<DaftarAbsenAbsensiView> {
       final results = await response.stream.bytesToString();
       return SubmissionApprovalResponseModel.fromJson(results);
     } else {
-      debugPrint(response.reasonPhrase);
+      debugPrint('${response.reasonPhrase}');
     }
   }
 }

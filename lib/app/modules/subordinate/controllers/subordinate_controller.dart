@@ -300,7 +300,7 @@ class SubordinateController extends GetxController {
         return data;
       } else {
         if (kDebugMode) {
-          debugPrint(response.reasonPhrase);
+          debugPrint('${response.reasonPhrase}');
         }
         final str = await response.stream.bytesToString();
         final decode = jsonDecode(str);
@@ -335,7 +335,7 @@ class SubordinateController extends GetxController {
         );
       } else {
         if (kDebugMode) {
-          debugPrint(response.reasonPhrase);
+          debugPrint('${response.reasonPhrase}');
         }
       }
     } catch (e) {

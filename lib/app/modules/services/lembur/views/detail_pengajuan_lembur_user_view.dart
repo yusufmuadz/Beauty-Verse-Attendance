@@ -107,7 +107,7 @@ class _DetailPengajuanLemburUserState extends State<DetailPengajuanLemburUser> {
   String _checkStatusApproval(String approval) {
     switch (approval) {
       case "Pending":
-        return 'Menunggu perjetujuan ';
+        return 'Menunggu persetujuan ';
       case "Approved":
         return 'Disetujui oleh ';
       case "Rejected":
@@ -203,9 +203,9 @@ class _DetailPengajuanLemburUserState extends State<DetailPengajuanLemburUser> {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      debugPrint(await response.stream.bytesToString());
+      // debugPrint(await response.stream.bytesToString());
     } else {
-      debugPrint(response.reasonPhrase);
+      debugPrint('${response.reasonPhrase}');
     }
   }
 

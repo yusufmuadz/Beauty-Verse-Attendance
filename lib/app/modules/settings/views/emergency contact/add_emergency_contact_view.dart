@@ -71,7 +71,7 @@ class _AddEmergencyContactViewState extends State<AddEmergencyContactView> {
                   return const Center(child: LinearProgressIndicator());
                 } else if (snapshot.connectionState == ConnectionState.done) {
                   final options = snapshot.data;
-                  debugPrint(options);
+                  // debugPrint(options);
                   return TextField1(
                     controller: hubungan,
                     preffixIcon: Icon(Iconsax.personalcard_copy),

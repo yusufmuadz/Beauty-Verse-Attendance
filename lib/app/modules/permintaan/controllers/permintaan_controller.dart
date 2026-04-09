@@ -88,7 +88,7 @@ class PermintaanController extends GetxController {
         responseModelTipePermintaan.value = data;
         log('response model');
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } on SocketException catch (e) {
       // alert jika jaringan error
@@ -126,7 +126,7 @@ class PermintaanController extends GetxController {
           listBarang.addAll(result.content!);
         }
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } on SocketException catch (e) {
       throw SocketException(e.toString());
@@ -1154,9 +1154,9 @@ class PermintaanController extends GetxController {
             style: GoogleFonts.urbanist(color: Colors.white),
           ),
         );
-        debugPrint(await response.stream.bytesToString());
+        // debugPrint(await response.stream.bytesToString());
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
         Get.rawSnackbar(
           messageText: Text(
             "Gagal mengirimkan data!",
@@ -1384,9 +1384,9 @@ class PermintaanController extends GetxController {
             style: GoogleFonts.urbanist(color: Colors.white),
           ),
         );
-        debugPrint(await response.stream.bytesToString());
+        // debugPrint(await response.stream.bytesToString());
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
         Get.rawSnackbar(
           messageText: Text(
             "Gagal mengirimkan data!",
@@ -1408,9 +1408,9 @@ class PermintaanController extends GetxController {
   }
 
   Future<void> onPreseedUpload() async {
-    if (kDebugMode) {
-      debugPrint(tipePermintaan.text);
-    }
+    // if (kDebugMode) {
+    //   debugPrint(tipePermintaan.text);
+    // }
     if (tipePermintaan.text.isEmpty || tipeBarang.text.isEmpty) {
       Get.rawSnackbar(
         messageText: Text(
@@ -1638,7 +1638,10 @@ class PermintaanController extends GetxController {
   RxBool isEmptyBarang = false.obs;
   RxList<PermintaanBarang> historyPermintaanBarang = <PermintaanBarang>[].obs;
 
-  Future<void> logReachBottomPermintaan({required int month, required int year}) async {
+  Future<void> logReachBottomPermintaan({
+    required int month,
+    required int year,
+  }) async {
     paginate++;
     isLoading(true);
 

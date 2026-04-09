@@ -84,7 +84,9 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
                     onTap: () async {
                       final result = await showDatePicker(
                         context: context,
-                        firstDate: DateTime.now().subtract(const Duration(days: 365)),
+                        firstDate: DateTime.now().subtract(
+                          const Duration(days: 365),
+                        ),
                         lastDate: DateTime.now(),
                         initialDate: selectedDate,
                         locale: Locale('id', 'ID'),
@@ -101,145 +103,163 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
                     },
                   ),
                 ),
-                data.logs == null || data.logs!.isEmpty ?
-                Expanded(
-                  child: Center(
-                    child: CustomEmptySubmission(title: 'Istirahat Kosong', subtitle: 'Belum ada pengajuan istirahat, silahkan ajukan istirahat anda',),
-                  ),
-                )
-                :
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: data.logs?.length ?? 0,
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    itemBuilder: (context, index) {
-                      Permit perm = data.logs![index];
+                data.logs == null || data.logs!.isEmpty
+                    ? Expanded(
+                        child: Center(
+                          child: CustomEmptySubmission(
+                            title: 'Istirahat Kosong',
+                            subtitle:
+                                'Belum ada pengajuan istirahat, silahkan ajukan istirahat anda',
+                          ),
+                        ),
+                      )
+                    : Expanded(
+                        child: ListView.builder(
+                          itemCount: data.logs?.length ?? 0,
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          itemBuilder: (context, index) {
+                            Permit perm = data.logs![index];
 
-                      return CustomTileStatus(
-                        onTap: () {
-                          showModalBottomSheet(
-                            enableDrag: true,
-                            isScrollControlled: true,
-                            showDragHandle: true,
-                            context: context,
-                            builder: (context) {
-                              return Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SizedBox(
-                                    height: 200,
-                                    width: Get.width,
-                                    child: Row(
+                            return CustomTileStatus(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  enableDrag: true,
+                                  isScrollControlled: true,
+                                  showDragHandle: true,
+                                  context: context,
+                                  builder: (context) {
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Expanded(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.amber,
-                                            ),
-                                            child: FlutterMap(
-                                              options: MapOptions(
-                                                interactionOptions:
-                                                    InteractionOptions(
-                                                      flags:
-                                                          ~InteractiveFlag.all,
-                                                    ),
-                                                initialCenter: LatLng(
-                                                  double.parse(perm.lat ?? ""),
-                                                  double.parse(perm.lang ?? ""),
-                                                ),
-                                                initialZoom: 17,
-                                                maxZoom: 18,
-                                                minZoom: 17,
-                                              ),
-                                              children: [
-                                                TileLayerMaps().sharedTile(),
-                                                MarkerLayer(
-                                                  markers: [
-                                                    Marker(
-                                                      width: 45.0,
-                                                      height: 45.0,
-                                                      point: LatLng(
-                                                        double.parse(perm.lat!),
+                                        SizedBox(
+                                          height: 200,
+                                          width: Get.width,
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.amber,
+                                                  ),
+                                                  child: FlutterMap(
+                                                    options: MapOptions(
+                                                      interactionOptions:
+                                                          InteractionOptions(
+                                                            flags:
+                                                                ~InteractiveFlag
+                                                                    .all,
+                                                          ),
+                                                      initialCenter: LatLng(
                                                         double.parse(
-                                                          perm.lang!,
+                                                          perm.lat ?? "",
+                                                        ),
+                                                        double.parse(
+                                                          perm.lang ?? "",
                                                         ),
                                                       ),
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              border: Border.all(
-                                                                width: 2,
-                                                                color:
-                                                                    whiteColor,
+                                                      initialZoom: 17,
+                                                      maxZoom: 18,
+                                                      minZoom: 17,
+                                                    ),
+                                                    children: [
+                                                      TileLayerMaps()
+                                                          .sharedTile(),
+                                                      MarkerLayer(
+                                                        markers: [
+                                                          Marker(
+                                                            width: 45.0,
+                                                            height: 45.0,
+                                                            point: LatLng(
+                                                              double.parse(
+                                                                perm.lat!,
+                                                              ),
+                                                              double.parse(
+                                                                perm.lang!,
                                                               ),
                                                             ),
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius.circular(
-                                                                100,
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                  width: 2,
+                                                                  color:
+                                                                      whiteColor,
+                                                                ),
                                                               ),
-                                                          child: ImageNetwork(
-                                                            boxFit:
-                                                                BoxFit.cover,
-                                                            borderRadius: 0,
-                                                            url:
-                                                                '${m.u.value.avatar}',
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                      100,
+                                                                    ),
+                                                                child: ImageNetwork(
+                                                                  boxFit: BoxFit
+                                                                      .cover,
+                                                                  borderRadius:
+                                                                      0,
+                                                                  url:
+                                                                      '${m.u.value.avatar}',
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
+                                                        ],
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
                                         ),
+                                        TileInformation(
+                                          title:
+                                              'Tanggal istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}',
+                                          subTitle:
+                                              '${DateFormat('dd MMMM yyyy', 'id_ID').format(perm.createdAt ?? DateTime.now())}',
+                                        ),
+                                        TileInformation(
+                                          title:
+                                              'Waktu istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}',
+                                          subTitle:
+                                              '${DateFormat('HH:mm', 'id_ID').format(perm.createdAt ?? DateTime.now())}',
+                                        ),
+                                        TileInformation(
+                                          title:
+                                              'Alasan istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}',
+                                          subTitle: '${perm.catatan ?? '-'}',
+                                        ),
+                                        TileInformation(
+                                          title: 'Latitude & Longitude',
+                                          subTitle: '${perm.coordinate ?? '-'}',
+                                        ),
+                                        TileInformation(
+                                          title: 'Alamat',
+                                          subTitle: '${perm.address ?? '-'}',
+                                        ),
                                       ],
-                                    ),
-                                  ),
-                                  TileInformation(
-                                    title: 'Tanggal istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}',
-                                    subTitle:
-                                        '${DateFormat('dd MMMM yyyy', 'id_ID').format(perm.createdAt ?? DateTime.now())}',
-                                  ),
-                                  TileInformation(
-                                    title: 'Waktu istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}',
-                                    subTitle:
-                                        '${DateFormat('HH:mm', 'id_ID').format(perm.createdAt ?? DateTime.now())}',
-                                  ),
-                                  TileInformation(
-                                    title: 'Alasan istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}',
-                                    subTitle: '${perm.catatan ?? '-'}',
-                                  ),
-                                  TileInformation(
-                                    title: 'Latitude & Longitude',
-                                    subTitle: '${perm.coordinate ?? '-'}',
-                                  ),
-                                  TileInformation(
-                                    title: 'Alamat',
-                                    subTitle: '${perm.address ?? '-'}',
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        status: (perm.type == 'out') ? 'Approved' : 'Rejected',
-                        showStatus: false,
-                        mainTitle:
-                            "Waktu Istirahat ${perm.type == 'out' ? 'Keluar' : 'Masuk'}",
-                        mainSubtitle: '${DateFormat('dd MMM yyyy, HH:mm', 'id_ID').format(perm.createdAt!)}',
-                        secTitle: "Alasan istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}",
-                        secSubtitle: perm.catatan ?? '-',
-                        thirdTitle: "Istirahat untuk",
-                        thirdSubtitle:
-                            '${perm.type == 'out' ? "Keluar" : "Masuk"}',
-                      );
-                    },
-                  ),
-                ),
+                                    );
+                                  },
+                                );
+                              },
+                              status: (perm.type == 'out')
+                                  ? 'Approved'
+                                  : 'Rejected',
+                              showStatus: false,
+                              mainTitle:
+                                  "Waktu Istirahat ${perm.type == 'out' ? 'Keluar' : 'Masuk'}",
+                              mainSubtitle:
+                                  '${DateFormat('dd MMM yyyy, HH:mm', 'id_ID').format(perm.createdAt!)}',
+                              secTitle:
+                                  "Alasan istirahat ${perm.type == 'out' ? 'keluar' : 'masuk'}",
+                              secSubtitle: perm.catatan ?? '-',
+                              thirdTitle: "Istirahat untuk",
+                              thirdSubtitle:
+                                  '${perm.type == 'out' ? "Keluar" : "Masuk"}',
+                            );
+                          },
+                        ),
+                      ),
                 if (TimeFormatSchedule.checkIsSameDay(
                   selectedDate,
                   DateTime.now(),
@@ -297,66 +317,63 @@ class _IzinKembaliViewState extends State<IzinKembaliView> {
 
   Future<void> _onTapSubmitPermitOut() async {
     // if (_keyForm.currentState!.validate()) {
-      if (m.ci.value.createdAt == null) {
+    if (m.ci.value.createdAt == null) {
+      Get.dialog(
+        AlertDialog(
+          titlePadding: const EdgeInsets.only(left: 20, top: 20),
+          contentPadding: const EdgeInsets.only(
+            left: 20,
+            right: 20,
+            bottom: 20,
+            top: 10,
+          ),
+          title: Text(
+            'Informasi',
+            style: GoogleFonts.quicksand(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          content: Text(
+            'Anda harus melakukan clock-in terlebih dahulu.',
+            style: GoogleFonts.quicksand(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      );
+      return;
+    }
+
+    DateTime timeIn = TimeFormatSchedule().timeFormatDateTime(
+      m.todayShift.value.scheduleIn,
+    );
+    DateTime timeOut = TimeFormatSchedule().timeFormatDateTime(
+      m.todayShift.value.scheduleOut,
+    );
+
+    var scheduleIn = TimeOfDay(hour: timeIn.hour, minute: timeIn.minute);
+    var scheduleOut = TimeOfDay(hour: timeOut.hour, minute: timeOut.hour);
+
+    if (!checkCrossingMidnight(scheduleIn, scheduleOut)) {
+      /**
+       * hanya berlaku jika jam kerja tidak melewati tengah malam
+       */
+      if (!checkTime(m.todayShift.value.scheduleOut)) {
         Get.dialog(
-          AlertDialog(
-            titlePadding: const EdgeInsets.only(left: 20, top: 20),
-            contentPadding: const EdgeInsets.only(
-              left: 20,
-              right: 20,
-              bottom: 20,
-              top: 10,
-            ),
-            title: Text(
-              'Informasi',
-              style: GoogleFonts.quicksand(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            content: Text(
-              'Anda harus melakukan clock-in terlebih dahulu.',
-              style: GoogleFonts.quicksand(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+          CustomDialog(
+            title: 'Informasi',
+            content: 'Anda sudah melewati waktu kerja',
           ),
         );
         return;
       }
+    }
 
-      DateTime timeIn = TimeFormatSchedule().timeFormatDateTime(
-m.todayShift.value.scheduleIn,
-      );
-      DateTime timeOut = TimeFormatSchedule().timeFormatDateTime(
-        m.todayShift.value.scheduleOut,
-      );
-
-      var scheduleIn = TimeOfDay(hour: timeIn.hour, minute: timeIn.minute);
-      var scheduleOut = TimeOfDay(hour: timeOut.hour, minute: timeOut.hour);
-
-      if (!checkCrossingMidnight(scheduleIn, scheduleOut)) {
-        /**
-       * hanya berlaku jika jam kerja tidak melewati tengah malam
-       */
-        if (!checkTime(m.todayShift.value.scheduleOut)) {
-          Get.dialog(
-            CustomDialog(
-              title: 'Informasi',
-              content: 'Anda sudah melewati waktu kerja',
-            ),
-          );
-          return;
-        }
-      }
-
-      await Get.to(
-        () => LocationsTrackerView(note: reason.text),
-        arguments: '1',
-      );
-      reason.text = '';
-      setState(() {});
+    await Get.to(() => LocationsTrackerView(note: reason.text), arguments: '1');
+    reason.text = '';
+    setState(() {});
     // }
   }
 
@@ -415,7 +432,7 @@ m.todayShift.value.scheduleIn,
 
       return data;
     } else {
-      debugPrint(response.reasonPhrase);
+      debugPrint('${response.reasonPhrase}');
     }
   }
 }

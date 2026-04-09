@@ -433,7 +433,7 @@ class _UpdateSubmissionViewState extends State<UpdateSubmissionView> {
         final List<String> relationships = json.decode(data).cast<String>();
         return relationships;
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       log(e.toString());
@@ -853,7 +853,7 @@ class _UpdateSubmissionViewState extends State<UpdateSubmissionView> {
 
     // pengecekan ada avatar atau tidak
     if (image != null) {
-      debugPrint(m.u.value.avatar!.split('/').last);
+      // debugPrint(m.u.value.avatar!.split('/').last);
       request.fields.addAll({
         'type_approval': dataC.text,
         'reason_request': descC.text,
@@ -886,13 +886,13 @@ class _UpdateSubmissionViewState extends State<UpdateSubmissionView> {
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        if (kDebugMode) {
-          debugPrint(await response.stream.bytesToString());
-        }
+        // if (kDebugMode) {
+        //   debugPrint(await response.stream.bytesToString());
+        // }
         return true;
       } else {
         if (kDebugMode) {
-          debugPrint(response.reasonPhrase);
+          debugPrint('${response.reasonPhrase}');
         }
         return false;
       }

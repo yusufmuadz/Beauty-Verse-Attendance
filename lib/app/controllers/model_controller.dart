@@ -106,7 +106,7 @@ class ModelController extends GetxController {
       connectivitySubscription = Connectivity().onConnectivityChanged.listen((
         event,
       ) {
-        debugPrint(event.first.toString());
+        // debugPrint(event.first.toString());
         if (event.first == ConnectivityResult.none) {
           isOnline(false);
           dialogNoInternet();
@@ -115,7 +115,7 @@ class ModelController extends GetxController {
             Get.back();
           }
           isOnline(true);
-          debugPrint('log_info: connected to internet');
+          // debugPrint('log_info: connected to internet');
         }
       });
     });

@@ -130,6 +130,8 @@ class _SubmissionAbsensiViewState extends State<SubmissionAbsensiView> {
                             memCacheWidth: 100,
                             maxWidthDiskCache: 100,
                             maxHeightDiskCache: 100,
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.account_circle_rounded),
                           ),
                         ),
                       ),
@@ -173,9 +175,9 @@ class _SubmissionAbsensiViewState extends State<SubmissionAbsensiView> {
 
       http.StreamedResponse response = await request.send();
 
-      if (kDebugMode) {
-        debugPrint(response.statusCode.toString());
-      }
+      // if (kDebugMode) {
+      //   debugPrint(response.statusCode.toString());
+      // }
 
       if (response.statusCode == 200) {
         final str = await response.stream.bytesToString();
@@ -184,7 +186,7 @@ class _SubmissionAbsensiViewState extends State<SubmissionAbsensiView> {
           (a, b) => b.statusLine!.compareTo(a.statusLine!),
         );
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       throw Exception(e);

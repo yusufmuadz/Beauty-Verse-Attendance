@@ -530,36 +530,44 @@ class _PengajuanPergantianShiftViewState
   Future selectedDate(String date) async {
     try {
       var headers = {'Authorization': 'Bearer ${m.token.value}'};
-    var request = http.Request(
-      'GET',
-      Uri.parse('${Variables.baseUrl}/v1/user/check/shift?date=$date'),
-    );
+      var request = http.Request(
+        'GET',
+        Uri.parse('${Variables.baseUrl}/v1/user/check/shift?date=$date'),
+      );
 
-    request.headers.addAll(headers);
+      request.headers.addAll(headers);
 
-    http.StreamedResponse response = await request.send();
+      http.StreamedResponse response = await request.send();
 
-    if (response.statusCode == 200) {
-      final str = await response.stream.bytesToString();
-      final jsonR = json.decode(str);
+      if (response.statusCode == 200) {
+        final str = await response.stream.bytesToString();
+        final jsonR = json.decode(str);
 
-      // debugPrint('URL: ${request.url}');
-      // debugPrint('Response Status Code: ${response.statusCode}');
-      // debugPrint('Response Body Attendance: ${jsonR}');
+        // debugPrint('URL: ${request.url}');
+        // debugPrint('Response Status Code: ${response.statusCode}');
+        // debugPrint('Response Body Attendance: ${jsonR}');
 
-      if (jsonR['data'] == null) {
-        if (Get.isDialogOpen!) Get.back();
-        DialogCustom().dialog(title: 'Gagal!', subtitle: jsonR['message'], onTap: () => Get.back());
-        return;
+        if (jsonR['data'] == null) {
+          if (Get.isDialogOpen!) Get.back();
+          DialogCustom().dialog(
+            title: 'Gagal!',
+            subtitle: jsonR['message'],
+            onTap: () => Get.back(),
+          );
+          return;
+        }
+        selectedShift = Shift.fromMap(jsonR['data']);
+        return selectedShift;
+      } else {
+        debugPrint('${response.reasonPhrase}');
       }
-      selectedShift = Shift.fromMap(jsonR['data']);
-      return selectedShift;
-    } else {
-      debugPrint(response.reasonPhrase);
-    }
     } catch (e) {
       if (Get.isDialogOpen!) Get.back();
-      DialogCustom().dialog(title: "Gagal", subtitle: e.toString(), onTap: () => Get.back());
+      DialogCustom().dialog(
+        title: "Gagal",
+        subtitle: e.toString(),
+        onTap: () => Get.back(),
+      );
     }
   }
 

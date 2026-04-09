@@ -58,7 +58,7 @@ class _DetailPengajuanShiftViewState extends State<DetailPengajuanShiftView> {
         return data;
       } else {
         if (kDebugMode) {
-          debugPrint(response.reasonPhrase);
+          debugPrint('${response.reasonPhrase}');
         }
       }
     } catch (e) {
@@ -294,12 +294,12 @@ class _DetailPengajuanShiftViewState extends State<DetailPengajuanShiftView> {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      if (kDebugMode) {
-        debugPrint(await response.stream.bytesToString());
-      }
+      // if (kDebugMode) {
+      //   debugPrint(await response.stream.bytesToString());
+      // }
     } else {
       if (kDebugMode) {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     }
   }

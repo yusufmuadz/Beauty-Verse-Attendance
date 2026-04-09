@@ -100,7 +100,8 @@ class _IstirahatTelatViewState extends State<IstirahatTelatView> {
                     return const Expanded(
                       child: CustomEmptySubmission(
                         title: 'Belum ada pengajuan pada bulan ini',
-                        subtitle: 'Belum ada pengajuan Istirahat Telat pada bulan ini, silakan ajukan pengajuan Istirahat Telat anda',
+                        subtitle:
+                            'Belum ada pengajuan Istirahat Telat pada bulan ini, silakan ajukan pengajuan Istirahat Telat anda',
                       ),
                     );
                   }
@@ -320,7 +321,7 @@ class _IstirahatTelatViewState extends State<IstirahatTelatView> {
         final str = await response.stream.bytesToString();
         return LateBreakResponseModel.fromJson(str);
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       CustomDialog(title: 'Gagal', content: e.toString());

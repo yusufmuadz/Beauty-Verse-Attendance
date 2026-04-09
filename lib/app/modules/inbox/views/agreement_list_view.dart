@@ -339,58 +339,66 @@ class _AgreementListViewState extends State<AgreementListView> {
                                             BorderRadiusGeometry.circular(100),
                                         child: CachedNetworkImage(
                                           imageUrl: leave.avatar ?? "-",
+                                          fit: BoxFit.cover,
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(
+                                                  Icons.account_circle_rounded),
                                         ),
                                       ),
                                     ),
                                     const Gap(20),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          leave.leaveType ?? "-",
-                                          style: GoogleFonts.outfit(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            leave.leaveType ?? "-",
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.outfit(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                           ),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(
-                                              Iconsax.user,
-                                              color: Colors.grey,
-                                              size: 15,
-                                            ),
-                                            const Gap(10),
-                                            Text(
-                                              "${leave.nama}",
-                                              style: GoogleFonts.outfit(
-                                                fontSize: 12,
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Iconsax.user,
+                                                color: Colors.grey,
+                                                size: 15,
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        const Gap(3),
-                                        Row(
-                                          children: [
-                                            Icon(
-                                              Iconsax.calendar,
-                                              color: Colors.grey,
-                                              size: 15,
-                                            ),
-                                            const Gap(10),
-                                            Text(
-                                              DateFormat(
-                                                "dd MMM yyyy",
-                                                "id_ID",
-                                              ).format(leave.dateRequest!),
-                                              style: GoogleFonts.outfit(
-                                                fontSize: 12,
+                                              const Gap(10),
+                                              Text(
+                                                "${leave.nama}",
+                                                style: GoogleFonts.outfit(
+                                                  fontSize: 12,
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                            ],
+                                          ),
+                                          const Gap(3),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Iconsax.calendar,
+                                                color: Colors.grey,
+                                                size: 15,
+                                              ),
+                                              const Gap(10),
+                                              Text(
+                                                DateFormat(
+                                                  "dd MMM yyyy",
+                                                  "id_ID",
+                                                ).format(leave.dateRequest!),
+                                                style: GoogleFonts.outfit(
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),

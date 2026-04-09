@@ -124,7 +124,7 @@ class UpdateDataView extends GetView {
 
       return (result.status!) ? result : null;
     } else {
-      debugPrint(response.reasonPhrase);
+      debugPrint('${response.reasonPhrase}');
     }
   }
 }

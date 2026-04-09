@@ -89,7 +89,9 @@ class NotificationView extends GetView {
                 mainSubtitle:
                     '${DateFormat('dd MMMM yyyy', 'id_ID').format(data.dateApprovalSuperadmin!)}',
                 secTitle: "Keputusan oleh",
-                secSubtitle: data.superadmin!.nama!,
+                secSubtitle: data.superadmin != null
+                    ? data.superadmin!.nama!
+                    : '',
                 thirdTitle: "Pengajuan untuk",
                 thirdSubtitle: data.status!,
               );
@@ -118,7 +120,7 @@ class NotificationView extends GetView {
       final result = SuperadminResponseModel.fromJson(data);
       return result.data!.isEmpty ? null : result;
     } else {
-      debugPrint(response.reasonPhrase);
+      debugPrint('${response.reasonPhrase}');
     }
   }
 }

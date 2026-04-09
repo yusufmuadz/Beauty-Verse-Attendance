@@ -28,7 +28,7 @@ class EmergencyContactController {
         final List<String> relationships = json.decode(data).cast<String>();
         return relationships;
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } on HttpException catch (e) {
       Get.dialog(AlertDialog(title: Text(e.message)));
@@ -59,9 +59,9 @@ class EmergencyContactController {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      debugPrint(await response.stream.bytesToString());
+      // debugPrint(await response.stream.bytesToString());
     } else {
-      debugPrint(response.reasonPhrase);
+      debugPrint('${response.reasonPhrase}');
     }
   }
 
@@ -79,9 +79,9 @@ class EmergencyContactController {
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        debugPrint(await response.stream.bytesToString());
+        // debugPrint(await response.stream.bytesToString());
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       Get.dialog(AlertDialog(title: Text(e.toString())));
@@ -118,7 +118,7 @@ class EmergencyContactController {
       if (response.statusCode == 200) {
         log(await response.stream.bytesToString());
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } on HttpException catch (e) {
       Get.dialog(AlertDialog(title: Text(e.message)));
@@ -145,7 +145,7 @@ class EmergencyContactController {
         log(data.toJson());
         return data;
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } on HttpException catch (e) {
       Get.dialog(AlertDialog(title: Text(e.message)));

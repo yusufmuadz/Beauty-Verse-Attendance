@@ -220,10 +220,15 @@ class _AgreementLemburViewState extends State<AgreementLemburView> {
                             borderRadius: BorderRadiusGeometry.circular(100),
                             child: CachedNetworkImage(
                               imageUrl: sub.avatar ?? "-",
+                              progressIndicatorBuilder: (context, url, progress) => Center(
+                                child: CupertinoActivityIndicator(),
+                              ),
                               memCacheHeight: 100,
                               memCacheWidth: 100,
                               maxWidthDiskCache: 100,
                               maxHeightDiskCache: 100,
+                              errorWidget: (context, url, error) =>
+                                const Icon(Icons.account_circle_rounded),
                             ),
                           ),
                         ),

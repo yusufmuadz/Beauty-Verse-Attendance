@@ -129,8 +129,8 @@ class LocalNotificationService {
   }
 
   void onDidReceiveLocalNotification(NotificationResponse details) {
-    debugPrint(details.id.toString());
-    debugPrint(details.payload);
+    // debugPrint(details.id.toString());
+    // debugPrint(details.payload);
   }
 
   void setScheduleNotifications(

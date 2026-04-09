@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +68,7 @@ class _AgreementDetailViewState extends State<AgreementDetailView> {
       final data = RespModelLeave.fromJson(str);
       return data;
     } else {
-      debugPrint(response.reasonPhrase);
+      debugPrint('${response.reasonPhrase}');
     }
   }
 
@@ -107,9 +108,21 @@ class _AgreementDetailViewState extends State<AgreementDetailView> {
                               height: 44,
                               child: Hero(
                                 tag: user.id!,
-                                child: ImageNetwork(
-                                  url: user.avatar!,
-                                  boxFit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  imageUrl: user.avatar!,
+                                  fit: BoxFit.cover,
+                                  errorWidget: (context, url, error) =>
+                                      Container(
+                                        width: 44,
+                                        height: 44,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.grey.shade200,
+                                        ),
+                                        child: const Icon(
+                                          Icons.account_circle_rounded,
+                                        ),
+                                      ),
                                 ),
                               ),
                             ),

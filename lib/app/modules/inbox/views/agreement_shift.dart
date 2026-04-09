@@ -162,7 +162,8 @@ class _AgreementShiftViewState extends State<AgreementShiftView> {
             ? const Center(
                 child: CustomEmptySubmission(
                   title: 'Tidak ada pengajuan shift',
-                  subtitle: 'Belum ada yang mengajukan pergantian shift, tunggu hingga ada yang mengajukan pergantian shift',
+                  subtitle:
+                      'Belum ada yang mengajukan pergantian shift, tunggu hingga ada yang mengajukan pergantian shift',
                 ),
               )
             : isLoading
@@ -193,6 +194,8 @@ class _AgreementShiftViewState extends State<AgreementShiftView> {
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
                           imageUrl: shift.userAvatarUrl!,
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.account_circle_rounded),
                         ),
                       ),
                     ),
@@ -275,7 +278,7 @@ class _AgreementShiftViewState extends State<AgreementShiftView> {
       final data = ChangeShiftResponseModel.fromJson(str);
       return data;
     } else {
-      debugPrint(response.reasonPhrase);
+      debugPrint('${response.reasonPhrase}');
       return null; // Return null on error
     }
   }

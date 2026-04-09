@@ -73,7 +73,7 @@ class _SlipGajiViewState extends State<SlipGajiView> {
                 maxLines: 1,
                 suffixIcon: IconButton(
                   onPressed: () {
-                    debugPrint('on tap');
+                    // debugPrint('on tap');
                     setState(() {
                       isObsecure.value = !isObsecure.value;
                     });

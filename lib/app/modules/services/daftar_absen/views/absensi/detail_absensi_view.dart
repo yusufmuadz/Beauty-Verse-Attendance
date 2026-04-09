@@ -92,7 +92,7 @@ class _DetailPengajuanAbsensiState extends State<DetailPengajuanAbsensi> {
   _checkStatusApproval(String approval) {
     switch (approval) {
       case "Pending":
-        return 'Menunggu perjetujuan ';
+        return 'Menunggu persetujuan ';
       case "Approved":
         return 'Disetujui oleh ';
       case "Rejected":
@@ -392,7 +392,7 @@ class _DetailPengajuanAbsensiState extends State<DetailPengajuanAbsensi> {
                 ),
                 child: InkWell(
                   onTap: () {
-                    debugPrint(data.attachmentUrl);
+                    // debugPrint(data.attachmentUrl);
                     Get.dialog(Loading1());
                     openFile(
                       url: data.attachmentUrl!,

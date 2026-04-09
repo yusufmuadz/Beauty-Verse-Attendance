@@ -74,7 +74,7 @@ class DetailInformationEmployeeController extends GetxController
         profileResponseModel = result;
         imgUrl(profileResponseModel.data!.person!.informasiPribadi!.imageUrl);
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
         return null;
       }
     } catch (e) {

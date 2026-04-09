@@ -73,29 +73,29 @@ class HomeController extends GetxController {
   Future<bool> isAvailableVersion() async {
     try {
       final appVersion = await checkVersion();
-    final availableVersion = await checkApplicationVersion();
+      final availableVersion = await checkApplicationVersion();
 
-    List<int> appVersionList = appVersion
-        .split('.')
-        .map((e) => int.parse(e))
-        .toList();
+      List<int> appVersionList = appVersion
+          .split('.')
+          .map((e) => int.parse(e))
+          .toList();
 
-    Version currentVersion = Version(
-      appVersionList[0],
-      appVersionList[1],
-      appVersionList[2],
-    );
+      Version currentVersion = Version(
+        appVersionList[0],
+        appVersionList[1],
+        appVersionList[2],
+      );
 
-    Version latestVersion = Version.parse(availableVersion);
+      Version latestVersion = Version.parse(availableVersion);
 
-    if (latestVersion > currentVersion) {
-      return true;
-    }
-    return false;
+      if (latestVersion > currentVersion) {
+        return true;
+      }
+      return false;
     } catch (e) {
       var box = await Hive.openBox('andioffset');
       await box.delete('token');
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
       return false;
     }
   }
@@ -188,7 +188,7 @@ class HomeController extends GetxController {
         final data = await response.stream.bytesToString();
         return json.decode(data);
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       debugPrint('$e');

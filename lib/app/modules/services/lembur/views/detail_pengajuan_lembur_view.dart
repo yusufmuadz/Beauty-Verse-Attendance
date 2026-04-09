@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +60,7 @@ class _DetailPengajuanLemburViewState extends State<DetailPengajuanLemburView> {
         isDone.value = true;
         return data;
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       throw Exception(e);
@@ -206,10 +207,10 @@ class _DetailPengajuanLemburViewState extends State<DetailPengajuanLemburView> {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      debugPrint(await response.stream.bytesToString());
+      // debugPrint(await response.stream.bytesToString());
       Get.back();
     } else {
-      debugPrint(response.reasonPhrase);
+      debugPrint('${response.reasonPhrase}');
     }
   }
 
@@ -277,7 +278,19 @@ class _DetailPengajuanLemburViewState extends State<DetailPengajuanLemburView> {
         SizedBox(
           width: 44,
           height: 44,
-          child: ImageNetwork(url: content.avatar!, boxFit: BoxFit.cover),
+          child: CachedNetworkImage(
+            imageUrl: content.avatar!,
+            fit: BoxFit.cover,
+            errorWidget: (context, url, error) => Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey.shade200,
+              ),
+              child: const Icon(Icons.account_circle_rounded),
+            ),
+          ),
         ),
         const Gap(10),
         Column(

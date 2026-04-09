@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -97,7 +98,7 @@ class _DetailPengajuanShiftViewState extends State<DetailPengajuanShiftView> {
   _checkStatusApproval(String approval) {
     switch (approval) {
       case "Pending":
-        return 'Menunggu perjetujuan ';
+        return 'Menunggu persetujuan ';
       case "Approved":
         return 'Disetujui oleh ';
       case "Rejected":
@@ -412,10 +413,18 @@ class _DetailPengajuanShiftViewState extends State<DetailPengajuanShiftView> {
                 SizedBox(
                   width: 55,
                   height: 55,
-                  child: ImageNetwork(
-                    url: m.u.value.avatar!,
-                    borderRadius: 100,
-                    boxFit: BoxFit.cover,
+                  child: CachedNetworkImage(
+                    imageUrl: m.u.value.avatar!,
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) => Container(
+                      width: 55,
+                      height: 55,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey.shade200,
+                      ),
+                      child: const Icon(Icons.account_circle_rounded),
+                    ),
                   ),
                 ),
                 const Gap(10),

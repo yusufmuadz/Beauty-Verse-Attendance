@@ -196,7 +196,7 @@ class _PengajuanLemburViewState extends State<PengajuanLemburView> {
         }
         controller.isHoliday(true);
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
         controller.isHoliday(false);
       }
     } catch (e) {
@@ -695,13 +695,17 @@ class _PengajuanLemburViewState extends State<PengajuanLemburView> {
         // debugPrint('Response Body Attendance: ${jsonR}');
         if (jsonR['data'] == null) {
           if (Get.isDialogOpen!) Get.back();
-          DialogCustom().dialog(title: 'Gagal!', subtitle: jsonR['message'], onTap: () => Get.back());
+          DialogCustom().dialog(
+            title: 'Gagal!',
+            subtitle: jsonR['message'],
+            onTap: () => Get.back(),
+          );
           return;
         }
         selectedShift = Shift.fromMap(jsonR['data']);
         return selectedShift;
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       if (Get.isDialogOpen!) Get.back();

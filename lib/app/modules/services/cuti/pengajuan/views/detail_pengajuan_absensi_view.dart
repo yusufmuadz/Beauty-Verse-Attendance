@@ -141,6 +141,8 @@ class _DetailPengajuanAbsensiViewState
                               fit: BoxFit.cover,
                               width: 50,
                               height: 50,
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.account_circle_rounded),
                             ),
                           ),
                         ),
@@ -308,69 +310,70 @@ class _DetailPengajuanAbsensiViewState
           ),
         ),
       ),
-      bottomSheet: Obx(
-        () {
-          debugPrint('isShowing: ${isShowing.value}');
-                debugPrint('content: ${contentNotNull.value}');
-                debugPrint('statusLine: ${contentStatusLine.value}');
-                debugPrint('statusLine: ${isShowing.value && !contentNotNull.value && contentStatusLine.value == "Pending"}');
-            if(isShowing.value &&
-                contentNotNull.value &&
-                contentStatusLine.value == "Pending") {
-             return Container(
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                decoration: BoxDecoration(
-                  color: whiteColor,
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(1, -1),
-                      color: greyColor.withAlpha(25),
-                      blurRadius: 2,
-                      spreadRadius: 2,
-                    ),
-                  ],
+      bottomSheet: Obx(() {
+        debugPrint('isShowing: ${isShowing.value}');
+        debugPrint('content: ${contentNotNull.value}');
+        debugPrint('statusLine: ${contentStatusLine.value}');
+        debugPrint(
+          'statusLine: ${isShowing.value && !contentNotNull.value && contentStatusLine.value == "Pending"}',
+        );
+        if (isShowing.value &&
+            contentNotNull.value &&
+            contentStatusLine.value == "Pending") {
+          return Container(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            decoration: BoxDecoration(
+              color: whiteColor,
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(1, -1),
+                  color: greyColor.withAlpha(25),
+                  blurRadius: 2,
+                  spreadRadius: 2,
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MyTextfield(
+                  controller: keteranganC,
+                  showTxt: false,
+                  hintText: 'Contoh: Jangan di ulangi lagi yaa...',
+                  prefix: Icon(Iconsax.note_1_copy),
+                ),
+                const Gap(10),
+                Row(
                   children: [
-                    MyTextfield(
-                      controller: keteranganC,
-                      showTxt: false,
-                      hintText: 'Contoh: Jangan di ulangi lagi yaa...',
-                      prefix: Icon(Iconsax.note_1_copy),
+                    Expanded(
+                      child: MyButton(
+                        txtBtn: 'Tolak',
+                        color: Colors.red,
+                        onTap: () {
+                          Get.dialog(Loading1());
+                          _onPressed(0, content!.id!);
+                        },
+                      ),
                     ),
-                    const Gap(10),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: MyButton(
-                            txtBtn: 'Tolak',
-                            color: Colors.red,
-                            onTap: () {
-                              Get.dialog(Loading1());
-                              _onPressed(0, content!.id!);
-                            },
-                          ),
-                        ),
-                        Expanded(
-                          child: MyButton(
-                            txtBtn: 'Setujui',
-                            color: Colors.green,
-                            onTap: () {
-                              Get.dialog(Loading1());
-                              _onPressed(1, content!.id!);
-                            },
-                          ),
-                        ),
-                      ],
+                    Expanded(
+                      child: MyButton(
+                        txtBtn: 'Setujui',
+                        color: Colors.green,
+                        onTap: () {
+                          Get.dialog(Loading1());
+                          _onPressed(1, content!.id!);
+                        },
+                      ),
                     ),
                   ],
                 ),
-              );}
-            return const SizedBox.shrink();
-          },
-      ),
+              ],
+            ),
+          );
+        }
+        return const SizedBox.shrink();
+      }),
     );
   }
 
@@ -406,9 +409,9 @@ class _DetailPengajuanAbsensiViewState
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        debugPrint(await response.stream.bytesToString());
+        // debugPrint(await response.stream.bytesToString());
       } else {
-        debugPrint(response.reasonPhrase);
+        debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       log(e.toString());
