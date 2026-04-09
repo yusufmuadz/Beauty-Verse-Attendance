@@ -278,17 +278,20 @@ class _DetailPengajuanLemburViewState extends State<DetailPengajuanLemburView> {
         SizedBox(
           width: 44,
           height: 44,
-          child: CachedNetworkImage(
-            imageUrl: content.avatar!,
-            fit: BoxFit.cover,
-            errorWidget: (context, url, error) => Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey.shade200,
+          child: ClipRRect(
+            borderRadius: BorderRadiusGeometry.circular(100),
+            child: CachedNetworkImage(
+              imageUrl: content.avatar!,
+              fit: BoxFit.cover,
+              errorWidget: (context, url, error) => Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey.shade200,
+                ),
+                child: const Icon(Icons.account_circle_rounded),
               ),
-              child: const Icon(Icons.account_circle_rounded),
             ),
           ),
         ),

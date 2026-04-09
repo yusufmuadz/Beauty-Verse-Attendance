@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -158,13 +160,17 @@ class _DetailPengajuanAbsensiState extends State<DetailPengajuanAbsensi> {
                     padding: const EdgeInsets.all(15.0),
                     child: Row(
                       children: [
-                        SizedBox(
-                          width: 55,
-                          height: 55,
-                          child: ImageNetwork(
-                            url: m.u.value.avatar!,
-                            borderRadius: 100,
-                            boxFit: BoxFit.cover,
+                        CircleAvatar(
+                          radius: 26,
+                          backgroundColor: Colors.grey.shade300,
+                          child: ClipRRect(
+                            borderRadius: BorderRadiusGeometry.circular(100),
+                            child: CachedNetworkImage(
+                              imageUrl: m.u.value.avatar!,
+                              fit: BoxFit.cover,
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.account_circle_rounded),
+                            ),
                           ),
                         ),
                         const Gap(15),

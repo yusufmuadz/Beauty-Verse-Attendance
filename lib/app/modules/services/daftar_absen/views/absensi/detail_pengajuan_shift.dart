@@ -410,20 +410,16 @@ class _DetailPengajuanShiftViewState extends State<DetailPengajuanShiftView> {
             padding: const EdgeInsets.all(15.0),
             child: Row(
               children: [
-                SizedBox(
-                  width: 55,
-                  height: 55,
-                  child: CachedNetworkImage(
-                    imageUrl: m.u.value.avatar!,
-                    fit: BoxFit.cover,
-                    errorWidget: (context, url, error) => Container(
-                      width: 55,
-                      height: 55,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey.shade200,
-                      ),
-                      child: const Icon(Icons.account_circle_rounded),
+                CircleAvatar(
+                  radius: 26,
+                  backgroundColor: Colors.grey.shade300,
+                  child: ClipRRect(
+                    borderRadius: BorderRadiusGeometry.circular(100),
+                    child: CachedNetworkImage(
+                      imageUrl: m.u.value.avatar!,
+                      fit: BoxFit.cover,
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.account_circle_rounded),
                     ),
                   ),
                 ),

@@ -166,7 +166,7 @@ class _LemburViewState extends State<LemburView> {
                 () => Padding(
                   padding: const EdgeInsets.only(top: 015),
                   child: Button1(
-                    title: controller.title.value,
+                    title: 'Pengajuan Lembur',
                     onTap: () async {
                       await Get.to(() => PengajuanLemburView());
                       setState(() {});

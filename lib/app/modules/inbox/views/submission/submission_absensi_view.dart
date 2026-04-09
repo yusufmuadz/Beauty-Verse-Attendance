@@ -105,7 +105,7 @@ class _SubmissionAbsensiViewState extends State<SubmissionAbsensiView> {
                           arguments: data.id,
                         );
                       },
-                      title: Text(data.nama ?? "-"),
+                      title: Text(data.nama ?? "-", maxLines: 2, overflow: TextOverflow.ellipsis),
                       subtitle: Text(
                         DateFormat("dd MMM yyyy").format(data.dateRequestFor!),
                       ),

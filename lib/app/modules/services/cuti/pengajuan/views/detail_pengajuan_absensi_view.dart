@@ -137,7 +137,8 @@ class _DetailPengajuanAbsensiViewState
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100),
                             child: CachedNetworkImage(
-                              imageUrl: content.avatar ?? '-',
+                              imageUrl: '-',
+                              progressIndicatorBuilder: (context, url, progress) => const CupertinoActivityIndicator(),
                               fit: BoxFit.cover,
                               width: 50,
                               height: 50,
