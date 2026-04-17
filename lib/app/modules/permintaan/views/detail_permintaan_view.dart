@@ -222,7 +222,7 @@ class _DetailPermintaanViewState extends State<DetailPermintaanView> {
       'permintaan_id': barang.permintaanId!,
     });
 
-    debugPrint('log: ${request.fields}');
+    // debugPrint('log: ${request.fields}');
 
     http.StreamedResponse response = await request.send();
 

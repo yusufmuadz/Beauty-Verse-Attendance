@@ -340,6 +340,9 @@ class _AgreementListViewState extends State<AgreementListView> {
                                         child: CachedNetworkImage(
                                           imageUrl: leave.avatar ?? "-",
                                           fit: BoxFit.cover,
+                                          imageBuilder: (context, imageProvider) {
+                                            return Image(image: imageProvider);
+                                          },
                                           errorWidget: (context, url, error) =>
                                               const Icon(
                                                   Icons.account_circle_rounded),

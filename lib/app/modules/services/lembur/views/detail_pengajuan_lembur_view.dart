@@ -35,7 +35,7 @@ class _DetailPengajuanLemburViewState extends State<DetailPengajuanLemburView> {
   void initState() {
     super.initState();
     idOvertime = Get.arguments;
-    debugPrint('log: id overtime => $idOvertime');
+    // debugPrint('log: id overtime => $idOvertime');
   }
 
   Future fetchOvertimeById({required String id}) async {

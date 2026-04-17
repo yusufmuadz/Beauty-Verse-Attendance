@@ -5,7 +5,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart';
 import 'package:get/get.dart';
@@ -21,7 +20,6 @@ import 'app/modules/home/views/menu_view.dart';
 import 'app/modules/splash/bindings/splash_binding.dart';
 import 'app/modules/splash/views/splash_view.dart';
 import 'app/routes/app_pages.dart';
-import 'firebase_options.dart';
 
 /// Custom HTTP overrides to handle bad certificates.
 class MyHttpOverrides extends HttpOverrides {

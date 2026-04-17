@@ -188,7 +188,7 @@ class HomeController extends GetxController {
         final data = await response.stream.bytesToString();
         return json.decode(data);
       } else {
-        debugPrint('${response.reasonPhrase}');
+        // debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       debugPrint('$e');

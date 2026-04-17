@@ -18,7 +18,6 @@ import '../../../data/model/leave_response_model.dart';
 import '../../../models/detail_leave.dart';
 import '../../../shared/attach/show_multiple_file.dart';
 import '../../../shared/button/button_1.dart';
-import '../../../shared/images/images.dart';
 import '../../../shared/loading/loading1.dart';
 import '../../../shared/textfield/textfield_1.dart';
 import '../../../shared/utils.dart';
@@ -68,7 +67,7 @@ class _AgreementDetailViewState extends State<AgreementDetailView> {
       final data = RespModelLeave.fromJson(str);
       return data;
     } else {
-      debugPrint('${response.reasonPhrase}');
+      // debugPrint('${response.reasonPhrase}');
     }
   }
 
@@ -111,6 +110,17 @@ class _AgreementDetailViewState extends State<AgreementDetailView> {
                                 child: CachedNetworkImage(
                                   imageUrl: user.avatar!,
                                   fit: BoxFit.cover,
+                                  imageBuilder: (context, imageProvider) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                   errorWidget: (context, url, error) =>
                                       Container(
                                         width: 44,

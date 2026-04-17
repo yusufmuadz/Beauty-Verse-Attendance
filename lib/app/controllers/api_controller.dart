@@ -339,7 +339,7 @@ class ApiController extends GetxController {
         final data = json.decode(str);
         m.changeShift(data);
       } else {
-        debugPrint('${response.reasonPhrase}');
+        // debugPrint('${response.reasonPhrase}');
       }
     } on SocketException catch (e) {
       m.dialogNoInternet();
@@ -392,7 +392,7 @@ class ApiController extends GetxController {
         m.overtimeSize(data.pendingLenght);
         return data;
       } else {
-        debugPrint('${response.reasonPhrase}');
+        // debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       log(e.toString());
@@ -471,7 +471,7 @@ class ApiController extends GetxController {
         final leave = TimeOffResponseModel.fromJson(data);
         return leave.content;
       } else {
-        debugPrint('${response.reasonPhrase}');
+        // debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       log(e.toString());
@@ -517,7 +517,7 @@ class ApiController extends GetxController {
       final str = await response.stream.bytesToString();
       return IdentifyJobScopeResponseModel.fromJson(str);
     } else {
-      debugPrint('log_error: ${response.reasonPhrase}');
+      // debugPrint('log_error: ${response.reasonPhrase}');
     }
   }
 
@@ -674,7 +674,7 @@ class ApiController extends GetxController {
         m.co(Attendance());
       }
     } catch (e) {
-      debugPrint('Error: $e');
+      // debugPrint('Error: $e');
       // Menangani pengecualian atau error
       m.ci(Attendance());
       m.co(Attendance());
@@ -777,11 +777,11 @@ class ApiController extends GetxController {
         // }
         return data;
       } else {
-        if (kDebugMode) {
-          debugPrint("Error response: $results");
-          debugPrint("Error reason: ${response.reasonPhrase}");
-          debugPrint("Error status code: ${response.statusCode}");
-        }
+        // if (kDebugMode) {
+        //   debugPrint("Error response: $results");
+        //   debugPrint("Error reason: ${response.reasonPhrase}");
+        //   debugPrint("Error status code: ${response.statusCode}");
+        // }
         return null;
       }
     } on HttpException catch (e) {
@@ -854,7 +854,7 @@ class ApiController extends GetxController {
       quality: 40,
     );
 
-    debugPrint('${file.lengthSync()}');
+    // debugPrint('${file.lengthSync()}');
 
     return result;
   }

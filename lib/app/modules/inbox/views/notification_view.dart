@@ -120,7 +120,7 @@ class NotificationView extends GetView {
       final result = SuperadminResponseModel.fromJson(data);
       return result.data!.isEmpty ? null : result;
     } else {
-      debugPrint('${response.reasonPhrase}');
+      // debugPrint('${response.reasonPhrase}');
     }
   }
 }

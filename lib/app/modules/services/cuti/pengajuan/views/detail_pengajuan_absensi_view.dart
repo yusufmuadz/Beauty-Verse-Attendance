@@ -138,7 +138,9 @@ class _DetailPengajuanAbsensiViewState
                             borderRadius: BorderRadius.circular(100),
                             child: CachedNetworkImage(
                               imageUrl: '-',
-                              progressIndicatorBuilder: (context, url, progress) => const CupertinoActivityIndicator(),
+                              progressIndicatorBuilder:
+                                  (context, url, progress) =>
+                                      const CupertinoActivityIndicator(),
                               fit: BoxFit.cover,
                               width: 50,
                               height: 50,
@@ -312,12 +314,12 @@ class _DetailPengajuanAbsensiViewState
         ),
       ),
       bottomSheet: Obx(() {
-        debugPrint('isShowing: ${isShowing.value}');
-        debugPrint('content: ${contentNotNull.value}');
-        debugPrint('statusLine: ${contentStatusLine.value}');
-        debugPrint(
-          'statusLine: ${isShowing.value && !contentNotNull.value && contentStatusLine.value == "Pending"}',
-        );
+        // debugPrint('isShowing: ${isShowing.value}');
+        // debugPrint('content: ${contentNotNull.value}');
+        // debugPrint('statusLine: ${contentStatusLine.value}');
+        // debugPrint(
+        //   'statusLine: ${isShowing.value && !contentNotNull.value && contentStatusLine.value == "Pending"}',
+        // );
         if (isShowing.value &&
             contentNotNull.value &&
             contentStatusLine.value == "Pending") {
@@ -412,7 +414,7 @@ class _DetailPengajuanAbsensiViewState
       if (response.statusCode == 200) {
         // debugPrint(await response.stream.bytesToString());
       } else {
-        debugPrint('${response.reasonPhrase}');
+        // debugPrint('${response.reasonPhrase}');
       }
     } catch (e) {
       log(e.toString());

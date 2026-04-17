@@ -37,7 +37,7 @@ class _AbsenViewState extends State<AbsenView> {
     a.locations();
   }
 
-  _infoLocations() {
+  String _infoLocations() {
     // ignore: unnecessary_null_comparison
     if (m.locations.value.locations!.isEmpty) {
       return "Lokasi presensi belum diset";
@@ -48,7 +48,7 @@ class _AbsenViewState extends State<AbsenView> {
     }
   }
 
-  _onTapLocations() async {
+  Future<void> _onTapLocations() async {
     if (m.locations.value.setting!.flexible == '1') {
       showDialog(
         context: context,
@@ -132,7 +132,7 @@ class _AbsenViewState extends State<AbsenView> {
                     Text(
                       m.todayShift.value.id == null
                           ? "Shift belum tersedia"
-                          : findShiftName(m.todayShift.value as Shift),
+                          : findShiftName(m.todayShift.value),
                       style: GoogleFonts.urbanist(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,

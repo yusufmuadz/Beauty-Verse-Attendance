@@ -1156,7 +1156,7 @@ class PermintaanController extends GetxController {
         );
         // debugPrint(await response.stream.bytesToString());
       } else {
-        debugPrint('${response.reasonPhrase}');
+        // debugPrint('${response.reasonPhrase}');
         Get.rawSnackbar(
           messageText: Text(
             "Gagal mengirimkan data!",

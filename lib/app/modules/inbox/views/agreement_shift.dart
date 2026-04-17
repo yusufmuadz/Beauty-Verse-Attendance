@@ -187,16 +187,17 @@ class _AgreementShiftViewState extends State<AgreementShiftView> {
                       fetchShiftAgreements(); // Re-fetch data
                     },
                     leading: CircleAvatar(
-                        backgroundColor: Colors.grey.shade300,
-                        child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: shift.userAvatarUrl!,
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.account_circle_rounded),
+                      backgroundColor: Colors.grey.shade300,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: CachedNetworkImage(
+                          fit: BoxFit.cover,
+                          imageUrl: shift.userAvatarUrl!,
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.account_circle_rounded),
+                        ),
                       ),
-                    ),),
+                    ),
                     title: SizedBox(
                       width: Get.width * 0.65,
                       child: Text(
@@ -276,7 +277,7 @@ class _AgreementShiftViewState extends State<AgreementShiftView> {
       final data = ChangeShiftResponseModel.fromJson(str);
       return data;
     } else {
-      debugPrint('${response.reasonPhrase}');
+      // debugPrint('${response.reasonPhrase}');
       return null; // Return null on error
     }
   }

@@ -477,7 +477,7 @@ class _PengajuanPergantianShiftViewState
       Uri.parse('${Variables.baseUrl}/v1/user/submit/flexible/shift'),
     );
 
-    debugPrint('Url => ${request.url}');
+    // debugPrint('Url => ${request.url}');
 
     request.fields.addAll({
       'shift_id': shiftId,
@@ -580,13 +580,13 @@ class _PengajuanPergantianShiftViewState
     );
 
     request.headers.addAll(headers);
-    debugPrint('Fetching shifts for date: $date with name filter: $name');
+    // debugPrint('Fetching shifts for date: $date with name filter: $name');
 
     try {
       http.StreamedResponse response = await request.send();
 
-      debugPrint('URL SHIFT: ${request.url}');
-      debugPrint('Response Status Code: ${response.statusCode}');
+      // debugPrint('URL SHIFT: ${request.url}');
+      // debugPrint('Response Status Code: ${response.statusCode}');
       // debugPrint('Response Body: ${await response.stream.bytesToString()}');
 
       if (response.statusCode == 200) {
