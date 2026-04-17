@@ -194,7 +194,7 @@ class LocationsTrackerController extends GetxController {
 
       debugPrint('URL: ${request.url}');
       debugPrint('Status Code: ${response.statusCode}');
-      debugPrint('Response Body: $data');
+      // debugPrint('Response Body: $data');
 
       if (response.statusCode == 201) {
         return true;

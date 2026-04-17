@@ -585,18 +585,20 @@ class _PengajuanPergantianShiftViewState
     try {
       http.StreamedResponse response = await request.send();
 
-      debugPrint('URL: ${request.url}');
+      debugPrint('URL SHIFT: ${request.url}');
       debugPrint('Response Status Code: ${response.statusCode}');
-      debugPrint('Response Body: ${await response.stream.bytesToString()}');
+      // debugPrint('Response Body: ${await response.stream.bytesToString()}');
 
       if (response.statusCode == 200) {
         final str = await response.stream.bytesToString();
         final result = ListShiftResponseModel.fromJson(str);
+        // debugPrint('List Body: $result');
         listShift.value = result.data!;
       } else {
         print(response.reasonPhrase);
       }
     } catch (e) {
+      debugPrint('Error SHIFT: $e');
       CustomDialog(title: "Gagal", content: e.toString());
     }
   }
