@@ -1,0 +1,140 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_image_compress_common (1.0.0):
+    - Flutter
+    - Mantle
+    - SDWebImage
+    - SDWebImageWebPCoder
+  - flutter_rotation_sensor (0.0.1):
+    - Flutter
+  - geocoding_ios (1.0.5):
+    - Flutter
+  - geolocator_apple (1.2.0):
+    - Flutter
+    - FlutterMacOS
+  - image_picker_ios (0.0.1):
+    - Flutter
+  - IOSSecuritySuite (1.9.11)
+  - jailbreak_root_detection (1.0.1):
+    - Flutter
+    - IOSSecuritySuite (~> 1.9.10)
+  - libwebp (1.5.0):
+    - libwebp/demux (= 1.5.0)
+    - libwebp/mux (= 1.5.0)
+    - libwebp/sharpyuv (= 1.5.0)
+    - libwebp/webp (= 1.5.0)
+  - libwebp/demux (1.5.0):
+    - libwebp/webp
+  - libwebp/mux (1.5.0):
+    - libwebp/demux
+  - libwebp/sharpyuv (1.5.0)
+  - libwebp/webp (1.5.0):
+    - libwebp/sharpyuv
+  - Mantle (2.2.0):
+    - Mantle/extobjc (= 2.2.0)
+  - Mantle/extobjc (2.2.0)
+  - native_device_orientation (0.0.1):
+    - Flutter
+  - ObjectBox (4.4.1)
+  - objectbox_flutter_libs (0.0.1):
+    - Flutter
+    - ObjectBox (= 4.4.1)
+  - open_file_ios (1.0.3):
+    - Flutter
+  - permission_handler_apple (9.3.0):
+    - Flutter
+  - SDWebImage (5.21.7):
+    - SDWebImage/Core (= 5.21.7)
+  - SDWebImage/Core (5.21.7)
+  - SDWebImageWebPCoder (0.15.0):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.17)
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - sqflite_darwin (0.0.4):
+    - Flutter
+    - FlutterMacOS
+  - url_launcher_ios (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_image_compress_common (from `.symlinks/plugins/flutter_image_compress_common/ios`)
+  - flutter_rotation_sensor (from `.symlinks/plugins/flutter_rotation_sensor/ios`)
+  - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
+  - geolocator_apple (from `.symlinks/plugins/geolocator_apple/darwin`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - jailbreak_root_detection (from `.symlinks/plugins/jailbreak_root_detection/ios`)
+  - native_device_orientation (from `.symlinks/plugins/native_device_orientation/ios`)
+  - objectbox_flutter_libs (from `.symlinks/plugins/objectbox_flutter_libs/ios`)
+  - open_file_ios (from `.symlinks/plugins/open_file_ios/ios`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+
+SPEC REPOS:
+  trunk:
+    - IOSSecuritySuite
+    - libwebp
+    - Mantle
+    - ObjectBox
+    - SDWebImage
+    - SDWebImageWebPCoder
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_image_compress_common:
+    :path: ".symlinks/plugins/flutter_image_compress_common/ios"
+  flutter_rotation_sensor:
+    :path: ".symlinks/plugins/flutter_rotation_sensor/ios"
+  geocoding_ios:
+    :path: ".symlinks/plugins/geocoding_ios/ios"
+  geolocator_apple:
+    :path: ".symlinks/plugins/geolocator_apple/darwin"
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
+  jailbreak_root_detection:
+    :path: ".symlinks/plugins/jailbreak_root_detection/ios"
+  native_device_orientation:
+    :path: ".symlinks/plugins/native_device_orientation/ios"
+  objectbox_flutter_libs:
+    :path: ".symlinks/plugins/objectbox_flutter_libs/ios"
+  open_file_ios:
+    :path: ".symlinks/plugins/open_file_ios/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  sqflite_darwin:
+    :path: ".symlinks/plugins/sqflite_darwin/darwin"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+
+SPEC CHECKSUMS:
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  flutter_image_compress_common: ec1d45c362c9d30a3f6a0426c297f47c52007e3e
+  flutter_rotation_sensor: f37d8d24050572029bdd2d55a93e0f334e2eeac6
+  geocoding_ios: eafacae6ad11a1eb56681f7d11df602a5fd49416
+  geolocator_apple: 66b711889fd333205763b83c9dcf0a57a28c7afd
+  image_picker_ios: 4f2f91b01abdb52842a8e277617df877e40f905b
+  IOSSecuritySuite: b51056d5411aee567153ca86ce7f6edfdc5d2654
+  jailbreak_root_detection: b95de80c3e51eec1fc7d0225784d2fc038fa95ed
+  libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
+  Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
+  native_device_orientation: 42487b19c552fb5a6a2b51e61b93366f628113df
+  ObjectBox: 7da4aceb5013d041bfafdbc6d744a26918b09757
+  objectbox_flutter_libs: 7a6ea1d74b43f5d970e6571d1b79e4b181b33d81
+  open_file_ios: ece9c5358aec7b7ed7dc12fcb0f926ef6d6650f1
+  permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
+  SDWebImage: e9fc87c1aab89a8ab1bbd74eba378c6f53be8abf
+  SDWebImageWebPCoder: 0e06e365080397465cc73a7a9b472d8a3bd0f377
+  shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
+  sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
+  url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa
+
+PODFILE CHECKSUM: 53a6aebc29ccee84c41f92f409fc20cd4ca011f1
+
+COCOAPODS: 1.16.2
