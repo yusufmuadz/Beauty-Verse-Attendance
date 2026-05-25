@@ -173,9 +173,9 @@ class _AbsenViewState extends State<AbsenView> {
 
           // Tombol Clock-in / Clock-out
           Obx(() {
-            if (m.todayShift.value.dayoff == null &&
-                m.todayShift.value.dayoff == '0' &&
-                m.timeOffMaster.value.id == null) {
+            if (m.todayShift.value.dayoff == "1" ||
+                (m.ci.value.type != null && m.co.value.type != null) ||
+                m.timeOffMaster.value.id != null) {
               return const SizedBox();
             }
             return Padding(

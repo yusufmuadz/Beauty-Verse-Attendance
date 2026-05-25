@@ -113,7 +113,8 @@ class _LemburViewState extends State<LemburView> {
                       if (overtimeList.isEmpty) {
                         return CustomEmptySubmission(
                           title: 'Belum ada pengajuan lembur',
-                          subtitle: 'Belum ada pengajuan lembur, silahkan ajukan pengajuan lembur anda',
+                          subtitle:
+                              'Belum ada pengajuan lembur, silahkan ajukan pengajuan lembur anda',
                         );
                       }
 
@@ -162,16 +163,14 @@ class _LemburViewState extends State<LemburView> {
                   },
                 ),
               ),
-              Obx(
-                () => Padding(
-                  padding: const EdgeInsets.only(top: 015),
-                  child: Button1(
-                    title: 'Pengajuan Lembur',
-                    onTap: () async {
-                      await Get.to(() => PengajuanLemburView());
-                      setState(() {});
-                    },
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(top: 015),
+                child: Button1(
+                  title: 'Pengajuan Lembur',
+                  onTap: () async {
+                    await Get.to(() => PengajuanLemburView());
+                    setState(() {});
+                  },
                 ),
               ),
             ],

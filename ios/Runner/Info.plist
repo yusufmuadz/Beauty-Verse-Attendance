@@ -45,24 +45,26 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Aplikasi membutuhkan akses mikrofon untuk merekam suara.</string>
+	<string>This app uses the microphone to record audio during specific app features such as communication or voice-related functions.</string>
+
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Aplikasi membutuhkan akses galeri untuk memilih foto.</string>
+	<string>This app allows users to select photos from the photo library for profile pictures, verification, and operational purposes.</string>
 
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Aplikasi membutuhkan izin untuk menyimpan foto ke galeri.</string>
+	<string>This app allows users to save generated or downloaded images to the photo library.</string>
 
 	<key>NSCameraUsageDescription</key>
-	<string>Aplikasi membutuhkan akses kamera untuk mengambil foto.</string>
+	<string>Camera access is required for identity verification, attendance validation, and account security features.</string>
 
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Aplikasi membutuhkan akses lokasi untuk menampilkan lokasi Anda.</string>
+	<string>This app uses your location to verify attendance, support operational activities, and provide location-based services while using the app.</string>
 
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Aplikasi membutuhkan akses lokasi untuk fitur peta.</string>
+	<string>This app may access your location to support attendance verification and operational location tracking when required by authorized company activities.</string>
 
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Aplikasi membutuhkan akses lokasi.</string>
+	<string>This app uses your location to support attendance verification, operational activities, and location-based services both in the foreground and background when necessary.</string>
 </dict>
 </plist>

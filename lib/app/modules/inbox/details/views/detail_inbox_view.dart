@@ -69,7 +69,7 @@ class _DetailInboxViewState extends State<DetailInboxView> {
                     TileDetailInbox('Posisi Pekerjaan', 'Staff Personalia'),
                     TileDetailInbox(
                       'Cabang',
-                      'CV Andi Offset Yogyakarta Pusat',
+                      'BeautyVerse Pusat',
                     ),
                   ],
                 ),

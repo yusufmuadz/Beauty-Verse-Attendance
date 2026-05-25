@@ -43,7 +43,7 @@ class JobInformationView extends GetView {
           ),
           ListTile2(
             title: 'Nama Perusahaan',
-            subTitle: 'Andi Offset Yogyakarta',
+            subTitle: 'BeautyVerse',
             icons: Icons.business, // 🏢 perusahaan
             iconColor: Colors.amber, // biru = corporate
           ),

@@ -446,6 +446,14 @@ class _DetailPengajuanLemburUserState extends State<DetailPengajuanLemburUser> {
                   context: context,
                   initialTime: TimeOfDay(hour: 0, minute: 0),
                   initialEntryMode: TimePickerEntryMode.input,
+                  builder: (context, child) => MediaQuery(
+                    data: MediaQuery.of(context).copyWith(
+                      // alwaysUse24HourFormat: true,
+                      viewInsets: EdgeInsets.zero,
+                      textScaler: const TextScaler.linear(1.0),
+                    ),
+                    child: child ?? const SizedBox.shrink(),
+                  ),
                 ).then((value) {
                   if (value != null) {
                     setState(() {
